@@ -1,0 +1,44 @@
+<% @page_title = "#{@picture.title} from gallery #{@picture.gallery.name}" %>
+
+<% content_for 'tasks' do %>
+  <li>
+    <%= link_to 'List of Pictures', admin_picture_url %>
+  </li>
+  <li>
+    <%= link_to "Edit gallery #{@picture.gallery.name}", edit_admin_gallery_url(@picture.gallery) %>
+  </li>
+  <li>
+    <%= link_to "Edit picture", edit_admin_gallery_picture_url(@picture.gallery, @picture) %>
+  </li>
+<% end %>
+
+<h2>Manage Pictures</h2>
+
+
+<% if flash[:notice] %>
+  <p class="notice"><%=h flash[:notice] %></p>
+<% end -%>
+
+
+<p>
+  <%= image_tag @picture.public_filename %>
+</p>
+
+<div class="set admin">
+  <ul>
+    <li>
+      <label class="float">Titre :</label>
+      <%=h @picture.title %>
+    </li>
+
+    <% unless @picture.description.empty? %>
+      <li>
+      <label class="float">Description :</label><br />
+        <label class="block"><%= @picture.description %></label>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+<p><%= link_to "Back to editing gallery #{@picture.gallery.name}", edit_admin_gallery_url(@picture.gallery) %></p>

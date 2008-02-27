@@ -1,0 +1,8 @@
+<h1>Gallery : <%=h @gallery.name %></h1>
+
+<% unless @gallery.description.empty? -%>
+  <p>
+    <b>Description:</b><br />
+    <%=h @gallery.description %>
+  </p>
+<% end -%>

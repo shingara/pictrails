@@ -1,0 +1,8 @@
+setting1:
+  id: 1
+  settings: 
+    webapp_name: my new gallery
+    webapp_subtitle: My subtitle
+
+setting2:
+  id: 2

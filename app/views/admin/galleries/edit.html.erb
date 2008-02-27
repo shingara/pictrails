@@ -1,0 +1,80 @@
+<% content_for 'tasks' do %>
+  <li>
+    <%= link_to 'List of Galleries', admin_galleries_url %>
+  </li>
+  <li>
+    <%= link_to 'Add picture', new_admin_gallery_picture_url(@gallery) %>
+  </li>
+<% end %>
+
+<h2>Manage galleries</h2>
+
+<%= error_messages_for :gallery %>
+
+<%= flash_notice %>
+
+<h3>Editing the gallery</h3>
+<% form_for([:admin, @gallery]) do |f| %>
+  <fieldset class="set admin" style="display: block;">
+    <ul>
+      <li>
+        <label class="block" for="name">Name :</label>
+        <%= f.text_field :name %>
+      </li>
+      <li>
+        <label class="block" for="description">Description :</label>
+        <%= f.text_area :description, :style => "width : 100%;" %>
+      </li>
+      <li>
+        <label class="float" for="status">Status :</label>
+        <%= f.check_box :status %>
+      </li>
+      <li class="r">
+        <%= f.submit 'Save &#187;', {:class=>'submit'} %>
+      </li>
+
+    </ul>
+  </fieldset>
+<% end %>
+
+
+
+<h1>List of Pictures in gallery</h1>
+
+<% if @gallery.pictures.empty? %>
+  <p>
+    There are no picture in this Gallery
+  </p>
+<% else %>
+  <div id="admin_table" class="list">
+    <table>
+      <thead>
+        <tr>
+          <th class="first">Title</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>View</th>
+          <th>Edit</th>
+          <th class="last">Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @gallery.pictures.each do |picture| %>
+          <tr>
+            <td><%=link_to h(picture.title), admin_gallery_picture_url(@gallery, picture) %></td>
+            <td><%=h picture.description %></td>
+            <td><%=h status_value(picture.status)%> </td>
+            <td><%= link_to image_tag('/images/admin/show.png'), admin_gallery_picture_url(@gallery, picture) %></td>
+            <td><%= link_to image_tag('/images/admin/edit.png', :title => 'Edit picture', :alt => 'edit'), edit_admin_gallery_picture_url(@gallery, picture) %></td>
+            <td><%= link_to image_tag('/images/admin/remove.png', :title => 'Remove picture', :alt => 'remove'), {:controller => 'admin/pictures', :action => 'destroy', :gallery_id => @gallery.id, :id => picture.id}, :method => 'delete', :confirm => 'Are you sure ?' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<p>
+  <%= link_to 'Add picture', new_admin_gallery_picture_url(@gallery) %> |
+  <%= link_to 'Back to admin of all galleries', admin_galleries_url %>
+</p>

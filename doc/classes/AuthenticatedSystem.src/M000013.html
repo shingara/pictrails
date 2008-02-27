@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>login_from_basic_auth (AuthenticatedSystem)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/authenticated_system.rb, line 101</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">login_from_basic_auth</span>
+      <span class="ruby-identifier">authenticate_with_http_basic</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">username</span>, <span class="ruby-identifier">password</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">current_user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">password</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

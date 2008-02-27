@@ -1,0 +1,22 @@
+<% @page_title = "#{@gallery.name}" %>
+
+<% content_for 'tasks' do %>
+  <li>
+    <%= link_to 'List of Galleries', admin_galleries_url %>
+  </li>
+  <li>
+    <%= link_to 'Add Picture', new_admin_gallery_picture_url(@gallery) %>
+  </li>
+<% end %>
+
+<h2>Gallery : <%=h @gallery.name %></h2>
+
+<% unless @gallery.description.empty? -%>
+  <p>
+    <b>Description:</b>
+    <%=h @gallery.description %>
+  </p>
+<% end -%>
+
+
+<%= render :partial => 'galleries/list_pictures' %>

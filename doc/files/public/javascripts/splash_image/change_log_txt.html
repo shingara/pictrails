@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: change_log.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>change_log.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>public/javascripts/splash.image/change_log.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Wed Jan 23 22:42:28 +0100 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+02-11-2007 : V1.91
+</p>
+<ul>
+<li>Correction d&#8216;un bug de la largeur du fond splash sous IE7
+
+</li>
+<li>Ajout de la gestion d&#8216;autostart du diaporama
+
+<pre>
+  Il suffit de remplir les variables suivantes :
+  - splash_auto_start = true si autostart activé sinon mettre à false
+  - splash_auto_start_rank  = indice de l'image qui doit être lancée
+  - splash_auto_start_group = par défaut est égale à 'splash' (pour les images non groupées), sinon mettre le nom du groupe de l'image
+</pre>
+</li>
+</ul>
+<p>
+10-10-2007 : V1.9
+</p>
+<ul>
+<li>pour les paresseux, il suffit désormais d&#8216;ajouter &quot;splash&quot;
+au lieu de &quot;splash.image&quot; à l&#8216;attribut &quot;rel&quot;
+(mais vous pouvez toujours conserver &quot;splash.image&quot; cela
+fonctionne encore)
+
+</li>
+<li>Splash fonctionne désormais aussi avec les rel du type &quot;lightbox&quot;
+ou &quot;lightbox[groupe]&quot;. Il est donc inutile de faire un masse
+update pour utiliser Splash (remarque private inside ^^).
+
+</li>
+<li>Paramètrage du z-index du splash et de ses éléments pour éviter les
+problèmes de niveau des layers.
+
+</li>
+<li>Cache et affiche les éléments de type embed ou object(flash entre autres)
+afin d&#8217;éviter que ceux ci passent par dessus le splash.
+
+</li>
+<li>Une demande spéciale d&#8216;un visiteur qui voulait afficher une image en
+fond à la place du fond noir. Pour cela il suffit dans le fichier
+splash.image.js de mettre le flag &quot;set_bg&quot; à &quot;true&quot; et
+de mettre dans le repertoire du script l&#8216;image désirée en fond et de
+la renommer en &quot;bg.gif&quot;.
+
+</li>
+</ul>
+<p>
+31-05-2007 : V1.81
+</p>
+<ul>
+<li>Correction d&#8216;un bug d&#8216;affichage sous Internet Explorer (largeur
+de la description trop large).
+
+</li>
+</ul>
+<p>
+31-05-2007 : V1.8
+</p>
+<ul>
+<li>Correction d&#8216;un bug de navigation (quand on retrouvait plusieurs fois
+la même image dans un groupe).
+
+</li>
+<li>Disparition des grosses flèches de navigation, remplacées par des petits
+icones Silk :).
+
+</li>
+<li>apparition de la légende la photo.
+
+</li>
+<li>affichage du rang de l&#8216;image dans le groupe.
+
+</li>
+</ul>
+<p>
+18-04-2007 : V1.7
+</p>
+<ul>
+<li>remix allégé du code.
+
+</li>
+<li>raccourcis clavier pendant le plein écran :
+
+<pre>
+      - Image précédente (Page pp, flèche gauche, -)
+      - Image suivante (Page down, flèche droite, +)
+      - Démarrer/arrêter le slide (Entrée, espace, flèche bas)
+      - Sortir du plein écran (Esc, Suppr, flèche haut, x)
+</pre>
+</li>
+</ul>
+<p>
+16-04-2007 : V1.6
+</p>
+<ul>
+<li>Affichage des images en plein écran.
+
+</li>
+<li>fond ajusté à la taille d&#8216;image.
+
+</li>
+<li>fonction de groupage des images en slide.
+
+</li>
+<li>mode diaporama.
+
+</li>
+<li>image défilante en boucle.
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

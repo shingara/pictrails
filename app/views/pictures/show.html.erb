@@ -1,0 +1,53 @@
+<p>
+  <b>Gallery:</b>
+  <%=h @picture.gallery.name %>
+</p>
+
+<p>
+  <%= image_tag @picture.public_filename %>
+</p>
+
+<p>
+  <b>Content type:</b>
+  <%=h @picture.content_type %>
+</p>
+
+<p>
+  <b>Filename:</b>
+  <%=h @picture.filename %>
+</p>
+
+
+<p>
+  <b>Size:</b>
+  <%=h @picture.size %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%=h @picture.width %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%=h @picture.height %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%=h @picture.position %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @picture.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @picture.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_gallery_picture_path(params[:gallery_id], @picture) %> |
+<%= link_to 'Back', gallery_path(params[:gallery_id]) %>

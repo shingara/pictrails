@@ -1,0 +1,43 @@
+<% content_for 'tasks' do %>
+  <li>
+    <%= link_to 'List of Galleries', admin_galleries_url, :class => "current" %>
+  </li>
+<% end %>
+
+<h2>List of Gallery</h2>
+
+<%= flash_notice %>
+
+<div id="admin_table" class="list">
+  <% if @galleries.empty? %>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th class="first">Name</th>
+          <th>Number of Pictures</th>
+          <th>Status</th>
+          <th>View</th>
+          <th>Edit</th>
+          <th class="last">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @galleries.each do |gallery| %>
+          <tr>
+            <td><%= link_to h(gallery.name), admin_gallery_url(gallery) %></td>
+            <td><%=h gallery.pictures.size %> </td>
+            <td><%=h status_value(gallery.status)%> </td>
+            <td><%= link_to image_tag('/images/admin/show.png'), admin_gallery_url(gallery) %></td>
+            <td><%= link_to image_tag('/images/admin/edit.png', :title => 'Edit gallery', :alt => 'edit'), edit_admin_gallery_url(gallery) %></td> 
+            <td><%= link_to image_tag('/images/admin/remove.png', :title => 'Remove gallery', :alt => 'remove'), {:action => 'destroy', :id => gallery.id}, :method => 'delete', :confirm => "are you sure ?" %></td> 
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+
+<p>
+  <%= link_to 'Add Gallery', new_admin_gallery_url %>
+</p>

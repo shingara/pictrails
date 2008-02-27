@@ -1,0 +1,22 @@
+<h2>Settings of Pictrails</h2>
+
+<% form_for([:admin, this_webapp]) do |f| %>
+  <div class="admin">
+    <fieldset class="set" id="gensettings">
+      <legend>General Options</legend>
+      <ul>
+        <li>
+          <label class="float" for="webapp_name">Galleries Name :</label>
+          <%= f.text_field :webapp_name %>
+        </li>
+        <li>
+          <label class="float" for="webapp_subtitle">Galleries subtitle :</label>
+          <%= f.text_field :webapp_subtitle %>
+        </li>
+      </ul>
+    </fieldset>
+    <div id="operations" class="paginate r">
+      <%= f.submit "Save Settings", :class => "submit"%>
+    </div>
+  </div>
+<% end %>

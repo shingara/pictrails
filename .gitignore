@@ -1,0 +1,15 @@
+# use glob syntax.
+config/database.yml
+*.log
+*.sqlite3
+*.pid
+public/galleries*
+test
+public/pictures
+public/thumbnails
+public/index.html
+pkg
+coverage
+.svn
+*.cache
+nbproject

@@ -1,0 +1,28 @@
+<% @menu_view = true %>
+
+<div id="loginform" title="Account login">
+  <h3>Signup</h3>
+  <div class="form admin">
+    <% if flash[:notice] %>
+      <h4><%=h flash[:notice] %></h4>
+    <% end -%>
+
+    <% form_tag admin_session_path do -%>
+      <ul>
+        <li>
+          <label for="login">Login :</label>
+          <%= text_field_tag 'login' %>
+        </li>
+        <li>
+          <label for="password">Password :</label>
+          <%= password_field_tag 'password' %>
+        </li>
+        <li class="r">
+          <input type="submit" name="login" value= "Login &#187;" class="primary" id="submit" />
+        </li>
+      </ul>
+
+      <p><%= link_to "&laquo; Back to " + this_webapp.webapp_name, '/' %></p>
+    <% end -%>
+  </div>
+</div>

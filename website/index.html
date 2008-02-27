@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link rel="stylesheet" href="stylesheets/screen.css" type="text/css" media="screen" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>
+      Pictrails
+  </title>
+  <script src="javascripts/rounded_corners_lite.inc.js" type="text/javascript"></script>
+<style>
+
+</style>
+  <script type="text/javascript">
+    window.onload = function() {
+      settings = {
+          tl: { radius: 10 },
+          tr: { radius: 10 },
+          bl: { radius: 10 },
+          br: { radius: 10 },
+          antiAlias: true,
+          autoPad: true,
+          validTags: ["div"]
+      }
+      var versionBox = new curvyCorners(settings, document.getElementById("version"));
+      versionBox.applyCornersToAll();
+    }
+  </script>
+</head>
+<body>
+<div id="main">
+
+    <h1>Pictrails</h1>
+    <div id="version" class="clickable" onclick='document.location = "http://rubyforge.org/projects/pictrails"; return false'>
+      <p>Get Version</p>
+      <a href="http://rubyforge.org/projects/pictrails" class="numbers">0.1.0</a>
+    </div>
+    <p>A Web Photo Gallery, written with Rails 2.0. Pictrails can manage several photo galleries.</p>
+
+
+	<h2>Features</h2>
+
+
+	<ul>
+	<li>Create several Galleries</li>
+		<li>Add several pictures in a Gallery</li>
+		<li>See all Pictures with a slideshow in javascript (splash.image)</li>
+		<li>Admin interface with login to add/edit/delete Galleries and Pictures</li>
+	</ul>
+
+
+	<h2>Requirements</h2>
+
+
+	<p>Currently you need all of those things to get Pictrails to run:</p>
+
+
+	<ul>
+	<li>Ruby of 1.8.6 or greater</li>
+		<li>Ruby On Rails 2.0.x or greater</li>
+		<li>A database supported by Rails ActiveRecord (MySQL, <span class="caps">DB2</span>, SQLite3, ...)</li>
+		<li>Ruby drivers for your database (obviously out of the box with Rails)</li>
+		<li>A gem of an image-handling <span class="caps">API</span> like :
+   * ImageScience
+   * RMagick
+   * Mini-magick</li>
+	</ul>
+
+
+	<h2>Installing</h2>
+
+
+	<p>With the tar.gz or any other archive:</p>
+
+
+	<ul>
+	<li>Extract sources to a folder</li>
+		<li>Create a database.yml file in the config directory. You can copy the database.yml.example</li>
+		<li>Create your databases: rake db:create:all</li>
+		<li>Migrate your database: rake db:migrate</li>
+		<li>Start the server: ruby script/server</li>
+	</ul>
+
+
+	<h2>Information about this project</h2>
+
+
+	<p>Pictrails is actually consider like an Alpha version, and is under development.</p>
+
+
+	<p>All contributions are welcome.</p>
+
+
+	<p>I suck in design, I know it and I am sorry but I will really be happy if anyone could
+help me.</p>
+
+
+	<p>If you want to contribute, all work is made under a mercurial repository. You can clone the 
+source with the following command:</p>
+
+
+	<p>hg clone http://hg.shingara.fr</p>
+
+
+	<p>A redmine development platform is used at: http://dev.shingara.fr/projects/show/3</p>
+
+
+	<h2>License</h2>
+
+
+	<p>This code is free to use under the terms of the <span class="caps">MIT</span> license (provided with sources).</p>
+    <p class="coda">
+      <a href="mailto:cyril.mougel@gmail.com">Cyril Mougel</a>, 31st January 2008<br>
+      Theme extended from <a href="http://rb2js.rubyforge.org/">Paul Battley</a>
+    </p>
+</div>
+
+<!-- insert site tracking codes here, like Google Urchin -->
+
+</body>
+</html>

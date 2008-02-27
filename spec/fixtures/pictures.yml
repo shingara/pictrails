@@ -1,0 +1,51 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+picture1:
+  id: 1
+  gallery_id: 1
+  content_type: image/jpeg
+  filename: MyString.jpg
+  position: 
+  parent_id:
+  size: 1000
+  width: 1
+  height: 1
+  position: 
+  title: MyString
+  description: MyText
+  status: false
+  created_at: <%= 5.days.ago.to_s :db %>
+  updated_at: <%= 5.days.ago.to_s :db %>
+
+picture2:
+  id: 2
+  gallery_id: 1
+  content_type: image/jpeg
+  filename: MyString2.jpg
+  parent_id:
+  position: 
+  size: 1
+  width: 1
+  height: 1
+  position: 
+  title: MyString2
+  description: MyText2
+  status: true
+  created_at: <%= 4.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>
+
+picture3:
+  id: 3
+  gallery_id: 2
+  content_type: image/jpeg
+  filename: MyString3.jpg
+  parent_id:
+  position: 
+  size: 1
+  width: 1
+  height: 1
+  position: 
+  title: MyString3
+  description: MyText3
+  status: true
+  created_at: <%= 4.days.ago.to_s :db %>
+  updated_at: <%= 4.days.ago.to_s :db %>

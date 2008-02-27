@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%=h page_title_admin %></title>
+  <%= stylesheet_link_tag 'administration' %>
+</head>
+<body>
+  <div id="container">
+    <% unless @menu_view %>
+    <div id="topnav">
+      <ul id="tabs">
+        <li><%= link_to 'Galleries', admin_galleries_url, :class => class_galleries %></li>
+        <li><%= link_to 'Pictures', admin_pictures_url, :class => class_pictures %></li>
+        <li><%= link_to 'Settings', admin_settings_url, :class => class_settings %></li>
+        <li><%= link_to 'Acceuil', '/'%></li>
+        <li><%= link_to 'Logout', '/admin/logout' %></li>
+      </ul>
+    </div>
+
+     <div class="tasks">
+       <ul>
+        <%= yield :tasks %>
+       </ul>
+       <div style="clear:both;"></div>
+     </div>
+  <% end %>
+
+    <div id="overall">
+      <div id="main">
+        <%= yield  %>
+      </div>
+    
+      <p id="footer">powered by <a href="http://pictrails.rubyforge.org/">Pictrails</a></p>
+    </div>
+    
+
+  </div>
+</body>
+</html>

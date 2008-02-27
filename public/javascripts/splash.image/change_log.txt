@@ -1,0 +1,38 @@
+02-11-2007 : V1.91
+- Correction d'un bug de la largeur du fond splash sous IE7
+- Ajout de la gestion d'autostart du diaporama
+    Il suffit de remplir les variables suivantes :
+    - splash_auto_start = true si autostart activé sinon mettre à false
+    - splash_auto_start_rank  = indice de l'image qui doit être lancée
+    - splash_auto_start_group = par défaut est égale à 'splash' (pour les images non groupées), sinon mettre le nom du groupe de l'image
+
+10-10-2007 : V1.9
+- pour les paresseux, il suffit désormais d'ajouter "splash" au lieu de "splash.image" à l'attribut "rel" (mais vous pouvez toujours conserver "splash.image" cela fonctionne encore)
+- Splash fonctionne désormais aussi avec les rel du type "lightbox" ou "lightbox[groupe]". Il est donc inutile de faire un masse update pour utiliser Splash (remarque private inside ^^).
+- Paramètrage du z-index du splash et de ses éléments pour éviter les problèmes de niveau des layers.
+- Cache et affiche les éléments de type embed ou object(flash entre autres) afin d'éviter que ceux ci passent par dessus le splash.
+- Une demande spéciale d'un visiteur qui voulait afficher une image en fond à la place du fond noir. Pour cela il suffit dans le fichier splash.image.js de mettre le flag "set_bg" à "true" et de mettre dans le repertoire du script l'image désirée en fond et de la renommer en "bg.gif".
+
+31-05-2007 : V1.81
+- Correction d'un bug d'affichage sous Internet Explorer (largeur de la description trop large).
+
+31-05-2007 : V1.8
+- Correction d'un bug de navigation (quand on retrouvait plusieurs fois la même image dans un groupe).
+- Disparition des grosses flèches de navigation, remplacées par des petits icones Silk :).
+- apparition de la légende la photo.
+- affichage du rang de l'image dans le groupe.
+
+18-04-2007 : V1.7
+- remix allégé du code.
+- raccourcis clavier pendant le plein écran :
+	- Image précédente (Page pp, flèche gauche, -)
+	- Image suivante (Page down, flèche droite, +)
+	- Démarrer/arrêter le slide (Entrée, espace, flèche bas)
+	- Sortir du plein écran (Esc, Suppr, flèche haut, x)
+
+16-04-2007 : V1.6
+- Affichage des images en plein écran.
+- fond ajusté à la taille d'image.
+- fonction de groupage des images en slide.
+- mode diaporama.
+- image défilante en boucle.

@@ -1,0 +1,26 @@
+<h1>New gallery</h1>
+
+<%= error_messages_for :gallery %>
+
+<% form_for([:admin, @gallery]) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>Description</b><br />
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <b>Status : </b>
+    <%= f.check_box :status %>
+  </p>
+
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', admin_galleries_path %>

@@ -1,0 +1,13 @@
+== 0.2.0 / xxxx-xx-xx
+
+* 1 Major ehancement
+  * Using a system of cache paging in public part.
+  * Define the title and subtitle of your gallery
+
+* 1 Minor fix bug
+  * Return 404 when no found instead of 500
+
+== 0.1.0 / 2008-01-27
+
+* 1 major enhancement
+  * First Release
