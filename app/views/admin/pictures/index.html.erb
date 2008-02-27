@@ -1,0 +1,13 @@
+<% @page_title = "All pictures" %>
+
+<% content_for 'tasks' do %>
+  <li>
+    <%= link_to 'List of Pictures', admin_picture_url %>
+  </li>
+  <li>
+    <%= link_to "Edit gallery #{@picture.gallery.name}", edit_admin_gallery_url(@picture.gallery) %>
+  </li>
+  <li>
+    <%= link_to "Edit picture", edit_admin_gallery_picture_url(@picture.gallery, @picture) %>
+  </li>
+<% end %>

@@ -1,0 +1,12 @@
+<li>
+  <% if picture.status %>
+    <%= link_to (image_tag picture.public_filename(:thumb), :alt => picture.title), admin_picture_url(picture) %>
+    <%= picture.title %><br />
+    <% picture.description %>
+  <% else %>
+    <%= link_to (image_tag picture.public_filename(:thumb), :alt => picture.title), admin_picture_url(picture) %>
+    <%= picture.title %> (disabled)<br />
+    <% picture.description %>
+    <%= image_tag '/images/admin/error.png', :class => "no_display" %>
+  <% end -%>
+</li>
