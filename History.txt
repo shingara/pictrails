@@ -3,6 +3,7 @@
 * 1 Major ehancement
   * Using a system of cache paging in public part.
   * Define the title and subtitle of your gallery
+  * View all pictures in admin part
 
 * 1 Minor fix bug
   * Return 404 when no found instead of 500
