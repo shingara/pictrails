@@ -1,4 +1,6 @@
 class Admin::SettingsController < Admin::BaseController
+  
+  cache_sweeper :setting_sweeper,  :only => [:update]
 
   def index
     @page_title = 'Settings'
