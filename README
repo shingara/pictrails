@@ -1,0 +1,53 @@
+h1. Pictrails
+
+A Web Photo Gallery, written with Rails 2.0. Pictrails can manage several photo galleries.
+
+h2. Features
+
+ * Create several Galleries
+ * Add several pictures in a Gallery
+ * See all Pictures with a slideshow in javascript (splash.image)
+ * Admin interface with login to add/edit/delete Galleries and Pictures
+
+h2. Requirements
+
+Currently you need all of those things to get Pictrails to run:
+
+ * Ruby of 1.8.6 or greater
+ * Ruby On Rails 2.0.x or greater
+ * A database supported by Rails ActiveRecord (MySQL, DB2, SQLite3, ...)
+ * Ruby drivers for your database (obviously out of the box with Rails)
+ * A gem of an image-handling API like :
+    * ImageScience
+    * RMagick
+    * Mini-magick
+
+h2. Installing
+
+With the tar.gz or any other archive:
+
+ * Extract sources to a folder
+ * Create a database.yml file in the config directory. You can copy the database.yml.example
+ * Create your databases: rake db:create:all
+ * Migrate your database: rake db:migrate
+ * Start the server: ruby script/server
+
+h2. Information about this project
+
+Pictrails is actually consider like an Alpha version, and is under development.
+
+All contributions are welcome. 
+
+I suck in design, I know it and I am sorry but I will really be happy if anyone could
+help me.
+
+If you want to contribute, all work is made under a mercurial repository. You can clone the 
+source with the following command:
+
+hg clone http://hg.shingara.fr
+
+A redmine development platform is used at: http://dev.shingara.fr/projects/show/3
+
+h2. License
+
+This code is free to use under the terms of the MIT license (provided with sources).

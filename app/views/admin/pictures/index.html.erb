@@ -2,12 +2,10 @@
 
 <% content_for 'tasks' do %>
   <li>
-    <%= link_to 'List of Pictures', admin_picture_url %>
-  </li>
-  <li>
-    <%= link_to "Edit gallery #{@picture.gallery.name}", edit_admin_gallery_url(@picture.gallery) %>
-  </li>
-  <li>
-    <%= link_to "Edit picture", edit_admin_gallery_picture_url(@picture.gallery, @picture) %>
+    <%= link_to 'List of Pictures', admin_pictures_url, :class => 'current' %>
   </li>
 <% end %>
+
+<ul id="picture_list">
+  <%= render :partial => 'admin/pictures/picture', :collection => @pictures %>
+</ul>

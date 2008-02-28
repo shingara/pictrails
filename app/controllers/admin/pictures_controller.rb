@@ -2,6 +2,11 @@ class Admin::PicturesController < Admin::BaseController
   
   cache_sweeper :picture_sweeper,  :only => [:create, :update, :destroy]
 
+  # See all pictures
+  def index
+    @pictures = Picture.find :all
+  end
+
   # View the Picture when your are logged
   def show
     @picture = Picture.find params[:id]
