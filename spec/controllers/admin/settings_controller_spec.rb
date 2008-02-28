@@ -34,8 +34,8 @@ describe Admin::SettingsController,' with user logged' do
   it 'should not update settings' do
     Setting.default.webapp_name.should_not == ''
     put 'update', :id => Setting.default.id, :setting => {:webapp_name => ''}
-    pending do
-      Setting.default.webapp_name.should_not == ''
-    end
+    response.should be_success
+    response.should render_template('index')
+    Setting.default.webapp_name.should_not == ''
   end
 end

@@ -1,5 +1,9 @@
 <h2>Settings of Pictrails</h2>
 
+<%= error_messages_for :setting %>
+
+<%= flash_notice %>
+
 <% form_for([:admin, this_webapp]) do |f| %>
   <div class="admin">
     <fieldset class="set" id="gensettings">

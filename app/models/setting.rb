@@ -9,6 +9,8 @@ class Setting < ActiveRecord::Base
   setting :webapp_name,         :string, 'My own personal WebGallery'
   setting :webapp_subtitle,     :string, ''
 
+  validate_on_update :validate_settings
+
   def initialize
     super
     self.settings ||= {}
@@ -17,6 +19,12 @@ class Setting < ActiveRecord::Base
   # Return the fist webapp by Id
   def self.default
     Setting.find :first, :order => 'id'
+  end
+
+private
+
+  def validate_settings
+    errors.add webapp_name, "Galleries names can't be blank" if webapp_name.empty?
   end
 
 end
