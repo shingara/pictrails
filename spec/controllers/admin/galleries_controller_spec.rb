@@ -12,7 +12,7 @@ describe 'Admin::Gallery without logged' do
   end
 
   it 'should not view show' do
-    get 'show', :id => 1
+    get 'show', :id => galleries(:gallery1).permalink
     response.should redirect_to(admin_login_url)
   end
   
@@ -22,12 +22,12 @@ describe 'Admin::Gallery without logged' do
   end
   
   it 'should not edit gallery' do
-    get 'edit', :id => 1
+    get 'edit', :id => galleries(:gallery1).permalink
     response.should redirect_to(admin_login_url)
   end
 
   it 'should not update gallery' do
-    put 'update', :id => 1, :gallery => {:name => 'oui'}
+    put 'update', :id => galleries(:gallery1).permalink, :gallery => {:name => 'oui'}
     response.should redirect_to(admin_login_url)
   end
 
@@ -37,7 +37,7 @@ describe 'Admin::Gallery without logged' do
   end
 
   it 'should not destroy gallery' do
-    delete 'destroy', :id => 1
+    delete 'destroy', :id => galleries(:gallery1).permalink
     response.should redirect_to(admin_login_url)
   end
 
@@ -59,7 +59,7 @@ describe 'Admin::Gallery with user logged' do
   end
 
   it 'should see first gallery' do
-    get 'show', :id => 1
+    get 'show', :id => galleries(:gallery1).permalink
     assert_response :success
     assert_template 'show'
   end
@@ -76,7 +76,7 @@ describe 'Admin::Gallery with user logged' do
   end
 
   it 'should edit gallery in admin' do
-    get :edit, :id => 1
+    get :edit, :id => galleries(:gallery1).permalink
     assert_response :success
     assert_template 'edit'
   end
@@ -89,7 +89,7 @@ describe 'Admin::Gallery with user logged' do
   it 'should update gallery in admin' do
     g = Gallery.find 1
     g.name.should_not == 'oui'
-    put 'update', :id => 1, :gallery => {:name => 'oui'}
+    put 'update', :id => galleries(:gallery1).permalink, :gallery => {:name => 'oui'}
     response.should redirect_to(admin_galleries_url)
     g = Gallery.find 1
     g.name.should == 'oui'
@@ -98,7 +98,7 @@ describe 'Admin::Gallery with user logged' do
   it 'should not update gallery in admin because no name' do
     g = Gallery.find 1
     g.name.should_not == ''
-    put 'update', :id => 1, :gallery => {:name => ''};
+    put 'update', :id => galleries(:gallery1).permalink, :gallery => {:name => ''};
     assert_response :success
     assert_template 'edit'
     g = Gallery.find 1
@@ -124,7 +124,7 @@ describe 'Admin::Gallery with user logged' do
 
   it 'should destroy gallery' do
     Gallery.count.should == 2
-    delete :destroy, :id => 1
+    delete :destroy, :id => galleries(:gallery1).permalink
     response.should redirect_to(admin_galleries_url)
     Gallery.count.should == 1
     assert_raise ActiveRecord::RecordNotFound do 

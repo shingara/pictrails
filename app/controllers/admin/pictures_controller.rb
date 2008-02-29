@@ -25,8 +25,7 @@ class Admin::PicturesController < Admin::BaseController
   def new
     @picture = Picture.new
     @picture.status = true
-    @picture.gallery_id = params[:gallery_id]
-    @gallery = Gallery.find params[:gallery_id]
+    @picture.gallery = Gallery.find_by_permalink params[:gallery_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -81,7 +80,7 @@ class Admin::PicturesController < Admin::BaseController
 private
 
   def define_gallery
-    @gallery = Gallery.find(params[:gallery_id]) if params[:gallery_id]
+    @gallery = Gallery.find_by_permalink(params[:gallery_id]) if params[:gallery_id]
   end
 
 end

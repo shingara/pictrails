@@ -16,13 +16,12 @@ class GalleriesController < ApplicationController
   end
 
   def show
-    begin
-      @gallery = Gallery.find(params[:id], :include => 'pictures', :conditions => ["pictures.status = 't'"])
-    rescue ActiveRecord::RecordNotFound
-      @gallery = Gallery.find params[:id]
-    end
-    @page_title = "Gallery : #{@gallery.name}"
-    unless @gallery.status
+    @gallery = Gallery.find_by_permalink(params[:id], :include => 'pictures', :conditions => ["pictures.status = 't'"])
+    # find_by_permalink return nil not raise ActiveRecord::RecordNotFound,
+    # there are a gallery, but they haven't picture
+    @gallery = Gallery.find_by_permalink params[:id] if @gallery.nil?
+    raise ActiveRecord::RecordNotFound if @gallery.nil?
+    unless  @gallery.status
       redirect_to galleries_url
     else
       respond_to do |format|

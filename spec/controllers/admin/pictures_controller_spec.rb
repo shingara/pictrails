@@ -40,8 +40,8 @@ describe Admin::PicturesController do
   it 'should update picture in admin for a gallery' do
     p = Picture.find 1
     p.title.should_not == 'oui'
-    get :update, :id => 1, :gallery_id => 1, :picture => {:title => 'oui'}
-    response.should redirect_to(admin_gallery_picture_url(1,1))
+    get :update, :id => 1, :gallery_id => galleries(:gallery1).permalink, :picture => {:title => 'oui'}
+    response.should redirect_to(admin_gallery_picture_url(galleries(:gallery1),1))
     p = Picture.find 1
     p.title.should == 'oui'
   end

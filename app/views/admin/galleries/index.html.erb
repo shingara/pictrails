@@ -30,7 +30,7 @@
             <td><%=h status_value(gallery.status)%> </td>
             <td><%= link_to image_tag('/images/admin/show.png'), admin_gallery_url(gallery) %></td>
             <td><%= link_to image_tag('/images/admin/edit.png', :title => 'Edit gallery', :alt => 'edit'), edit_admin_gallery_url(gallery) %></td> 
-            <td><%= link_to image_tag('/images/admin/remove.png', :title => 'Remove gallery', :alt => 'remove'), {:action => 'destroy', :id => gallery.id}, :method => 'delete', :confirm => "are you sure ?" %></td> 
+            <td><%= link_to image_tag('/images/admin/remove.png', :title => 'Remove gallery', :alt => 'remove'), {:action => 'destroy', :id => gallery}, :method => 'delete', :confirm => "are you sure ?" %></td> 
           </tr>
         <% end %>
       </tbody>

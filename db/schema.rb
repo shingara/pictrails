@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 5) do
+ActiveRecord::Schema.define(:version => 6) do
 
   create_table "galleries", :force => true do |t|
     t.string  "name"
@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(:version => 5) do
     t.boolean "status"
     t.date    "created_at"
     t.date    "updated_at"
+    t.string  "permalink"
   end
 
+  add_index "galleries", ["permalink"], :name => "index_galleries_on_permalink", :unique => true
   add_index "galleries", ["name"], :name => "index_galleries_on_name", :unique => true
 
   create_table "pictures", :force => true do |t|

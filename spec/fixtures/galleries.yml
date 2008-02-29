@@ -3,6 +3,7 @@
 gallery1:
   id: 1
   name: Gallery1
+  permalink: gallery1
   description: "" 
   status: true
   created_at: <%= 1.ago %>
@@ -11,6 +12,7 @@ gallery1:
 gallery2:
   id: 2
   name: Gallery2
+  permalink: gallery2
   description: A good description
   status: false
   created_at: 2008-01-13

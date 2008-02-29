@@ -1,11 +1,11 @@
-<% @page_title = "Add picture to #{@gallery.name}" %>
+<% @page_title = "Add picture to #{@picture.gallery.name}" %>
 
 <% content_for 'tasks' do %>
   <li>
     <%= link_to 'List of Pictures', admin_pictures_url %>
   </li>
   <li>
-    <%= link_to "Edit gallery #{@gallery.name}", edit_admin_gallery_url(@gallery) %>
+    <%= link_to "Edit gallery #{@picture.gallery.name}", edit_admin_gallery_url(@picture.gallery) %>
   </li>
 <% end %>
 
@@ -21,7 +21,7 @@
       <li>
         <label class="float" for="gallery_id">Gallery :</label>
         <%= @picture.gallery.name %>
-        <%= f.hidden_field :gallery_id %>
+        <%= f.hidden_field :gallery_id, :value => @picture.gallery.id%>
       </li>
       <li>
         <label class="block" for="title">Title :</label>
@@ -46,4 +46,4 @@
   </fieldset>
 <% end %>
 
-<%= link_to "Back to editing of galleries #{@gallery.name}", edit_admin_gallery_path(params[:gallery_id]) %>
+<%= link_to "Back to editing of galleries #{@picture.gallery.name}", edit_admin_gallery_path(@picture.gallery) %>

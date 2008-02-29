@@ -9,9 +9,8 @@ class Admin::GalleriesController < Admin::BaseController
 
   # See a gallery in Admin like a User
   def show
-    @gallery = Gallery.find params[:id]
-  rescue ActiveRecord::RecordNotFound
-    render :status => 404
+    @gallery = Gallery.find_by_permalink params[:id]
+    render :status => 404 if @gallery.nil?
   end
   
   def new
@@ -26,12 +25,10 @@ class Admin::GalleriesController < Admin::BaseController
     end
   end
   
-  # GET /galleries/1/edit
+  # GET /galleries/#{permalink}/edit
   def edit
-    @gallery = Gallery.find(params[:id])
-    @page_title = "edit #{@gallery.name}"
-  rescue ActiveRecord::RecordNotFound
-    render :status => 404
+    @gallery = Gallery.find_by_permalink(params[:id])
+    render :status => 404 if @gallery.nil?
   end
 
   # POST /galleries
@@ -54,7 +51,7 @@ class Admin::GalleriesController < Admin::BaseController
   # PUT /galleries/1
   # PUT /galleries/1.xml
   def update
-    @gallery = Gallery.find(params[:id])
+    @gallery = Gallery.find_by_permalink(params[:id])
 
     respond_to do |format|
       if @gallery.update_attributes(params[:gallery])
@@ -71,7 +68,7 @@ class Admin::GalleriesController < Admin::BaseController
   # DELETE /galleries/1
   # DELETE /galleries/1.xml
   def destroy
-    @gallery = Gallery.find(params[:id])
+    @gallery = Gallery.find_by_permalink(params[:id])
     @gallery.destroy
     flash[:notice] = "The gallery #{@gallery.name} is deleted"
 
