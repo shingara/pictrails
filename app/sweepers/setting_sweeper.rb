@@ -9,11 +9,6 @@ class SettingSweeper < ActionController::Caching::Sweeper
     expire_cache(setting)
   end
 
-  def after_destroy(setting)
-    expire_cache(setting)
-  end
-
-
 private
 
   def expire_cache(setting)

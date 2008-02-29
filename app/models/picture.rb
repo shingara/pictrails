@@ -8,7 +8,7 @@ class Picture < ActiveRecord::Base
       :max_size => 1.megabytes,
       :resize_to => '600x450>',
       :thumbnail_class => Thumbnail, 
-      :thumbnails => { :thumb => '200x200>' }
+      :thumbnails => { :thumb => "#{Setting.default.thumbnail_max_width}x#{Setting.default.thumbnail_max_height}>"}
   
   validates_as_attachment
 
