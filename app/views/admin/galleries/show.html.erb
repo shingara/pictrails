@@ -5,6 +5,9 @@
     <%= link_to 'List of Galleries', admin_galleries_url %>
   </li>
   <li>
+  <%= link_to "Edit gallery #{@gallery.name}", edit_admin_gallery_url(@gallery) %>
+  </li>
+  <li>
     <%= link_to 'Add Picture', new_admin_gallery_picture_url(@gallery) %>
   </li>
 <% end %>
@@ -18,5 +21,26 @@
   </p>
 <% end -%>
 
-
-<%= render :partial => 'galleries/list_pictures' %>
+<% if @gallery.pictures.empty? -%>
+  <p>
+    There are no picture in this gallery.
+  </p>
+<% else %>
+  <ul id="picture_list">
+    <% @gallery.pictures.each do |image| %>
+      <li>
+        <%= link_to (image_tag image.public_filename(:thumb), :alt => image.title), admin_gallery_picture_url(@gallery, image), :class => 'thumbnail' %>
+        <% if image.status %>
+          <span class="thumbnail"><%= image.title %><span>
+          <br />
+          <% image.description %>
+        <% else %>
+          <span class="thumbnail"><%= image.title %> (disabled)</span>
+          <br />
+          <% image.description %>
+          <%= image_tag '/images/admin/error.png', :class => "no_display" %>
+        <% end -%>
+      </li>
+    <% end %>
+  </ul>
+<% end -%>

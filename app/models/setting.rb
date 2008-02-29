@@ -22,7 +22,12 @@ class Setting < ActiveRecord::Base
 
   # Return the fist webapp by Id
   def self.default
-    Setting.find :first, :order => 'id'
+    s = Setting.find :first, :order => 'id'
+    if s.nil?
+      Setting.new
+    else
+      s
+    end
   end
 
 private

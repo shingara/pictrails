@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe Admin::PicturesController do
   controller_name 'admin/pictures'
-  fixtures :galleries, :pictures, :thumbnails, :users
+  fixtures :settings, :galleries, :pictures, :thumbnails, :users
   include AuthenticatedTestHelper
 
   before (:each) do

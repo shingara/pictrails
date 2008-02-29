@@ -970,3 +970,8 @@ li.paginate {
   top : -70%;
   left : 40%;
 }
+
+.thumbnail {
+  display: block;
+  text-align: center;
+}

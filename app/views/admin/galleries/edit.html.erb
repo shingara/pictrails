@@ -5,6 +5,9 @@
     <%= link_to 'List of Galleries', admin_galleries_url %>
   </li>
   <li>
+    <%= link_to "Show gallery #{@gallery.name}", admin_gallery_url(@gallery) %>
+  </li>
+  <li>
     <%= link_to 'Add picture', new_admin_gallery_picture_url(@gallery) %>
   </li>
 <% end %>

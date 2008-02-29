@@ -4,4 +4,26 @@
 
 <%= link_to 'Back to all galleries', galleries_path %>
 
-<%= render :partial => 'list_pictures' %>
+<% if @gallery.pictures.empty? -%>
+  <p>
+    There are no picture in this gallery.
+  </p>
+<% else %>
+  <ul id="picture_list">
+    <% @gallery.pictures.each do |image| %>
+      <li>
+      <%= link_to (image_tag image.public_filename(:thumb), :alt => image.title), image.public_filename , {:rel => "splash.image|groupe1", :style => 'display:block;'} %>
+        <% if image.status %>
+          <span><%= image.title %></span>
+          <br />
+          <% image.description %>
+        <% else %>
+          <span><%= image.title %> (disabled)</span>
+          <br />
+          <% image.description %>
+          <%= image_tag '/images/admin/error.png', :class => "no_display" %>
+        <% end -%>
+      </li>
+    <% end %>
+  </ul>
+<% end -%>
