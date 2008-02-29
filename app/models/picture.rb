@@ -18,5 +18,26 @@ class Picture < ActiveRecord::Base
   validates_associated :gallery, :messsage => 'is needed for you picture'
   validates_presence_of :size, :message => 'is needed for you picture'
   validates_presence_of :title, :message => 'is needed for you picture'
+  
+  before_create :define_permalink
+
+  # Define the permalink. Test if this permalink is already use.
+  # if it already use add a -#{index} after
+  def define_permalink
+    if permalink.blank?
+      permalink_insert_base = title.downcase.gsub(/[^a-z0-9]+/i, '-')
+      permalink_insert = permalink_insert_base
+      i = 1
+      while !Picture.find_by_permalink(permalink_insert).nil? do
+        permalink_insert = "#{permalink_insert_base}-#{i}"
+        i = i + 1
+      end
+      self.permalink = permalink_insert
+    end
+  end
+
+  def to_param
+    permalink
+  end
 
 end

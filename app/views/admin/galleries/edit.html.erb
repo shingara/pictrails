@@ -68,7 +68,7 @@
             <td><%=h status_value(picture.status)%> </td>
             <td><%= link_to image_tag('/images/admin/show.png'), admin_gallery_picture_url(@gallery, picture) %></td>
             <td><%= link_to image_tag('/images/admin/edit.png', :title => 'Edit picture', :alt => 'edit'), edit_admin_gallery_picture_url(@gallery, picture) %></td>
-            <td><%= link_to image_tag('/images/admin/remove.png', :title => 'Remove picture', :alt => 'remove'), {:controller => 'admin/pictures', :action => 'destroy', :gallery_id => @gallery.id, :id => picture.id}, :method => 'delete', :confirm => 'Are you sure ?' %></td>
+            <td><%= link_to image_tag('/images/admin/remove.png', :title => 'Remove picture', :alt => 'remove'), {:controller => 'admin/pictures', :action => 'destroy', :gallery_id => @gallery, :id => picture}, :method => 'delete', :confirm => 'Are you sure ?' %></td>
           </tr>
         <% end %>
       </tbody>

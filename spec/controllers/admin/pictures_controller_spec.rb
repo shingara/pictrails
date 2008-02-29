@@ -10,29 +10,29 @@ describe Admin::PicturesController do
   end
 
   it 'should see show picture' do
-    get :show, :id => 1, :gallery_id => 1
+    get :show, :id => pictures(:picture1).permalink, :gallery_id => galleries(:gallery1).permalink
     assert_response :success
     assert_template 'show'
   end
 
   it 'should return 404 if no picture in show' do
-    get :show, :id => 10, :gallery_id => 1
+    get :show, :id => 'unknow_picture', :gallery_id => galleries(:gallery1).permalink
     assert_response 404
   end
   
   it 'should see edit picture' do
-    get :edit, :id => 1, :gallery_id => 1
+    get :edit, :id => pictures(:picture1).permalink, :gallery_id => galleries(:gallery1).permalink
     assert_response :success
     assert_template 'edit'
   end
 
   it 'should return 404 if no picture in edit' do
-    get :edit, :id => 10, :gallery_id => 1
+    get :edit, :id => 'unknow_picutre', :gallery_id => galleries(:gallery1).permalink
     assert_response 404
   end
 
   it 'should see new page of picture in admin' do
-    get :new, :gallery_id => 1
+    get :new, :gallery_id => galleries(:gallery1)
     assert_response :success
     assert_template 'new'
   end
@@ -40,8 +40,8 @@ describe Admin::PicturesController do
   it 'should update picture in admin for a gallery' do
     p = Picture.find 1
     p.title.should_not == 'oui'
-    get :update, :id => 1, :gallery_id => galleries(:gallery1).permalink, :picture => {:title => 'oui'}
-    response.should redirect_to(admin_gallery_picture_url(galleries(:gallery1),1))
+    get :update, :id => pictures(:picture1).permalink, :gallery_id => galleries(:gallery1).permalink, :picture => {:title => 'oui'}
+    response.should redirect_to(admin_gallery_picture_url(galleries(:gallery1),pictures(:picture1)))
     p = Picture.find 1
     p.title.should == 'oui'
   end
@@ -49,7 +49,7 @@ describe Admin::PicturesController do
   it 'should not update picture in admin for a gallery because no title' do
     p = Picture.find 1
     p.title.should_not == ''
-    put :update, :id => 1, :gallery_id => 1, :picture => {:title => ''}
+    put :update, :id => pictures(:picture1).permalink, :gallery_id => galleries(:gallery1).permalink, :picture => {:title => ''}
     assert_response :success
     assert_template 'edit'
     p = Picture.find 1
@@ -58,9 +58,9 @@ describe Admin::PicturesController do
 
   it 'should create a picture in admin for a gallery' do
     Picture.count.should == 3
-    post 'create', :gallery_id => 1, :picture => {:gallery_id => 1, :title => 'oui', :description => 'good description', :status => true, :uploaded_data => fixture_file_upload("/files/rails.png", 'image/png', :binary)}
+    post 'create', :gallery_id => galleries(:gallery1).permalink, :picture => {:gallery_id => 1, :title => 'oui', :description => 'good description', :status => true, :uploaded_data => fixture_file_upload("/files/rails.png", 'image/png', :binary)}
 
-    response.should redirect_to(admin_gallery_picture_url(1, 4))
+    response.should redirect_to(admin_gallery_picture_url(galleries(:gallery1), 'oui'))
     Picture.count.should == 4
   end
 
@@ -83,7 +83,7 @@ describe Admin::PicturesController do
   it 'should be destroy a picture' do
     Picture.count.should == 3
     Picture.find(1).should_not be_nil
-    delete 'destroy', :gallery_id => 1, :id => 1
+    delete 'destroy', :gallery_id => galleries(:gallery1).permalink, :id => pictures(:picture1).permalink
     Picture.count.should == 2
     assert_raise ActiveRecord::RecordNotFound do
       Picture.find 1

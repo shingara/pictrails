@@ -11,6 +11,7 @@ picture1:
   height: 1
   position: 
   title: MyString
+  permalink: mystring
   description: MyText
   status: false
   created_at: <%= 5.days.ago.to_s :db %>
@@ -28,6 +29,7 @@ picture2:
   height: 1
   position: 
   title: MyString2
+  permalink: mystring2
   description: MyText2
   status: true
   created_at: <%= 4.days.ago.to_s :db %>
@@ -45,6 +47,7 @@ picture3:
   height: 1
   position: 
   title: MyString3
+  permalink: mystring3
   description: MyText3
   status: true
   created_at: <%= 4.days.ago.to_s :db %>

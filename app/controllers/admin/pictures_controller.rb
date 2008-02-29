@@ -9,16 +9,14 @@ class Admin::PicturesController < Admin::BaseController
 
   # View the Picture when your are logged
   def show
-    @picture = Picture.find params[:id]
-  rescue ActiveRecord::RecordNotFound
-    render :status => 404
+    @picture = Picture.find_by_permalink params[:id]
+    render :status => 404 if @picture.nil?
   end
 
   # View the form to edit the picture
   def edit
-    @picture = Picture.find params[:id]
-  rescue ActiveRecord::RecordNotFound
-    render :status => 404
+    @picture = Picture.find_by_permalink params[:id]
+    render :status => 404 if @picture.nil?
   end
   
   # View a form to add a new picture in a gallery
@@ -35,7 +33,7 @@ class Admin::PicturesController < Admin::BaseController
 
   # Update the Picture
   def update
-    @picture = Picture.find params[:id]
+    @picture = Picture.find_by_permalink(params[:id])
     @picture.title = params[:picture][:title]
     @picture.description = params[:picture][:description]
     @picture.status = params[:picture][:status]
@@ -67,7 +65,7 @@ class Admin::PicturesController < Admin::BaseController
   
   # Destroy the picture of a gallery
   def destroy
-    @picture = Picture.find(params[:id])
+    @picture = Picture.find_by_permalink(params[:id])
     @picture.destroy
     flash[:notice] = "Picture #{@picture.title} is deleted"
 

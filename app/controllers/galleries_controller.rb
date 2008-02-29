@@ -7,7 +7,6 @@ class GalleriesController < ApplicationController
   
   def index
     @galleries = Gallery.find_all_by_status true, :include => 'pictures'
-    @page_title = 'List of Gallery' 
 
     respond_to do |format|
       format.html # index.html.erb
