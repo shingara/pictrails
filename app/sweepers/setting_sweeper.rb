@@ -17,5 +17,6 @@ private
     cache_dir = ActionController::Base.page_cache_directory
     FileUtils.rm_r(Dir.glob(cache_dir+"/galleries/*")) rescue Errno::ENOENT
     FileUtils.rm_r(Dir.glob(cache_dir+"/galleries")) rescue Errno::ENOENT
+    FileUtils.rm_r(Dir.glob(cache_dir+"/pictures/page/*")) rescue Errno::ENOENT
   end
 end

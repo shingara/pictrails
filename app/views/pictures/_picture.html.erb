@@ -1,1 +1,4 @@
-<li><%= picture.title %></li>
+<% content_tag :li, :id => "picture_#{picture.id}" do %>
+  <%= link_to image_tag(picture.public_filename(:thumb)), picture_url(picture), :style => 'display:block;' %>
+  <span><%=h "#{picture.title}" %></span>
+<% end %>

@@ -1,10 +1,19 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :galleries
+  map.resources :galleries do |gallery|
+    gallery.resources :pictures
+  end
+    
+  map.resources :pictures
 
   # route to the paginate of galleries
   map.connect '/galleries/page/:page',
     :controller => 'galleries', :action => 'index',
+    :page => /\d+/
+  
+  # route to the paginate of pictures
+  map.connect '/pictures/page/:page',
+    :controller => 'pictures', :action => 'index',
     :page => /\d+/
 
 

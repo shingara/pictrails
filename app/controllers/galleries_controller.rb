@@ -9,7 +9,7 @@ class GalleriesController < ApplicationController
     @galleries = Gallery.paginate_by_status true, 
       :include => 'pictures', 
       :page => params[:page],
-      :per_page => 9
+      :per_page => 3
 
     respond_to do |format|
       format.html # index.html.erb

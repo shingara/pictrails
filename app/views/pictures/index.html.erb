@@ -1,0 +1,10 @@
+<% @page_title = 'List of Pictures' %>
+
+<h1><%= this_webapp.webapp_name %></h1>
+<span id="slogan"><%= this_webapp.webapp_subtitle%></span>
+
+<ul id="picture_list">
+  <%= render :partial => @pictures %>
+</ul>
+
+<%= will_paginate @pictures %>
