@@ -1,0 +1,9 @@
+<% content_tag :li, :id => "gallery_#{gallery.id}" do %>
+  <% if gallery.pictures.empty? -%>
+    <%= link_to image_tag('/no_picture.png'), gallery_url(gallery), :style => 'display:block;' %>
+    <span><%=h "#{gallery.name} (0 picture)"  %></span>
+  <% else -%>
+    <%= link_to image_tag(gallery.pictures.first.public_filename(:thumb)), gallery_url(gallery), :style => 'display:block;' %>
+    <span><%=h "#{gallery.name} (#{gallery.pictures.enable_size} pictures)" %></span>
+  <% end -%>
+<% end %>

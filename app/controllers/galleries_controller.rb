@@ -6,7 +6,10 @@ class GalleriesController < ApplicationController
   caches_page :index, :show
   
   def index
-    @galleries = Gallery.find_all_by_status true, :include => 'pictures'
+    @galleries = Gallery.paginate_by_status true, 
+      :include => 'pictures', 
+      :page => params[:page],
+      :per_page => 9
 
     respond_to do |format|
       format.html # index.html.erb

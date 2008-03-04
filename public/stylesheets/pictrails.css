@@ -72,3 +72,7 @@ a, a:visited {
 #admin_table a:hover {
   background-color : #525252;
 }
+
+.pagination {
+  clear: both;
+}
