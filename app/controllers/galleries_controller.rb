@@ -33,7 +33,7 @@ class GalleriesController < ApplicationController
       end
     end
   rescue ActiveRecord::RecordNotFound
-    redirect_to galleries_url
+    render :status => 404
   end
 
 private
