@@ -1,3 +1,6 @@
 [submodule "vendor/plugins/mimetype-fu"]
 	path = vendor/plugins/mimetype-fu
 	url = git://github.com/matta/mimetype-fu.git
+[submodule "vendor/plugins/attachment_fu"]
+	path = vendor/plugins/attachment_fu
+	url = git://github.com/technoweenie/attachment_fu.git
