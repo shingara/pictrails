@@ -1,0 +1,3 @@
+[submodule "vendor/mimetype-fu"]
+	path = vendor/mimetype-fu
+	url = git://github.com/matta/mimetype-fu.git
