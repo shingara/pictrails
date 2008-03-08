@@ -4,3 +4,6 @@
 [submodule "vendor/plugins/attachment_fu"]
 	path = vendor/plugins/attachment_fu
 	url = git://github.com/technoweenie/attachment_fu.git
+[submodule "vendor/plugins/will_paginate"]
+	path = vendor/plugins/will_paginate
+	url = git://github.com/mislav/will_paginate.git
