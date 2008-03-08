@@ -1,9 +1,9 @@
 module ConfigManager
 
-    def self.append_features(base)
-          super
-              base.extend(ClassMethods)
-                end
+  def self.append_features(base)
+    super
+    base.extend(ClassMethods)
+  end
 
 
   module ClassMethods

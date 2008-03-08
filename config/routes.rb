@@ -1,67 +1,59 @@
 ActionController::Routing::Routes.draw do |map|
-  
-  # route to the paginate of pictures
-  map.connect '/galleries/:id/page/:page',
-    :controller => 'galleries', :action => 'show',
-    :page => /\d+/
 
+  # View galleries in resources
   map.resources :galleries do |gallery|
+    #resources of view picture of a gallery
     gallery.resources :pictures
+
+    # Pagination of a page of all picture in a gallery
+    gallery.connect 'page/:page',
+      :controller => 'galleries', :action => 'show',
+      :page => /\d+/
   end
     
   map.resources :pictures
 
-  # route to the paginate of galleries
+  # route to the paginate of all galleries
   map.connect '/galleries/page/:page',
     :controller => 'galleries', :action => 'index',
     :page => /\d+/
   
-  # route to the paginate of pictures
+  # route to the paginate of all pictures
   map.connect '/pictures/page/:page',
     :controller => 'pictures', :action => 'index',
     :page => /\d+/
   
 
-
+  # Namespace of amdin
   map.namespace :admin do |admin|
+
+    # Resources of users
     admin.resources :users
+
+    #Resources of session
     admin.resource :session
+
+    #Resources of picture
     admin.resources :pictures
+    
+    #Resources for settings
+    admin.resources :settings 
+
+    #Resources of gallerie
     admin.resources :galleries do |gallery|
       gallery.resources :pictures
     end
+
+    admin.mass_upload '/galleries/mass_upload', :controller => 'galleries', :action => 'mass_upload'
+
+    # particular route
     admin.login '/login', :controller => 'sessions', :action => 'new'
     admin.logout '/logout', :controller => 'sessions', :action => 'destroy'
-    admin.root :controller => 'galleries'
     admin.signup '/signup', :controller => 'users', :action => 'new'
-    admin.resources :settings 
+    
+    # Default page in this namespace
+    admin.root :controller => 'galleries'
   end
 
   map.root :controller => 'galleries'
-
-  # The priority is based upon order of creation: first created -> highest priority.
-
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
-
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
-
 end

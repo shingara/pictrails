@@ -1,4 +1,4 @@
-require 'lib/config_manager'
+#require 'lib/config_manager'
 # Setting is the setting of one webapplication
 # Maybe in futur, there are several webapp. I don't know
 # the settings is save in a hash serializable in Database

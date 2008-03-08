@@ -17,8 +17,6 @@ class Admin::GalleriesController < Admin::BaseController
     @gallery = Gallery.new
     # By default the status is online
     @gallery.status = true
-    @page_title = "Create gallery"
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @gallery }
@@ -76,5 +74,12 @@ class Admin::GalleriesController < Admin::BaseController
       format.html { redirect_to(admin_galleries_url) }
       format.xml  { head :ok }
     end
+  end
+
+  # Method to add mass upload with only one params
+  # the params define the directory where all picture are
+  def mass_upload
+    gallery = Gallery.create_with_directory params[:directory]
+    redirect_to admin_gallery_url(gallery)
   end
 end
