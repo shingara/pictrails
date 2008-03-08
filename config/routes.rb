@@ -5,10 +5,6 @@ ActionController::Routing::Routes.draw do |map|
     #resources of view picture of a gallery
     gallery.resources :pictures
 
-    # Pagination of a page of all picture in a gallery
-    gallery.connect 'page/:page',
-      :controller => 'galleries', :action => 'show',
-      :page => /\d+/
   end
     
   map.resources :pictures
@@ -21,6 +17,11 @@ ActionController::Routing::Routes.draw do |map|
   # route to the paginate of all pictures
   map.connect '/pictures/page/:page',
     :controller => 'pictures', :action => 'index',
+    :page => /\d+/
+    
+  # Pagination of a page of all picture in a gallery
+  map.connect '/galleries/:id/page/:page',
+    :controller => 'galleries', :action => 'show',
     :page => /\d+/
   
 
