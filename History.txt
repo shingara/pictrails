@@ -1,8 +1,15 @@
 == 0.2.0 / xxxx-xx-xx
 
-* 1 Major ehancement
+* 3 Major ehancement
   * Using a system of cache paging in public part.
   * Define the title and subtitle of your gallery
+  * Add the creation of a gallery with a directory in same server than
+    pictrails
+
+* 2 minors ehancement
+  * Remove the splash image using
+  * Add pagination in all views of pictures
+  * New admin interface. Same interface of Typo (thanks)
 
 * 1 Minor fix bug
   * Return 404 when no found instead of 500
