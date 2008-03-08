@@ -9,3 +9,5 @@
 <ul id="picture_list">
   <%= render :partial => 'admin/pictures/picture', :collection => @pictures %>
 </ul>
+
+<%= will_paginate @pictures %>

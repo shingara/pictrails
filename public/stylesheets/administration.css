@@ -956,7 +956,7 @@ li.paginate {
 #gallery_list li , #picture_list li {
   float : left;
   width : 200px;
-  height: 200px;
+  height : 200px;
   padding : 8px;
   padding-bottom : 25px;
   margin-top : auto;
@@ -974,4 +974,14 @@ li.paginate {
 .thumbnail {
   display: block;
   text-align: center;
+}
+
+/** Form of pagination **/
+.pagination {
+  clear : both;
+  text-align : center;
+}
+
+.pagination a {
+  text-decoration : underline;
 }

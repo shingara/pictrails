@@ -4,7 +4,7 @@ class Admin::PicturesController < Admin::BaseController
 
   # See all pictures
   def index
-    @pictures = Picture.find :all
+    @pictures = Picture.paginate :page => params[:page], :per_page => 10
   end
 
   # View the Picture when your are logged

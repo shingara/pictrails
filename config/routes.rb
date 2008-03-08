@@ -33,8 +33,10 @@ ActionController::Routing::Routes.draw do |map|
     #Resources of session
     admin.resource :session
 
+    admin.connect '/pictures/page/:page', :controller => 'pictures',
+        :action => 'index', :page => /\d+/
     #Resources of picture
-    admin.resources :pictures
+    admin.resources :pictures 
     
     #Resources for settings
     admin.resources :settings 
