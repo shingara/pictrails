@@ -6,7 +6,7 @@ h2. Features
 
  * Create several Galleries
  * Add several pictures in a Gallery
- * See all Pictures with a slideshow in javascript (splash.image)
+ * Create a gallery with define a directory in same server of pictrails
  * Admin interface with login to add/edit/delete Galleries and Pictures
 
 h2. Requirements
@@ -34,17 +34,22 @@ With the tar.gz or any other archive:
 
 h2. Information about this project
 
-Pictrails is actually consider like an Alpha version, and is under development.
+Pictrails is actually consider like an Beta version, and is under development.
 
 All contributions are welcome. 
 
 I suck in design, I know it and I am sorry but I will really be happy if anyone could
 help me.
 
-If you want to contribute, all work is made under a mercurial repository. You can clone the 
-source with the following command:
+If you want to contribute, all work is made under a git repository. You can clone the 
+source with the following command :
 
-hg clone http://hg.shingara.fr
+git clone git://github.com/shingara/pictrails.git
+
+After a clone you need update the submodule :
+
+git submodule init
+git submodule update
 
 A redmine development platform is used at: http://dev.shingara.fr/projects/show/3
 
