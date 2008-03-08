@@ -34,10 +34,11 @@ ActionController::Routing::Routes.draw do |map|
     #Resources of session
     admin.resource :session
 
-    admin.connect '/pictures/page/:page', :controller => 'pictures',
-        :action => 'index', :page => /\d+/
     #Resources of picture
     admin.resources :pictures 
+    #pagination of pictures
+    admin.connect '/pictures/page/:page', :controller => 'pictures',
+        :action => 'index', :page => /\d+/
     
     #Resources for settings
     admin.resources :settings 
@@ -46,6 +47,9 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :galleries do |gallery|
       gallery.resources :pictures
     end
+    admin.connect '/galleries/:id/page/:page', :controller => 'galleries',
+        :action => 'show', :page => /\d+/
+
 
     admin.mass_upload '/galleries/mass_upload', :controller => 'galleries', :action => 'mass_upload'
 

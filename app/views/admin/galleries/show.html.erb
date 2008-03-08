@@ -27,7 +27,7 @@
   </p>
 <% else %>
   <ul id="picture_list">
-    <% @gallery.pictures.each do |image| %>
+    <% @pictures.each do |image| %>
       <li>
         <%= link_to (image_tag image.public_filename(:thumb), :alt => image.title), admin_gallery_picture_url(@gallery, image), :class => 'thumbnail' %>
         <% if image.status %>
@@ -43,4 +43,5 @@
       </li>
     <% end %>
   </ul>
+  <%= will_paginate @pictures %>
 <% end -%>
