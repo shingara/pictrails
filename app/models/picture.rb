@@ -7,6 +7,7 @@ class Picture < ActiveRecord::Base
       :storage => :file_system, 
       :max_size => 1.megabytes,
       :resize_to => "#{Setting.default.picture_max_width}x#{Setting.default.picture_max_height}>",
+      :path_prefix => 'public/pictrails_pictures',
       :thumbnail_class => Thumbnail, 
       :thumbnails => { :thumb => "#{Setting.default.thumbnail_max_width}x#{Setting.default.thumbnail_max_height}>"}
   
