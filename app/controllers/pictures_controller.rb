@@ -7,7 +7,7 @@ class PicturesController < ApplicationController
       redirect_to gallery_url(Gallery.find_by_permalink(params[:gallery_id]))
     else
       @pictures = Picture.paginate :page => params[:page],
-        :per_page => 3
+        :per_page => this_webapp.pictures_pagination
     end
   end
 

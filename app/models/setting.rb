@@ -12,6 +12,8 @@ class Setting < ActiveRecord::Base
   setting :thumbnail_max_height,  :string, '200'
   setting :picture_max_width,     :string, '600'
   setting :picture_max_height,    :string, '450'
+  setting :pictures_pagination,   :string, '9'
+  setting :galleries_pagination,  :string, '9'
 
   validate_on_update :validate_settings
 
