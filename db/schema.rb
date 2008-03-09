@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 7) do
 
   add_index "galleries", ["permalink"], :name => "index_galleries_on_permalink", :unique => true
   add_index "galleries", ["name"], :name => "index_galleries_on_name", :unique => true
+  add_index "galleries", ["status"], :name => "index_galleries_on_status"
 
   create_table "pictures", :force => true do |t|
     t.integer "gallery_id"

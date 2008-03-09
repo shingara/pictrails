@@ -1,29 +1,32 @@
-<%= error_messages_for :user %>
+<% @menu_view = true %>
 
-<% form_for :user, :url => admin_users_path do |f| -%>
-  <p>
-    <label for="login">Login</label>
-    <br/>
-    <%= f.text_field :login %>
-  </p>
+<div id="loginform" title="Account login">
+  <h3>Signup</h3>
+  <div class="form admin">
+    <%= error_messages_for :user %>
 
-  <p>
-    <label for="email">Email</label>
-    <br/>
-    <%= f.text_field :email %>
-  </p>
-
-  <p>
-    <label for="password">Password</label>
-    <br/>
-    <%= f.password_field :password %>
-  </p>
-
-  <p>
-    <label for="password_confirmation">Confirm Password</label>
-    <br/>
-    <%= f.password_field :password_confirmation %>
-  </p>
-
-  <p><%= submit_tag 'Sign up' %></p>
-<% end -%>
+    <% form_for :user, :url => admin_users_path do |f| -%>
+      <ul>
+        <li>
+          <label for="login">Login</label>
+          <%= f.text_field :login %>
+        </li>
+        <li>
+          <label for="email">Email</label>
+          <%= f.text_field :email %>
+        </li>
+        <li>
+          <label for="password">Password</label>
+          <%= f.password_field :password %>
+        </li>
+        <li>
+          <label for="password_confirmation">Confirm Password</label>
+          <%= f.password_field :password_confirmation %>
+        </li>
+        <li class="r">
+        <%= submit_tag 'Signup &#187;', :class => 'primary', :id => "submit"%>
+        </li>
+      </ul>
+    <% end -%>
+  </div>
+</div>
