@@ -10,8 +10,10 @@ class Admin::GalleriesController < Admin::BaseController
   # See a gallery in Admin like a User
   def show
     @gallery = Gallery.find_by_permalink params[:id]
-    @pictures = Picture.paginate_by_gallery_id @gallery.id, :page => params[:page],
-      :per_page => 10
+    unless @gallery.nil?
+      @pictures = Picture.paginate_by_gallery_id @gallery.id, :page => params[:page],
+        :per_page => 10
+    end
     render :status => 404 if @gallery.nil?
   end
   

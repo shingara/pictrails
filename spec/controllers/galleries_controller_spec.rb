@@ -33,9 +33,9 @@ describe 'GalleriesController there are a user' do
     response.should_not redirect_to(admin_signup_url)
   end
   
-  it 'should be redirect_to gallery list because no gallery with this id' do
+  it 'should be return a 404 because no gallery with this id' do
     get 'show', :id => 'unknowgallery'
-    response.should redirect_to(galleries_url)
+    response.response_code.should  == 404
   end
 
   it 'should be redirect_to gallery list because gallery status is disabled' do

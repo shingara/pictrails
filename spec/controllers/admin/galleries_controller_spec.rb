@@ -66,7 +66,7 @@ describe 'Admin::Gallery with user logged' do
   
   it 'should see 404 error if gallery with bad id' do
     get 'show', :id => 10
-    assert_response 404
+    response.response_code.should == 404
   end
 
   it 'should see new page of gallery in admin' do
