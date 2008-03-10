@@ -6,7 +6,8 @@ config/database.yml
 public/galleries*
 test
 public/pictures
-public/thumbnails
+public/pictrails_pictures
+public/pictrails_thumbnails
 public/index.html
 pkg
 coverage

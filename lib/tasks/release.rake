@@ -143,6 +143,6 @@ end
 
 desc "Upload the package to leetsoft, rubyforge and tag the release in svn"
 #task :release => [:sweep_cache, :package, :leetsoft_upload, :rubyforge_upload, :tag_svn ]
-task :release => [:sweep_cache, :package ]
+task :release => [:package ]
 
 

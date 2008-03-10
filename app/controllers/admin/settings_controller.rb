@@ -6,8 +6,6 @@ class Admin::SettingsController < Admin::BaseController
     @page_title = 'Settings'
   end
 
-  # PUT /galleries/1
-  # PUT /galleries/1.xml
   def update
     respond_to do |format|
       if this_webapp.update_attributes(params[:setting])

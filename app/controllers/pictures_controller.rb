@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
 
-  caches_page :index
+  caches_page :index, :show
 
   def index
     if params[:gallery_id]
