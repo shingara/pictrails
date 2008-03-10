@@ -8,6 +8,10 @@ h2. Features
  * Add several pictures in a Gallery
  * Create a gallery with define a directory in same server of pictrails
  * Admin interface with login to add/edit/delete Galleries and Pictures
+ * Define the thumbnails and pictures size in settings interface
+ * Delete the cache page in settings interface
+ * Define the number of pictures by pagination Gallery
+ * Define the number of gallery by pagination of Gallery's list
 
 h2. Requirements
 
@@ -30,7 +34,7 @@ With the tar.gz or any other archive:
  * Create a database.yml file in the config directory. You can copy the database.yml.example
  * Create your databases: rake db:create:all
  * Migrate your database: rake db:migrate
- * Start the server: ruby script/server
+ * Start the server in production mode : ruby script/server -e production
 
 h2. Information about this project
 
@@ -44,7 +48,7 @@ help me.
 If you want to contribute, all work is made under a git repository. You can clone the 
 source with the following command :
 
-git clone git://github.com/shingara/pictrails.git
+git clone http://repo.or.cz/r/pictrails.git
 
 After a clone you need update the submodule :
 
