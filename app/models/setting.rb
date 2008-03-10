@@ -48,13 +48,13 @@ private
   # Change the thumbnails size of a Picture
   # with size define in setting
   def change_thumbnail_size
-    Picture.has_attachment :thumbnails => { :thumb => "#{Setting.default.thumbnail_max_width}x#{Setting.default.thumbnail_max_height}>"}
+    Picture.attachment_options[:thumbnails] = { :thumb => "#{Setting.default.thumbnail_max_width}x#{Setting.default.thumbnail_max_height}>"}
   end
   
   # Change the picture origin size
   # with size define in setting
   def change_picture_size
-    Picture.has_attachment :resize_to => "#{Setting.default.picture_max_width}x#{Setting.default.picture_max_height}>"
+    Picture.attachment_options[:resize_to] = "#{Setting.default.picture_max_width}x#{Setting.default.picture_max_height}>"
   end
 
 end
