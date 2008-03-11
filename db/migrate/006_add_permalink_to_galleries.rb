@@ -9,6 +9,7 @@ class AddPermalinkToGalleries < ActiveRecord::Migration
   end
 
   def self.down
+    remove_index :galleries, 'permalink'
     remove_column :galleries, 'permalink'
   end
 end

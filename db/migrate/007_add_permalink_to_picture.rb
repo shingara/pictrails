@@ -9,6 +9,7 @@ class AddPermalinkToPicture < ActiveRecord::Migration
   end
 
   def self.down
+    remove_index :pictures, 'permalink'
     remove_column :pictures, 'permalink'
   end
 end

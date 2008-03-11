@@ -12,9 +12,9 @@
 ActiveRecord::Schema.define(:version => 7) do
 
   create_table "galleries", :force => true do |t|
-    t.string  "name",        :default => "NULL"
-    t.text    "description", :default => "NULL"
-    t.boolean "status",      :default => false
+    t.string  "name"
+    t.text    "description"
+    t.boolean "status"
     t.date    "created_at"
     t.date    "updated_at"
     t.string  "permalink"
@@ -25,17 +25,17 @@ ActiveRecord::Schema.define(:version => 7) do
   add_index "galleries", ["status"], :name => "index_galleries_on_status"
 
   create_table "pictures", :force => true do |t|
-    t.integer "gallery_id",   :default => 0
-    t.string  "content_type", :default => "NULL"
-    t.string  "filename",     :default => "NULL"
-    t.integer "parent_id",    :default => 0
-    t.integer "size",         :default => 0
-    t.integer "width",        :default => 0
-    t.integer "height",       :default => 0
-    t.integer "position",     :default => 0
-    t.string  "title",        :default => "NULL"
-    t.text    "description",  :default => "NULL"
-    t.boolean "status",       :default => false
+    t.integer "gallery_id"
+    t.string  "content_type"
+    t.string  "filename"
+    t.integer "parent_id"
+    t.integer "size"
+    t.integer "width"
+    t.integer "height"
+    t.integer "position"
+    t.string  "title"
+    t.text    "description"
+    t.boolean "status"
     t.date    "created_at"
     t.date    "updated_at"
     t.string  "permalink"
@@ -46,27 +46,27 @@ ActiveRecord::Schema.define(:version => 7) do
   add_index "pictures", ["gallery_id"], :name => "index_pictures_on_gallery_id"
 
   create_table "settings", :force => true do |t|
-    t.text "settings", :default => "NULL"
+    t.text "settings"
   end
 
   create_table "thumbnails", :force => true do |t|
-    t.string  "content_type", :default => "NULL"
-    t.string  "thumbnail",    :default => "NULL"
-    t.string  "filename",     :default => "NULL"
-    t.integer "parent_id",    :default => 0
-    t.integer "size",         :default => 0
-    t.integer "width",        :default => 0
-    t.integer "height",       :default => 0
+    t.string  "content_type"
+    t.string  "thumbnail"
+    t.string  "filename"
+    t.integer "parent_id"
+    t.integer "size"
+    t.integer "width"
+    t.integer "height"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "login",                                   :default => "NULL"
-    t.string   "email",                                   :default => "NULL"
-    t.string   "crypted_password",          :limit => 40, :default => "NULL"
-    t.string   "salt",                      :limit => 40, :default => "NULL"
+    t.string   "login"
+    t.string   "email"
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "remember_token",                          :default => "NULL"
+    t.string   "remember_token"
     t.datetime "remember_token_expires_at"
   end
 
