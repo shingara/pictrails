@@ -1,8 +1,6 @@
 desc 'Generate website files'
 task :website_generate do
-  (Dir['website/**/*.txt'] - Dir['website/version*.txt']).each do |txt|
-    sh %{ ruby script/txt2html README > #{txt.gsub(/txt$/,'html')} }
-  end
+  sh %{ ruby script/txt2html README.txt > website/index.html}
 end
 
 desc 'Upload website files to rubyforge'

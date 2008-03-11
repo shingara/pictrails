@@ -33,7 +33,7 @@
     <h1>Pictrails</h1>
     <div id="version" class="clickable" onclick='document.location = "http://rubyforge.org/projects/pictrails"; return false'>
       <p>Get Version</p>
-      <a href="http://rubyforge.org/projects/pictrails" class="numbers">0.1.0</a>
+      <a href="http://rubyforge.org/projects/pictrails" class="numbers">0.2.0</a>
     </div>
     <p>A Web Photo Gallery, written with Rails 2.0. Pictrails can manage several photo galleries.</p>
 
@@ -44,8 +44,12 @@
 	<ul>
 	<li>Create several Galleries</li>
 		<li>Add several pictures in a Gallery</li>
-		<li>See all Pictures with a slideshow in javascript (splash.image)</li>
+		<li>Create a gallery with define a directory in same server of pictrails</li>
 		<li>Admin interface with login to add/edit/delete Galleries and Pictures</li>
+		<li>Define the thumbnails and pictures size in settings interface</li>
+		<li>Delete the cache page in settings interface</li>
+		<li>Define the number of pictures by pagination Gallery</li>
+		<li>Define the number of gallery by pagination of Gallery&#8217;s list</li>
 	</ul>
 
 
@@ -78,14 +82,14 @@
 		<li>Create a database.yml file in the config directory. You can copy the database.yml.example</li>
 		<li>Create your databases: rake db:create:all</li>
 		<li>Migrate your database: rake db:migrate</li>
-		<li>Start the server: ruby script/server</li>
+		<li>Start the server in production mode : ruby script/server -e production</li>
 	</ul>
 
 
 	<h2>Information about this project</h2>
 
 
-	<p>Pictrails is actually consider like an Alpha version, and is under development.</p>
+	<p>Pictrails is actually consider like an Beta version, and is under development.</p>
 
 
 	<p>All contributions are welcome.</p>
@@ -95,11 +99,24 @@
 help me.</p>
 
 
-	<p>If you want to contribute, all work is made under a mercurial repository. You can clone the 
-source with the following command:</p>
+	<p>If you want to contribute, all work is made under a git repository. You can clone the 
+source with the following command :</p>
 
 
-	<p>hg clone http://hg.shingara.fr</p>
+	<p>git clone git://github.com/shingara/pictrails.git</p>
+
+
+	<p>There are another git repository with <span class="caps">HTTP</span> access :</p>
+
+
+	<p>git clone http://repo.or.cz/r/pictrails.git</p>
+
+
+	<p>After a clone you need update the submodule :</p>
+
+
+	<p>git submodule init
+git submodule update</p>
 
 
 	<p>A redmine development platform is used at: http://dev.shingara.fr/projects/show/3</p>
@@ -110,7 +127,7 @@ source with the following command:</p>
 
 	<p>This code is free to use under the terms of the <span class="caps">MIT</span> license (provided with sources).</p>
     <p class="coda">
-      <a href="mailto:cyril.mougel@gmail.com">Cyril Mougel</a>, 31st January 2008<br>
+      <a href="mailto:cyril.mougel@gmail.com">Cyril Mougel</a>, 11th March 2008<br>
       Theme extended from <a href="http://rb2js.rubyforge.org/">Paul Battley</a>
     </p>
 </div>
