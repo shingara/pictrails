@@ -48,6 +48,10 @@ help me.
 If you want to contribute, all work is made under a git repository. You can clone the 
 source with the following command :
 
+git clone git://github.com/shingara/pictrails.git
+
+There are another git repository with HTTP access :
+
 git clone http://repo.or.cz/r/pictrails.git
 
 After a clone you need update the submodule :
