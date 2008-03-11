@@ -1,3 +1,5 @@
+require 'config/hoe'
+
 desc 'Generate website files'
 task :website_generate do
   sh %{ ruby script/txt2html README.txt > website/index.html}
@@ -5,8 +7,8 @@ end
 
 desc 'Upload website files to rubyforge'
 task :website_upload do
-  host = "#{RUBY_FORGE_USER}@rubyforge.org"
-  remote_dir = "/var/www/gforge-projects/#{RUBY_FORGE_PROJECT}/"
+  host = "#{RUBYFORGE_USERNAME}@rubyforge.org"
+  remote_dir = "/var/www/gforge-projects/#{RUBYFORGE_PROJECT}/"
   local_dir = 'website'
   sh %{rsync -aCv #{local_dir}/ #{host}:#{remote_dir}}
 end
