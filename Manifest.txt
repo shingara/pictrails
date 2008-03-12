@@ -152,8 +152,6 @@ spec/spec.opts
 spec/spec_helper.rb
 stories/all.rb
 stories/helper.rb
-test/fixtures/settings.yml
-test/unit/setting_test.rb
 vendor/plugins/attachment_fu/CHANGELOG
 vendor/plugins/attachment_fu/README
 vendor/plugins/attachment_fu/Rakefile

@@ -1,3 +1,6 @@
+require 'rake/gempackagetask'
+require 'rake/contrib/rubyforgepublisher'
+
 namespace :pictrails do
   namespace :release do
     desc 'Generate manifest'
@@ -15,5 +18,30 @@ namespace :pictrails do
         fp.puts files 
       end
     end
+
+    PKG_NAME = 'pictrails'
+    PKG_VERSION = '0.2.1'
+
+
+    spec = Gem::Specification.new do |s|
+      s.name = PKG_NAME
+      s.version = PKG_VERSION
+      s.summary = "A Web Photo Gallery, written with Rails 2.0. Pictrails can manage several photo galleries."
+      s.has_rdoc = false
+      
+      s.files = File.read("Manifest.txt").delete("\r").split(/\n/)
+      s.require_path = '.'
+      s.author = "Cyril Mougel"
+      s.email = "cyril.mougel@gmail.com"
+      s.homepage = "http://pictrails.rubyforge.org"  
+      s.rubyforge_project = "pictrails"
+      s.platform = Gem::Platform::RUBY 
+    end
+
+    Rake::GemPackageTask.new spec do |pkg|
+      pkg.need_tar = true
+      pkg.need_zip = true
+    end
+
   end
 end
