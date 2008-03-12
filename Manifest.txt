@@ -187,6 +187,7 @@ vendor/plugins/attachment_fu/test/backends/file_system_test.rb
 vendor/plugins/attachment_fu/test/backends/remote/s3_test.rb
 vendor/plugins/attachment_fu/test/base_attachment_tests.rb
 vendor/plugins/attachment_fu/test/basic_test.rb
+vendor/plugins/attachment_fu/test/database.yml
 vendor/plugins/attachment_fu/test/extra_attachment_test.rb
 vendor/plugins/attachment_fu/test/fixtures/attachment.rb
 vendor/plugins/attachment_fu/test/fixtures/files/fake/rails.png
@@ -722,6 +723,7 @@ vendor/plugins/will_paginate/lib/will_paginate/view_helpers.rb
 vendor/plugins/will_paginate/test/array_pagination_test.rb
 vendor/plugins/will_paginate/test/boot.rb
 vendor/plugins/will_paginate/test/console
+vendor/plugins/will_paginate/test/database.yml
 vendor/plugins/will_paginate/test/finder_test.rb
 vendor/plugins/will_paginate/test/fixtures/admin.rb
 vendor/plugins/will_paginate/test/fixtures/developer.rb
