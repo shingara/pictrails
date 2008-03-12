@@ -3,7 +3,7 @@ namespace :pictrails do
     desc 'Generate manifest'
     task :generate_manifest do
       require 'find'
-      exclude = Regexp.union "tmp$", "\.svn", "\.git", /config\/database.yml$/, /\.sqlite3$/, "website.rake$", "release.rake$", /txt2html$/, "website", "pkg", /\.log/
+      exclude = Regexp.union "tmp$", "\.svn", "\.git", /config\/database.yml$/, /\.sqlite3$/, "website.rake$", "release.rake$", /txt2html$/, "website", "pkg", /\.log/, /^tmp\//, /^\.\/coverage\//, /^\.\/doc\//, /deployment.rake$/, /^\.\/galleries\//, /^\.\/public\/pictrails_pictures/, /^\.\/public\/pictrails_thumbnails/, /^\.\/nbproject/, /^\.\/tmp\//
       files = []
       Find.find '.' do |path|
         next unless File.file? path
