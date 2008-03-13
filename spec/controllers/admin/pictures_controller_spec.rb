@@ -9,32 +9,38 @@ describe Admin::PicturesController do
     login_as :quentin
   end
 
+  it 'should see all pictures' do
+    get :index
+    response.should be_success
+    response.should render_template('index')
+  end
+
   it 'should see show picture' do
     get :show, :id => pictures(:picture1).permalink, :gallery_id => galleries(:gallery1).permalink
-    assert_response :success
-    assert_template 'show'
+    response.should be_success
+    response.should render_template('show')
   end
 
   it 'should return 404 if no picture in show' do
     get :show, :id => 'unknow_picture', :gallery_id => galleries(:gallery1).permalink
-    assert_response 404
+    response.response_code.should == 404
   end
   
   it 'should see edit picture' do
     get :edit, :id => pictures(:picture1).permalink, :gallery_id => galleries(:gallery1).permalink
-    assert_response :success
-    assert_template 'edit'
+    response.should be_success
+    response.should render_template('edit')
   end
 
   it 'should return 404 if no picture in edit' do
     get :edit, :id => 'unknow_picutre', :gallery_id => galleries(:gallery1).permalink
-    assert_response 404
+    response.response_code.should == 404
   end
 
   it 'should see new page of picture in admin' do
     get :new, :gallery_id => galleries(:gallery1)
-    assert_response :success
-    assert_template 'new'
+    response.should be_success
+    response.should render_template('new')
   end
 
   it 'should update picture in admin for a gallery' do
@@ -50,8 +56,8 @@ describe Admin::PicturesController do
     p = Picture.find 1
     p.title.should_not == ''
     put :update, :id => pictures(:picture1).permalink, :gallery_id => galleries(:gallery1).permalink, :picture => {:title => ''}
-    assert_response :success
-    assert_template 'edit'
+    response.should be_success
+    response.should render_template('edit')
     p = Picture.find 1
     p.title.should_not == ''
   end
