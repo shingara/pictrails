@@ -24,6 +24,6 @@ namespace :pictrails do
     end
 
     desc 'Generate and upload website files'
-    task :all => [:website_generate, :website_upload, :publish_docs]
+    task :all => [:generate, :upload, :publish_docs]
   end
 end
