@@ -1,12 +1,20 @@
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
+require 'lib/pictrails/version'
 
 namespace :pictrails do
   namespace :release do
     desc 'Generate manifest'
     task :generate_manifest do
       require 'find'
-      exclude = Regexp.union "tmp$", "\.svn", "\.git", /config\/database.yml$/, /\.sqlite3$/, "website.rake$", "release.rake$", /txt2html$/, "website", "pkg", /\.log/, /^tmp\//, /^\.\/coverage\//, /^\.\/doc\//, /deployment.rake$/, /^\.\/galleries\//, /^\.\/public\/pictrails_pictures/, /^\.\/public\/pictrails_thumbnails/, /^\.\/nbproject/, /^\.\/tmp\//
+      exclude = Regexp.union "tmp$", "\.svn", "\.git", 
+        /config\/database.yml$/, /\.sqlite3$/, "website.rake$", 
+        "release.rake$", /txt2html$/, "website", "pkg", /\.log/, 
+        /^tmp\//, /^\.\/coverage\//, /^\.\/doc\//, 
+        /deployment.rake$/, /^\.\/galleries\//, 
+        /^\.\/public\/pictrails_pictures/, 
+        /^\.\/public\/pictrails_thumbnails/, /^\.\/nbproject/, 
+        /^\.\/tmp\//
       files = []
       Find.find '.' do |path|
         next unless File.file? path
@@ -20,8 +28,7 @@ namespace :pictrails do
     end
 
     PKG_NAME = 'pictrails'
-    PKG_VERSION = '0.2.1'
-
+    PKG_VERSION = Pictrails::VERSION::STRING
 
     spec = Gem::Specification.new do |s|
       s.name = PKG_NAME
