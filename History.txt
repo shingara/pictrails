@@ -1,3 +1,8 @@
+== 0.2.1 / 2008-03-13
+
+* 1 Minor fix bug
+  * Delete a special using of sqlite database
+
 == 0.2.0 / 2008-03-11
 
 * 3 Majors ehancements
