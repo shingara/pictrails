@@ -22,7 +22,7 @@ class Setting < ActiveRecord::Base
 
   def initialize
     super
-    self.settings ||= {}
+    self.settings = {}
   end
 
   # Return the fist webapp by Id

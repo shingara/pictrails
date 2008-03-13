@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe Admin::PicturesController do
   controller_name 'admin/pictures'
-  fixtures :settings, :galleries, :pictures, :thumbnails, :users
+  fixtures :galleries, :pictures, :thumbnails, :users
   include AuthenticatedTestHelper
 
   before (:each) do
@@ -58,7 +58,11 @@ describe Admin::PicturesController do
 
   it 'should create a picture in admin for a gallery' do
     Picture.count.should == 3
-    post 'create', :gallery_id => galleries(:gallery1).permalink, :picture => {:gallery_id => 1, :title => 'oui', :description => 'good description', :status => true, :uploaded_data => fixture_file_upload("/files/rails.png", 'image/png', :binary)}
+    post 'create', :gallery_id => galleries(:gallery1).permalink, :picture => {:gallery_id => 1, 
+      :title => 'oui', 
+      :description => 'good description', 
+      :status => true, 
+      :uploaded_data => fixture_file_upload("/files/rails.png", 'image/png', :binary)}
 
     response.should redirect_to(admin_gallery_picture_url(galleries(:gallery1), 'oui'))
     Picture.count.should == 4

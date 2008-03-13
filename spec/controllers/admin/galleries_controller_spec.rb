@@ -111,6 +111,7 @@ describe 'Admin::Gallery with user logged' do
     g = Gallery.find_by_name 'gallery3'
     g.should_not be_nil
     g.description.should == 'good gallery'
+    g.permalink.should == 'gallery3'
     g.should be_status
   end
 

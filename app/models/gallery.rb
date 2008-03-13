@@ -1,7 +1,7 @@
 class Gallery < ActiveRecord::Base
   has_many :pictures, :dependent => :destroy do
     def enable_size
-      count :conditions => "status = 't'"
+      count :conditions => ["status = ?", true]
     end
   end
 
@@ -9,7 +9,7 @@ class Gallery < ActiveRecord::Base
   validates_uniqueness_of :name, :message => 'is already use. Change it'
 
   before_create :define_permalink
-
+  
   # define the permalink with name in downcase
   def define_permalink
     self.permalink = name.downcase.gsub(/[^a-z0-9]+/i, '-') if permalink.blank?
