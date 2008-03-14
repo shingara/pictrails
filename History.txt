@@ -1,3 +1,8 @@
+== 0.2.2 / 2008-03-14
+
+* 1 Major fix bug
+  * Someone cache wasn't delete when it's expected
+
 == 0.2.1 / 2008-03-13
 
 * 1 Minor fix bug
