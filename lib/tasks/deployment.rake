@@ -77,7 +77,7 @@ It's features are :
       
       c = rf.userconfig
       c["release_notes"] = DESCRIPTION 
-      c["release_changes"] = CHANGE
+      c["release_changes"] = paragraphs_of('History.txt', 0..1).join("\n\n")
       c["preformatted"] = true
 
       pkg = "pkg/#{PKG_NAME}-#{PKG_VERSION}"
@@ -86,7 +86,7 @@ It's features are :
                ("#{pkg}.zip")].compact
 
       puts "Releasing Pictrails v. #{PKG_VERSION}"
-      rf.add_release PKG_NAME, PKG_NAME, PKG_VERSION, *files
+      rf.add_release PKG_NAME, PKG_NAME, "#{PKG_NAME}-#{PKG_VERSION}", *files
     end
 
     desc 'generate annonce in email.txt'
