@@ -17,7 +17,7 @@ class GallerySweeper < ActionController::Caching::Sweeper
 private
 
   def expire_cache(gallery)
-    expire_page :controller => '/galleries', :action => :show, :id => gallery.id
+    expire_page :controller => '/galleries', :action => :show, :id => gallery
     expire_page :controller => '/galleries', :action => 'index'
     expire_page '/'
   end

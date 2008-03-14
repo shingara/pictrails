@@ -1,5 +1,5 @@
 <% content_tag :li, :id => "picture_#{picture.id}" do %>
-  <%= link_to image_tag(picture.public_filename(:thumb)), picture_url(picture), :style => 'display:block;' %>
+  <%= link_to image_tag(picture.public_filename(:thumb)), gallery_picture_url(picture.gallery, picture), :style => 'display:block;' %>
   <span><%=h "#{picture.title}" %></span>
   <br />
   <span><%= picture.description %></span>
