@@ -7,6 +7,7 @@ describe Admin::PicturesController do
 
   before (:each) do
     login_as :quentin
+    @picture = mock_model(Picture)
   end
 
   it 'should see all pictures' do
@@ -38,7 +39,11 @@ describe Admin::PicturesController do
   end
 
   it 'should see new page of picture in admin' do
-    get :new, :gallery_id => galleries(:gallery1)
+    picture = mock_model(Picture)
+    Picture.should_receive(:new).and_return(picture)
+    picture.should_receive(:status=).with(true)
+    picture.should_receive(:gallery=).with(galleries(:gallery1))
+    get :new, :gallery_id => galleries(:gallery1).permalink
     response.should be_success
     response.should render_template('new')
   end
