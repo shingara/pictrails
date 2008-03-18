@@ -1,6 +1,6 @@
 class Admin::GalleriesController < Admin::BaseController
   
-  cache_sweeper :gallery_sweeper,  :only => [:create, :update, :destroy]
+  cache_sweeper :gallery_sweeper,  :only => [:create, :update, :destroy, :mass_upload]
 
   def index
     @galleries = Gallery.find :all, :include => 'pictures'
