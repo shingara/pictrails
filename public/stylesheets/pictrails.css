@@ -16,6 +16,7 @@ a, a:visited {
 #gallery_list li , #picture_list li {
   float : left;
   width : 200px;
+  height : 200px; 
   padding : 8px;
   padding-bottom : 25px;
   margin-top : auto;
