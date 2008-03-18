@@ -20,17 +20,23 @@ class Gallery < ActiveRecord::Base
     permalink
   end
 
-  # Static method
-  # create a Gallery and several picture in this gallery
-  # All pictures are in directory define in params
   def self.create_with_directory(directory)
     gallery = Gallery.new 
-    raise ArgumentError.new('the directory need a directory') unless File.directory? directory
+  end
+
+  # Create a Gallery with only his name that is is
+  # the basename of directory send by path
+  def self.create_by_name_of_directory(directory)
+    gallery = Gallery.new 
     gallery.name = File.basename directory
     gallery.description = ''
     gallery.status = true
-    gallery.save!
+    gallery
+  end
 
+  # Insert in this Gallery all picture
+  # in directory send by params
+  def insert_pictures(directory)
     Dir.chdir(directory) do
       Dir.glob("*.{gif,png,jpg,bmp}") do |file|
         pic = Picture.new
@@ -40,9 +46,9 @@ class Gallery < ActiveRecord::Base
         pic.content_type = File.mime_type? file
         pic.filename = file
         pic.temp_data = File.new(file).read
-        pic.gallery_id = gallery.id
+        pic.gallery_id = self.id
         pic.save!
       end
-    end
+    end if File.directory? directory
   end
 end

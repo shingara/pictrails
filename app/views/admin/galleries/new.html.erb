@@ -9,12 +9,10 @@
 <h2>Manage galleries</h2>
 
 <%= error_messages_for :gallery %>
-
 <%= flash_notice %>
 
 <h3>New gallery</h3>
 
-<%= error_messages_for :gallery %>
 
 <% form_for([:admin, @gallery]) do |f| %>
   <fieldset class="set admin" style="display: block;">
@@ -39,7 +37,7 @@
   </fieldset>
 <% end %>
 
-<% form_for (@gallery, :url => {:action => 'mass_upload'}) do |f| %>
+<% form_for(@gallery, :url => {:action => 'mass_upload'}) do |f| %>
   <fieldset class="set admin" style="display: block;">
     <legend>Mass upload</legend>
     <ul>
