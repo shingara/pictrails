@@ -1,3 +1,10 @@
+== 0.2.3 / 2008-03-18
+
+* 1 Major fix bug
+  * The cache not delete when we use mass_upload
+  * 500 error when in mass_upload the directory already exist or the title is
+    already use. Now, the information is send to user
+
 == 0.2.2 / 2008-03-14
 
 * 1 Major fix bug
