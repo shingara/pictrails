@@ -17,14 +17,14 @@ h2. Requirements
 
 Currently you need all of those things to get Pictrails to run:
 
- * Ruby of 1.8.6 or greater
  * Ruby On Rails 2.0.x or greater
+ * Ruby of 1.8.6 (Rails 2 is not yet ruby 1.9 compatible)
  * A database supported by Rails ActiveRecord (MySQL, DB2, SQLite3, ...)
  * Ruby drivers for your database (obviously out of the box with Rails)
  * A gem of an image-handling API like :
-    * ImageScience
-    * RMagick
-    * Mini-magick
+ ** ImageScience
+ ** RMagick
+ ** Mini-magick
 
 h2. Installing
 
@@ -32,9 +32,9 @@ With the tar.gz or any other archive:
 
  * Extract sources to a folder
  * Create a database.yml file in the config directory. You can copy the database.yml.example
- * Create your databases: rake db:create:all
- * Migrate your database: rake db:migrate
- * Start the server in production mode : ruby script/server -e production
+ * Create your databases: <kbd>rake db:create:all</kbd>
+ * Migrate your database: <kbd>rake db:migrate</kbd>
+ * Start the server in production mode : <kbd>ruby script/server -e production</kbd>
 
 h2. Information about this project
 
@@ -48,18 +48,15 @@ help me.
 If you want to contribute, all work is made under a git repository. You can clone the 
 source with the following command :
 
-git clone git://github.com/shingara/pictrails.git
-
-There are another git repository with HTTP access :
-
-git clone http://repo.or.cz/r/pictrails.git
+<kbd>git clone git://github.com/shingara/pictrails.git</kbd>
 
 After a clone you need update the submodule :
 
-git submodule init
-git submodule update
+<kbd>git submodule init</kbd>
+<kbd>git submodule update</kbd>
 
-A redmine development platform is used at: http://dev.shingara.fr/projects/show/3
+A "redmine development platform":http://dev.shingara.fr/projects/show/3 is
+used. Feel free to post your feature requests and defects report.
 
 h2. License
 

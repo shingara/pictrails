@@ -22,6 +22,9 @@ li {
   margin: 0;
   list-style-type: square;
 }
+li li {
+  list-style-type: circle;
+}
 a {
   color: #5E5AFF;
 	background-color: #DAC;

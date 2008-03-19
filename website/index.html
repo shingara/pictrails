@@ -8,9 +8,6 @@
       Pictrails
   </title>
   <script src="javascripts/rounded_corners_lite.inc.js" type="text/javascript"></script>
-<style>
-
-</style>
   <script type="text/javascript">
     window.onload = function() {
       settings = {
@@ -60,14 +57,16 @@
 
 
 	<ul>
-	<li>Ruby of 1.8.6 or greater</li>
-		<li>Ruby On Rails 2.0.x or greater</li>
+	<li>Ruby On Rails 2.0.x or greater</li>
+		<li>Ruby of 1.8.6 (Rails 2 is not yet ruby 1.9 compatible)</li>
 		<li>A database supported by Rails ActiveRecord (MySQL, <span class="caps">DB2</span>, SQLite3, ...)</li>
 		<li>Ruby drivers for your database (obviously out of the box with Rails)</li>
 		<li>A gem of an image-handling <span class="caps">API</span> like :
-   * ImageScience
-   * RMagick
-   * Mini-magick</li>
+	<ul>
+	<li>ImageScience</li>
+		<li>RMagick</li>
+		<li>Mini-magick</li>
+	</ul></li>
 	</ul>
 
 
@@ -80,9 +79,9 @@
 	<ul>
 	<li>Extract sources to a folder</li>
 		<li>Create a database.yml file in the config directory. You can copy the database.yml.example</li>
-		<li>Create your databases: rake db:create:all</li>
-		<li>Migrate your database: rake db:migrate</li>
-		<li>Start the server in production mode : ruby script/server -e production</li>
+		<li>Create your databases: <kbd>rake db:create:all</kbd></li>
+		<li>Migrate your database: <kbd>rake db:migrate</kbd></li>
+		<li>Start the server in production mode : <kbd>ruby script/server -e production</kbd></li>
 	</ul>
 
 
@@ -103,23 +102,16 @@ help me.</p>
 source with the following command :</p>
 
 
-	<p>git clone git://github.com/shingara/pictrails.git</p>
-
-
-	<p>There are another git repository with <span class="caps">HTTP</span> access :</p>
-
-
-	<p>git clone http://repo.or.cz/r/pictrails.git</p>
-
+<kbd>git clone git://github.com/shingara/pictrails.git</kbd>
 
 	<p>After a clone you need update the submodule :</p>
 
 
-	<p>git submodule init
-git submodule update</p>
+<kbd>git submodule init</kbd>
+<kbd>git submodule update</kbd>
 
-
-	<p>A redmine development platform is used at: http://dev.shingara.fr/projects/show/3</p>
+	<p>A <a href="http://dev.shingara.fr/projects/show/3">redmine development platform</a> is
+used. Feel free to post your feature requests and defects report.</p>
 
 
 	<h2>License</h2>
@@ -127,7 +119,7 @@ git submodule update</p>
 
 	<p>This code is free to use under the terms of the <span class="caps">MIT</span> license (provided with sources).</p>
     <p class="coda">
-      <a href="mailto:cyril.mougel@gmail.com">Cyril Mougel</a>, 14th March 2008<br>
+      <a href="mailto:cyril.mougel@gmail.com">Cyril Mougel</a>, 19th March 2008<br/>
       Theme extended from <a href="http://rb2js.rubyforge.org/">Paul Battley</a>
     </p>
 </div>
