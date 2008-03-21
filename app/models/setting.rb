@@ -25,7 +25,9 @@ class Setting < ActiveRecord::Base
     self.settings = {}
   end
 
-  # Return the fist webapp by Id
+  # Return the fist webapp by Id.
+  # But if there are no Setting save in first
+  # A setting is create
   def self.default
     s = Setting.find :first, :order => 'id'
     if s.nil?

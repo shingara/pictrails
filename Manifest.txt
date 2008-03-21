@@ -72,6 +72,7 @@ lib/authenticated_test_helper.rb
 lib/config_manager.rb
 lib/pictrails/version.rb
 lib/tasks/cache.rake
+lib/tasks/story.rake
 log/keep
 public/.htaccess
 public/404.html

@@ -2,6 +2,11 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Setting, 'without Setting'  do
 
+  # Delete all Setting if there are anyone in database
+  before :each do
+    Setting.destroy_all
+  end
+
   it 'should get default value' do
     s = Setting.new
     s.webapp_name.should == 'My own personal WebGallery'
@@ -18,6 +23,10 @@ describe Setting, 'without Setting'  do
     s = Setting.new
     s.webapp_subtitle = 'My subtitle'
     s.webapp_subtitle.should == 'My subtitle'
+  end
+
+  it 'should return a new Setting in call default' do
+    Setting.default.should be_new_record
   end
 end
 
