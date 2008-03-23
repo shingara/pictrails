@@ -1,0 +1,17 @@
+Story: First connection
+  There are no user in pictrails
+  
+  Scenario: I am redirect to signup
+    When the user go to the base URL
+    Then should redirect to '/admin/signup'
+    And follow redirect
+    And render template 'admin/users/new'
+
+  Scenario: Create the first User
+    Given a username 'shingara'
+    And a password 'shin'
+    And an email 'cyril.mougel@gmail.com'
+    When the user creates an account with username, password and email
+    Then should redirect to '/admin/galleries'
+    And follow redirect
+    And render template 'admin/galleries/index'
