@@ -2,16 +2,36 @@ Story: First connection
   There are no user in pictrails
   
   Scenario: I am redirect to signup
+    Given there are no user save
+
     When the user go to the base URL
+
     Then should redirect to '/admin/signup'
     And follow redirect
     And render template 'admin/users/new'
 
   Scenario: Create the first User
+    Given there are no user save
+    And a username 'shingara'
+    And a password 'shin'
+    And an email 'cyril.mougel@gmail.com'
+
+    When the user creates an account with username, password and email
+
+    Then should redirect to '/admin/galleries'
+    And user save in first
+    And there are only one user
+    And follow redirect
+    And render template 'admin/galleries/index'
+
+  Scenario: the signup is impossible when there are already a user
     Given a username 'shingara'
     And a password 'shin'
     And an email 'cyril.mougel@gmail.com'
-    When the user creates an account with username, password and email
-    Then should redirect to '/admin/galleries'
+    And the user is save
+
+    When a user not logged want go to /admin/signup
+
+    Then should redirect to '/admin/login'
     And follow redirect
-    And render template 'admin/galleries/index'
+    And render template 'admin/sessions/new'

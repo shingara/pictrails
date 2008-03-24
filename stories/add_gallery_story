@@ -1,0 +1,28 @@
+Story: Add a Gallery and Picture
+  There are one user in pictrails and no gallery
+
+  Scenario: Add a gallery after login
+    Given there are no user save
+    And there are no gallery save
+    And a username 'shingara'
+    And a password 'shin'
+    And an email 'cyril.mougel@gmail.com'
+    And the user is save
+
+    When the user logged
+    And go to '/admin'
+
+    Then the response is a success
+
+    When add create gallery 'MyGallery'
+
+    Then should redirect to '/admin/galleries'
+    And there are one gallery with name 'MyGallery'
+
+    Given in gallery 'MyGallery'
+
+    When add a picture 'files/rails.png'
+
+    Then should redirect to '/admin/galleries/mygallery'
+    And follow redirect
+    And render template 'admin/galleries/show'

@@ -1,6 +1,6 @@
 namespace :spec do 
   desc "run all rspec stories"  
-  task :stories => ['db:test:prepare'] do
-    require 'stories/all'
+  task :stories do
+    require 'stories/all.rb'
   end
 end
