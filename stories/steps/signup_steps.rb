@@ -13,7 +13,7 @@ steps_for(:signup) do
   end
 
   Then "user save in first" do
-    u = User.find(1)
+    u = User.find_by_login @username
     u.login.should == @username
     u.email.should == @email
   end

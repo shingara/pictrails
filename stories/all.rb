@@ -1,10 +1,8 @@
 dir = File.dirname(__FILE__)
 
-
-
-require 'helper'
-require 'steps/signup_steps'
-require 'steps/general_steps'
-require 'steps/gallery_steps'
-require 'signup_story'
-require 'add_gallery_story'
+require "#{dir}/helper"
+require "#{dir}/steps/signup_steps"
+require "#{dir}/steps/general_steps"
+require "#{dir}/steps/gallery_steps"
+require "#{dir}/signup_story"
+require "#{dir}/add_gallery_story"

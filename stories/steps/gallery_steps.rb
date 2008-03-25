@@ -20,7 +20,7 @@ steps_for(:gallery) do
 
   Then "there are one gallery with name '$name'" do |name|
     Gallery.should have(1).find(:all)
-    g = Gallery.find(1)
+    g = Gallery.find_by_name name
     g.name.should == name
     g.status.should be_true
   end
