@@ -2,7 +2,11 @@
 # It's not integrate actually.
 # For Integration test, there are no way to send File in multipart
 # With this patch a multipart can be send
-# Please made +1 in this patch. He works with pictrails
+
+# This patch is useless. 
+# Now in revision r8978 with ticket #11091, the problem
+# is fixed. So multipart_post is replace by post as in 
+# Functional Testing
 
 module ActionController
   module Integration
