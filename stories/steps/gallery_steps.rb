@@ -3,17 +3,23 @@ steps_for(:gallery) do
   Given "in gallery '$name'" do |name|
     g = Gallery.find_by_name name
     @gallery = g.permalink
+    @gallery_id = g.id
   end
 
   When "add create gallery '$name'" do |name|
     post '/admin/galleries', :gallery => {:name => name,
                                           :status => true}
   end
-
-  When "add a picture '$path'" do |path|
+  When "add a picture '$path' with name '$name'" do |path, name|
     if @gallery
-      post "/admin/galleries/#{@gallery}/pictures", :picture => {
-        :uploaded_data => fixture_file_upload("#{path}", 'image/png', :binary)}
+      multipart_post "/admin/galleries/#{@gallery}/pictures", 
+                        :gallery_id => @gallery_id,
+                        :picture => {
+                          :gallery_id => @gallery_id,
+                          :title => name,
+                          :status => true,
+                          :description => "",
+                          :uploaded_data => fixture_file_upload("#{path}", 'image/png', :binary)}
     end
   end
 

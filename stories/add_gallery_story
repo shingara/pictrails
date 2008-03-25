@@ -21,8 +21,8 @@ Story: Add a Gallery and Picture
 
     Given in gallery 'MyGallery'
 
-    When add a picture 'files/rails.png'
+    When add a picture 'files/rails.png' with name 'rails'
 
-    Then should redirect to '/admin/galleries/mygallery'
+    Then should redirect to '/admin/galleries/mygallery/pictures/rails'
     And follow redirect
-    And render template 'admin/galleries/show'
+    And render template 'admin/pictures/show'
