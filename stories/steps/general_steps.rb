@@ -18,9 +18,20 @@ steps_for(:general) do
             :password_confirmation => @password,
             :email => @email).save!
   end
+  
+  Given "load all fixtures" do
+    ["galleries", "pictures", "thumbnails", "users", "settings"].each { |fixture|
+      #Fixtures.create_fixtures(Test::Unit::TestCase.fixture_path, fixture)
+    }
+  end
 
   Given "there are no $model save" do |model|
     eval "#{model.camelize}.destroy_all"
+  end
+
+  Given "cache is true" do
+    ActionView::Base.cache_template_loading = true
+    ActionController::Base.perform_caching = true
   end
   
   When "the user logged" do

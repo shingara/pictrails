@@ -1,0 +1,9 @@
+Story: A user view public page
+  There are several gallery and pictures
+
+  Scenario: View gallery and pictures
+    Given load all fixtures
+    And cache is true
+
+    When go to '/'
+
