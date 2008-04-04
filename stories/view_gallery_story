@@ -3,7 +3,9 @@ Story: A user view public page
 
   Scenario: View gallery and pictures
     Given load all fixtures
-    And cache is true
+    And all cache delete
 
     When go to '/'
+
+    Then the 'index.html' is cached
 

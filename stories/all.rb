@@ -1,6 +1,6 @@
 dir = File.dirname(__FILE__)
-require 'integration_test_file_upload_deep'
-require 'helper'
+require 'stories/integration_test_file_upload_deep'
+require 'stories/helper'
 Dir[File.expand_path("#{dir}/steps/*.rb")].uniq.each do |file|
     require file
 end

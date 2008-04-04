@@ -21,7 +21,7 @@ steps_for(:general) do
   
   Given "load all fixtures" do
     ["galleries", "pictures", "thumbnails", "users", "settings"].each { |fixture|
-      #Fixtures.create_fixtures(Test::Unit::TestCase.fixture_path, fixture)
+      Fixtures.create_fixtures(Test::Unit::TestCase.fixture_path, fixture)
     }
   end
 
@@ -29,9 +29,8 @@ steps_for(:general) do
     eval "#{model.camelize}.destroy_all"
   end
 
-  Given "cache is true" do
-    ActionView::Base.cache_template_loading = true
-    ActionController::Base.perform_caching = true
+  Given "all cache delete" do
+    PageCache.sweep_all
   end
   
   When "the user logged" do
@@ -60,5 +59,11 @@ steps_for(:general) do
 
   Then 'the response is a success' do
     response.should be_success
+  end
+
+  Then "the '$path' is cached" do |path|
+    require 'ruby-debug'
+    #debugger
+    File.file?(ActionController::Base.page_cache_directory + "/#{path}").should == true
   end
 end
