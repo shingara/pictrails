@@ -8,7 +8,8 @@ steps_for(:gallery) do
 
   When "add create gallery '$name'" do |name|
     post '/admin/galleries', :gallery => {:name => name,
-                                          :status => true}
+                                          :status => true,
+                                          :description => ""}
   end
   When "add a picture '$path' with name '$name'" do |path, name|
     if @gallery
@@ -21,6 +22,10 @@ steps_for(:gallery) do
                           :description => "",
                           :uploaded_data => fixture_file_upload("#{path}", 'image/png', :binary)}
     end
+  end
+
+  When "update '$gallery' to description with '$description'" do |gallery, description|
+    put "/admin/galleries/#{gallery}", :gallery => {:description => description}
   end
 
 

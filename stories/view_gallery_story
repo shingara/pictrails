@@ -21,3 +21,11 @@ Story: A user view public page
 
     Then no 'index.html' is cached
     And no 'galleries.html' is cached
+
+    When go to '/galleries/gallery3'
+    Then the 'galleries/gallery3.html' is cached
+
+    When update 'gallery3' to description with 'ok'
+    Then no 'galleries/gallery3.html' is cached
+    And no 'index.html' is cached
+    And no 'galleries.html' is cached
