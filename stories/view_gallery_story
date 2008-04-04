@@ -9,3 +9,15 @@ Story: A user view public page
 
     Then the 'index.html' is cached
 
+    When go to '/galleries'
+    Then the 'galleries.html' is cached
+
+    When go to '/galleries/gallery1'
+    Then the 'galleries/gallery1.html' is cached
+
+    Given the user logged
+    
+    When add create gallery 'gallery3'
+
+    Then no 'index.html' is cached
+    And no 'galleries.html' is cached

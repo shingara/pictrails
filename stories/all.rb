@@ -13,6 +13,6 @@ with_steps_for(:general, :signup, :gallery) do
   run_local_story "signup_story", :type => RailsStory
 end
 
-with_steps_for(:general) do
+with_steps_for(:general, :admin, :gallery) do
   run_local_story "view_gallery_story", :type => RailsStory
 end

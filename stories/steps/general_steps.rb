@@ -62,8 +62,10 @@ steps_for(:general) do
   end
 
   Then "the '$path' is cached" do |path|
-    require 'ruby-debug'
-    #debugger
     File.file?(ActionController::Base.page_cache_directory + "/#{path}").should == true
+  end
+  
+  Then "no '$path' is cached" do |path|
+    File.file?(ActionController::Base.page_cache_directory + "/#{path}").should == false
   end
 end
