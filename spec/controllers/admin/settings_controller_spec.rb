@@ -38,4 +38,11 @@ describe Admin::SettingsController,' with user logged' do
     response.should render_template('index')
     Setting.default.webapp_name.should_not == ''
   end
+
+  it 'should delete_cache' do
+    PageCache.should_receive(:sweep_all)
+    get 'delete_cache'
+    response.should redirect_to(admin_settings_url)
+    flash[:notice].should == 'All cache is deleted' 
+  end
 end
