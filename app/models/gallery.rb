@@ -1,4 +1,5 @@
 class Gallery < ActiveRecord::Base
+  has_many :imports
   has_many :pictures, :dependent => :destroy do
     def enable_size
       count :conditions => ["status = ?", true]
@@ -34,20 +35,17 @@ class Gallery < ActiveRecord::Base
     gallery
   end
 
-  # Insert in this Gallery all picture
-  # in directory send by params
+  # Insert in this Gallery all picture in
+  # the import table. The import model is use
+  # only for the save of all file there are in this directory
+  # All file are integrate in this gallery time after time
   def insert_pictures(directory)
     Dir.chdir(directory) do
       Dir.glob("*.{gif,png,jpg,bmp}") do |file|
-        pic = Picture.new
-        pic.title = file[0, file.rindex('.')]
-        pic.description = ''
-        pic.status = true
-        pic.content_type = File.mime_type? file
-        pic.filename = file
-        pic.temp_data = File.new(file).read
-        pic.gallery_id = self.id
-        pic.save!
+        i = Import.new
+        i.path = "#{directory}#{file}"
+        i.gallery = self
+        i.save!
       end
     end if File.directory? directory
   end

@@ -1,0 +1,6 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+import1:
+  id: 1
+  path: files/rails.png
+  gallery: gallery1

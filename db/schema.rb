@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 7) do
+ActiveRecord::Schema.define(:version => 8) do
 
   create_table "galleries", :force => true do |t|
     t.string  "name"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(:version => 7) do
   add_index "galleries", ["permalink"], :name => "index_galleries_on_permalink", :unique => true
   add_index "galleries", ["name"], :name => "index_galleries_on_name", :unique => true
   add_index "galleries", ["status"], :name => "index_galleries_on_status"
+
+  create_table "imports", :force => true do |t|
+    t.string   "path"
+    t.integer  "gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "imports", ["gallery_id"], :name => "index_imports_on_gallery_id"
 
   create_table "pictures", :force => true do |t|
     t.integer "gallery_id"

@@ -27,6 +27,20 @@ describe Gallery, "with fixtures loaded" do
     g.status.should be_true
   end
 
+  it 'should save all pictures in directory' do
+    g = galleries(:gallery1)
+    g.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files/")
+    Import.count(:conditions => ['gallery_id = ?', g.id]).should == 1
+    i = Import.find_by_gallery_id(g.id)
+    i.path.should == "#{RAILS_ROOT}/spec/fixtures/files/rails.png"
+  end
+
+  it "should doesn't save all pictures in directory because it's not a directory" do
+    g = galleries(:gallery1)
+    g.insert_pictures("/foo/bar/")
+    Import.count(:conditions => ['gallery_id = ?', g.id]).should == 0
+  end
+
   after(:each) do
     # fixtures are torn down after this
   end
