@@ -2,5 +2,5 @@
 
 import1:
   id: 1
-  path: files/rails.png
-  gallery: gallery1
+  path: <%= "#{RAILS_ROOT}/spec/fixtures/files/rails.png" %>
+  gallery_id: 1

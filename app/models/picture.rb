@@ -42,4 +42,21 @@ class Picture < ActiveRecord::Base
     permalink
   end
 
+
+  # A picture model is create by an import model
+  # In this import model, the Gallery_id and path is usefull
+  # All information enough.
+  def self.create_picture_by_import(import)
+    pic = Picture.new
+    filename = import.path.gsub(File.dirname(import.path), '')
+    pic.title = filename[1,(filename.rindex(/\./)-1)]
+    pic.description = ''
+    pic.status = true
+    pic.content_type = File.mime_type? import.path
+    pic.filename = import.path
+    pic.temp_data = File.new(import.path).read
+    pic.gallery_id = import.gallery.id
+    pic.save!
+    pic
+  end
 end
