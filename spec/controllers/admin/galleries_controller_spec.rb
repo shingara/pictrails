@@ -50,6 +50,7 @@ describe 'Admin::Gallery with user logged' do
 
   before (:each) do
     login_as :quentin
+    @gallery = mock_model(Gallery)
   end
 
   it 'should see index' do
@@ -131,6 +132,32 @@ describe 'Admin::Gallery with user logged' do
     assert_raise ActiveRecord::RecordNotFound do 
       Gallery.find(1)
     end
+  end
+
+  it 'should add gallery by mass_upload with a good directory' do
+    directory = "#{RAILS_ROOT}/spec/fixtures/files"
+    Gallery.should_receive(:create_by_name_of_directory).with(directory).and_return(@gallery)
+    @gallery.should_receive(:save!).once.and_return(true)
+    @gallery.should_receive(:insert_pictures).once.with(directory)
+    post 'mass_upload', :directory => directory
+    response.should redirect_to(admin_gallery_url(@gallery))
+  end
+
+  it 'should not add gallery by mass_upload with a bad directory' do
+    directory = "/foo/bar"
+    Gallery.should_receive(:create_by_name_of_directory).with(directory).and_return(@gallery)
+    post 'mass_upload', :directory => directory
+    response.should render_template('new')
+  end
+
+  it 'should not add gallery by mass_upload because name of gallery already exist' do
+    directory = "/foo/bar"
+    Gallery.should_receive(:create_by_name_of_directory).with(directory).and_return(@gallery)
+    File.should_receive(:directory?).with(directory).and_return(true)
+    @gallery.should_receive(:save!).and_raise(ActiveRecord::RecordInvalid.new(Gallery.new))
+    @gallery.should_not_receive(:insert_pictures).with(directory)
+    post 'mass_upload', :directory => directory
+    response.should render_template('new')
   end
 
 end

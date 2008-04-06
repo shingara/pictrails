@@ -5,6 +5,7 @@ describe Gallery, "with fixtures loaded" do
 
   before(:each) do
     # Set up after insert fixtures
+    @gallery = mock_model(Gallery)
   end
   
   it "should have a non-empty collection of galleries" do
@@ -17,6 +18,13 @@ describe Gallery, "with fixtures loaded" do
 
   it "should have two elements in gallery 2" do
     Gallery.find(1).pictures.size.should == 2
+  end
+
+  it 'should create a gallery by a directory' do
+    g = Gallery.create_by_name_of_directory('/foo/bar/gal')
+    g.name.should == 'gal'
+    g.description.should == ''
+    g.status.should be_true
   end
 
   after(:each) do
