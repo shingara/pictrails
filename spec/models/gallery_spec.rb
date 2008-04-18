@@ -28,6 +28,7 @@ describe Gallery, "with fixtures loaded" do
   end
 
   it 'should save all pictures in directory' do
+    Import.delete_all
     g = galleries(:gallery1)
     g.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files/")
     Import.count(:conditions => ['gallery_id = ?', g.id]).should == 1
@@ -36,6 +37,7 @@ describe Gallery, "with fixtures loaded" do
   end
 
   it "should doesn't save all pictures in directory because it's not a directory" do
+    Import.delete_all
     g = galleries(:gallery1)
     g.insert_pictures("/foo/bar/")
     Import.count(:conditions => ['gallery_id = ?', g.id]).should == 0
