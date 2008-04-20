@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 require 'admin/galleries_controller'
 
-describe 'Admin::Gallery without logged' do
+describe Admin::GalleriesController, 'without logged and no import' do
   controller_name 'admin/galleries'
   fixtures :galleries, :pictures, :thumbnails, :users
   integrate_views
@@ -43,12 +43,13 @@ describe 'Admin::Gallery without logged' do
 
 end
 
-describe 'Admin::Gallery with user logged' do
+describe Admin::GalleriesController, 'with user logged and no import' do
   controller_name 'admin/galleries'
   fixtures :galleries, :pictures, :thumbnails, :users
   include AuthenticatedTestHelper
 
   before (:each) do
+    Import.delete_all
     login_as :quentin
     @gallery = mock_model(Gallery)
   end

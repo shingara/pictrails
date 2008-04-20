@@ -1,11 +1,12 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 
-describe Admin::PicturesController do
+describe Admin::PicturesController , 'with no import' do
   controller_name 'admin/pictures'
   fixtures :galleries, :pictures, :thumbnails, :users
   include AuthenticatedTestHelper
 
   before (:each) do
+    Import.delete_all
     login_as :quentin
     @picture = mock_model(Picture)
   end

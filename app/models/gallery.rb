@@ -43,7 +43,8 @@ class Gallery < ActiveRecord::Base
     Dir.chdir(directory) do
       Dir.glob("*.{gif,png,jpg,bmp}") do |file|
         i = Import.new
-        i.path = "#{directory}#{file}"
+        directory.chop! if directory[-1,1] == '/'
+        i.path = "#{directory}/#{file}"
         i.gallery = self
         i.save!
       end

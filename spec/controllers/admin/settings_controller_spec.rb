@@ -1,8 +1,13 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 require 'admin/settings_controller'
 
-describe Admin::SettingsController,' without logged' do
+describe Admin::SettingsController,' without logged and no import' do
   controller_name 'admin/settings'
+
+  # Delete all Import if there are one into
+  before(:each) do
+    Import.delete_all
+  end
 
   it "should not view index" do
     get 'index'
@@ -10,12 +15,13 @@ describe Admin::SettingsController,' without logged' do
   end
 end
 
-describe Admin::SettingsController,' with user logged' do
+describe Admin::SettingsController,' with user logged and no Import' do
   controller_name 'admin/settings'
   fixtures :users
   include AuthenticatedTestHelper
   
   before (:each) do
+    Import.delete_all
     login_as :quentin
   end
 
