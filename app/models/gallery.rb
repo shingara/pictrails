@@ -39,15 +39,23 @@ class Gallery < ActiveRecord::Base
   # the import table. The import model is use
   # only for the save of all file there are in this directory
   # All file are integrate in this gallery time after time
+  # If the directory finish by / it's delete
   def insert_pictures(directory)
+    list_import = []
     Dir.chdir(directory) do
       Dir.glob("*.{gif,png,jpg,bmp}") do |file|
         i = Import.new
         directory.chop! if directory[-1,1] == '/'
         i.path = "#{directory}/#{file}"
         i.gallery = self
-        i.save!
+        list_import << i
       end
+
+      # Save the import with the total size for this import
+      list_import.each { |i|
+        i.total = list_import.size
+        i.save!
+      }
     end if File.directory? directory
   end
 end

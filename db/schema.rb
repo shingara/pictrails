@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 8) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "galleries", :force => true do |t|
     t.string  "name"
@@ -25,10 +25,9 @@ ActiveRecord::Schema.define(:version => 8) do
   add_index "galleries", ["status"], :name => "index_galleries_on_status"
 
   create_table "imports", :force => true do |t|
-    t.string   "path"
-    t.integer  "gallery_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "path"
+    t.integer "gallery_id"
+    t.integer "total"
   end
 
   add_index "imports", ["gallery_id"], :name => "index_imports_on_gallery_id"

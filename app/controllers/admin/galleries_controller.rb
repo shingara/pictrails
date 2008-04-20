@@ -96,4 +96,9 @@ class Admin::GalleriesController < Admin::BaseController
   rescue ActiveRecord::RecordInvalid
     render :action => 'new'
   end
+
+  # See the following of mass_upload
+  def follow_import
+    
+  end
 end

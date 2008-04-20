@@ -31,18 +31,26 @@ describe Gallery, "with fixtures loaded" do
     Import.delete_all
     g = galleries(:gallery1)
     g.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files/")
-    Import.count(:conditions => ['gallery_id = ?', g.id]).should == 1
-    i = Import.find_by_gallery_id(g.id)
-    i.path.should == "#{RAILS_ROOT}/spec/fixtures/files/rails.png"
+    Import.count(:conditions => ['gallery_id = ?', g.id]).should == 2
+    imports = Import.find_all_by_gallery_id(g.id)
+    imports[0].path.should == "#{RAILS_ROOT}/spec/fixtures/files/rails.png"
+    imports[1].path.should == "#{RAILS_ROOT}/spec/fixtures/files/foo.png"
+    imports.each do |i|
+      i.total.should == 2
+    end
   end
   
   it 'should save all pictures in directory if there are no / in end of directory' do
     Import.delete_all
     g = galleries(:gallery1)
     g.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files")
-    Import.count(:conditions => ['gallery_id = ?', g.id]).should == 1
-    i = Import.find_by_gallery_id(g.id)
-    i.path.should == "#{RAILS_ROOT}/spec/fixtures/files/rails.png"
+    Import.count(:conditions => ['gallery_id = ?', g.id]).should == 2
+    imports = Import.find_all_by_gallery_id(g.id)
+    imports[0].path.should == "#{RAILS_ROOT}/spec/fixtures/files/rails.png"
+    imports[1].path.should == "#{RAILS_ROOT}/spec/fixtures/files/foo.png"
+    imports.each do |i|
+      i.total.should == 2
+    end
   end
 
   it "should doesn't save all pictures in directory because it's not a directory" do
