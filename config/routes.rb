@@ -43,6 +43,10 @@ ActionController::Routing::Routes.draw do |map|
     #Resources for settings
     admin.connect 'settings/delete_cache', :controller => 'settings', :action => 'delete_cache'
     admin.resources :settings 
+    
+    # TODO: See a better system by resources
+    admin.mass_upload '/galleries/mass_upload', :controller => 'galleries', :action => 'mass_upload'
+    admin.follow_redirect '/galleries/follow_import', :controller => 'galleries', :action => 'follow_import'
 
     #Resources of gallerie
     admin.resources :galleries do |gallery|
@@ -52,7 +56,6 @@ ActionController::Routing::Routes.draw do |map|
         :action => 'show', :page => /\d+/
 
 
-    admin.mass_upload '/galleries/mass_upload', :controller => 'galleries', :action => 'mass_upload'
 
     # particular route
     admin.login '/login', :controller => 'sessions', :action => 'new'
@@ -61,6 +64,7 @@ ActionController::Routing::Routes.draw do |map|
     
     # Default page in this namespace
     admin.root :controller => 'galleries'
+
   end
 
   map.root :controller => 'galleries'

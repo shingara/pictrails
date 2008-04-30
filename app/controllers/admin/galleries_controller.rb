@@ -88,7 +88,8 @@ class Admin::GalleriesController < Admin::BaseController
       @gallery.save!
       @gallery.insert_pictures(params[:directory])
       # TODO: With mass_upload new system manage the progress bar
-      redirect_to admin_gallery_url(@gallery)
+      #redirect_to admin_gallery_url(@gallery)
+      redirect_to :action => 'follow_import'
     else
       flash[:notice] = 'the directory is not a directory'
       render :action => 'new'
@@ -99,6 +100,7 @@ class Admin::GalleriesController < Admin::BaseController
 
   # See the following of mass_upload
   def follow_import
-    
+    @imports = Import.find(:all).group_by(&:gallery)
+    redirect_to :action => 'index' if @imports.empty?
   end
 end

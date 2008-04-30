@@ -141,7 +141,7 @@ describe Admin::GalleriesController, 'with user logged and no import' do
     @gallery.should_receive(:save!).once.and_return(true)
     @gallery.should_receive(:insert_pictures).once.with(directory)
     post 'mass_upload', :directory => directory
-    response.should redirect_to(admin_gallery_url(@gallery))
+    response.should redirect_to(:action => 'follow_import')
   end
 
   it 'should not add gallery by mass_upload with a bad directory' do
@@ -159,6 +159,12 @@ describe Admin::GalleriesController, 'with user logged and no import' do
     @gallery.should_not_receive(:insert_pictures).with(directory)
     post 'mass_upload', :directory => directory
     response.should render_template('new')
+  end
+
+  it 'should redirect in follow_import if no import' do
+    Import.delete_all
+    get 'follow_import'
+    response.should redirect_to(:action => 'index')
   end
 
 end

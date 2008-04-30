@@ -985,3 +985,22 @@ li.paginate {
 .pagination a {
   text-decoration : underline;
 }
+
+table.progress {
+  width: 40em;
+  border: 1px solid #D7D7D7;
+  border-collapse: collapse;
+  border-spacing: 0pt;
+  empty-cells: show;
+  text-align: center;
+  float:left;
+  margin: 1px 6px 1px 0px;
+}
+
+table.progress td { 
+  height: 0.9em; 
+}
+
+td.made {
+  background : #BAE0BA none repeat scroll 0% 50%;
+}

@@ -5,7 +5,7 @@ class Picture < ActiveRecord::Base
   
   has_attachment :content_type => :image, 
       :storage => :file_system, 
-      :max_size => 1.megabytes,
+      :max_size => 10.megabytes,
       :resize_to => "#{Setting.default.picture_max_width}x#{Setting.default.picture_max_height}>",
       :path_prefix => 'public/pictrails_pictures',
       :thumbnail_class => Thumbnail, 

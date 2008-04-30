@@ -4,6 +4,7 @@ Story: Add a Gallery and Picture
   Scenario: Add a gallery after login
     Given there are no user save
     And there are no gallery save
+    And there are no picture save
     And a username 'shingara'
     And a password 'shin'
     And an email 'cyril.mougel@gmail.com'
