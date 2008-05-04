@@ -993,8 +993,7 @@ table.progress {
   border-spacing: 0pt;
   empty-cells: show;
   text-align: center;
-  float:left;
-  margin: 1px 6px 1px 0px;
+  margin: 1px 6px 10px 10px;
 }
 
 table.progress td { 
@@ -1003,4 +1002,13 @@ table.progress td {
 
 td.made {
   background : #BAE0BA none repeat scroll 0% 50%;
+}
+
+#imports {
+  clear: both;
+  background-color: #5A9ECF;
+}
+
+#imports p {
+  margin-left : 10px;
 }

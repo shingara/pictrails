@@ -1,13 +1,1 @@
-<% @imports.each do |gallery, import| %>
-  <h3>Migration of <%= gallery.name %> </h3>
-
-  <p>The gallery has <%= import[0].total %> pictures to import. Now <%= import[0].total - import.size %> pictures already import</p>
-  <table class="progress">
-    <tbody>
-      <tr>
-        <td width="<%= ((import[0].total - import.size) * 100) / import[0].total %>%" class="made" />
-        <td width="<%= (import.size * 100) / import[0].total %>%" class="wait"/>
-      </tr>
-    </tbody>
-  </table>
-<% end %>
+<p></p>

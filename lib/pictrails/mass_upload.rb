@@ -21,6 +21,7 @@ module Pictrails
         PageCache.sweep_all
         import.destroy
       }
+      @imports = Import.find(:all).group_by(&:gallery)
 
     end
   end
