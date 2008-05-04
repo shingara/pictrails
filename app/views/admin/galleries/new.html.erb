@@ -37,7 +37,7 @@
   </fieldset>
 <% end %>
 
-<% form_for(@gallery, :url => {:action => 'mass_upload'}) do |f| %>
+<% form_for(@gallery, :url => {:action => 'mass_upload'}, :html => {:id => 'mass_upload'}) do |f| %>
   <fieldset class="set admin" style="display: block;">
     <legend>Mass upload</legend>
     <ul>
@@ -46,7 +46,7 @@
         <%= text_field_tag :directory,{}, {:style => "width: 100%;"}%>
       </li>
       <li class="r">
-        <%= f.submit 'Add gallery &#187;', {:class=>'submit'} %>
+      <%= f.submit 'Add gallery &#187;', {:class=>'submit', :id => 'mass_upload_submit'} %>
       </li>
     </ul>
   </fieldset>
