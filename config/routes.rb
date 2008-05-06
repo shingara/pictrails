@@ -3,7 +3,10 @@ ActionController::Routing::Routes.draw do |map|
   # View galleries in resources
   map.resources :galleries do |gallery|
     #resources of view picture of a gallery
-    gallery.resources :pictures
+    gallery.resources :pictures do |pic|
+      pic.connect 'page/:page', :controller => 'pictures', :action => 'show', :page => /\d+/
+    end
+    gallery.connect 'page/:page', :controller => 'galleries', :action => 'show', :page => /\d+/
 
   end
     
@@ -17,11 +20,6 @@ ActionController::Routing::Routes.draw do |map|
   # route to the paginate of all pictures
   map.connect '/pictures/page/:page',
     :controller => 'pictures', :action => 'index',
-    :page => /\d+/
-    
-  # Pagination of a page of all picture in a gallery
-  map.connect '/galleries/:id/page/:page',
-    :controller => 'galleries', :action => 'show',
     :page => /\d+/
   
 
@@ -44,18 +42,11 @@ ActionController::Routing::Routes.draw do |map|
     admin.connect 'settings/delete_cache', :controller => 'settings', :action => 'delete_cache'
     admin.resources :settings 
     
-    # TODO: See a better system by resources
-    admin.mass_upload '/galleries/mass_upload', :controller => 'galleries', :action => 'mass_upload'
-    admin.follow_redirect '/galleries/follow_import', :controller => 'galleries', :action => 'follow_import'
-
     #Resources of gallerie
-    admin.resources :galleries do |gallery|
+    admin.resources :galleries , :collection => {:mass_upload => :any, :follow_import => :any} do |gallery|
       gallery.resources :pictures
+      gallery.connect 'page/:page', :controller => 'galleries', :action => 'show', :page => /\d+/
     end
-    admin.connect '/galleries/:id/page/:page', :controller => 'galleries',
-        :action => 'show', :page => /\d+/
-
-
 
     # particular route
     admin.login '/login', :controller => 'sessions', :action => 'new'
