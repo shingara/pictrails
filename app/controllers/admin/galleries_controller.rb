@@ -100,7 +100,17 @@ class Admin::GalleriesController < Admin::BaseController
 
   # See the following of mass_upload
   def follow_import
-    @imports = Import.find(:all).group_by(&:gallery)
-    redirect_to :action => 'index' if @imports.empty?
+    #@imports is affect in before_filter
+    respond_to do |format|
+      format.html{redirect_to :action => 'index' if @imports.empty?}
+      format.js{
+        # TODO: It's not really good. See how made better
+        unless @imports.empty?
+          render(:partial => 'admin/galleries/follow_import')
+        else
+          render :text => '<script type="javascript">window.location.href = "/admin/galleries"</script>'
+        end
+      }
+    end
   end
 end
