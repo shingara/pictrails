@@ -59,3 +59,5 @@ Rails::Initializer.run do |config|
   # config.active_record.default_timezone = :utc
   
 end
+
+NB_UPLOAD_MASS_BY_REQUEST = 5

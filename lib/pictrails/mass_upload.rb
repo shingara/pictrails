@@ -9,7 +9,7 @@ module Pictrails
     # Use RAILS_DEFAULT_LOGGER because we can be out of Rails class
     def upload_file
       RAILS_DEFAULT_LOGGER.debug 'upload file launch'
-      imports = Import.find :all, :include => 'gallery', :limit => 5
+      imports = Import.find :all, :include => 'gallery', :limit => NB_UPLOAD_MASS_BY_REQUEST
       imports.each { |import|
         RAILS_DEFAULT_LOGGER.debug 'one pictures import'
         begin
@@ -22,7 +22,6 @@ module Pictrails
         import.destroy
       }
       @imports = Import.find(:all).group_by(&:gallery)
-
     end
   end
 end

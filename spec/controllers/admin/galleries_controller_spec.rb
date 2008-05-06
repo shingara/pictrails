@@ -1,6 +1,32 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
 require 'admin/galleries_controller'
 
+describe Admin::GalleriesController, 'with logged and import in progress' do
+  controller_name 'admin/galleries'
+  fixtures :galleries, :pictures, :thumbnails, :users, :imports, :settings
+  integrate_views
+
+  include AuthenticatedTestHelper
+
+  before(:each) do
+    # define only one file by request are import
+    NB_UPLOAD_MASS_BY_REQUEST = 1 
+    login_as :quentin
+  end
+
+  it 'should see the id import in view index' do
+    get 'index'
+    response.should be_success
+    response.should have_tag('div#imports')
+  end
+  
+  it 'should see the id import in view show 1' do
+    get 'show', :id => galleries(:gallery1).permalink
+    response.should be_success
+    response.should have_tag('div#imports')
+  end
+end
+
 describe Admin::GalleriesController, 'without logged and no import' do
   controller_name 'admin/galleries'
   fixtures :galleries, :pictures, :thumbnails, :users
@@ -56,7 +82,7 @@ describe Admin::GalleriesController, 'with user logged and no import' do
 
   it 'should see index' do
     get 'index'
-    assert_response :success
+    response.should be_success
     assert_template 'index'
   end
 

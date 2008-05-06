@@ -13,8 +13,9 @@ class Admin::GalleriesController < Admin::BaseController
     unless @gallery.nil?
       @pictures = Picture.paginate_by_gallery_id @gallery.id, :page => params[:page],
         :per_page => 10
+    else
+      render :status => 404
     end
-    render :status => 404 if @gallery.nil?
   end
   
   def new
