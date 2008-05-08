@@ -24,6 +24,7 @@ class GalleriesController < ApplicationController
       redirect_to galleries_url
     else
       @pictures = Picture.paginate_by_gallery_id_and_status(@gallery.id, true,
+                                              :include => 'gallery',
                                               :page => params[:page],
                                               :per_page => this_webapp.pictures_pagination)
       respond_to do |format|
