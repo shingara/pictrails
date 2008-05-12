@@ -4,11 +4,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :galleries do |gallery|
     #resources of view picture of a gallery
     gallery.resources :pictures do |pic|
-      pic.connect 'page/:page', :controller => 'pictures', :action => 'show', :page => /\d+/
+      #pic.connect 'page/:page', :controller => 'pictures', :action => 'show', :page => /\d+/
     end
-    gallery.connect 'page/:page', :controller => 'galleries', :action => 'show', :page => /\d+/
-
+    #gallery.connect 'page/:page', :controller => 'galleries', :action => 'show', :page => /\d+/
   end
+
+  #Pagination of galleries
+  map.connect '/galleries/:id/page/:page', :controller => 'galleries', :action => 'show', :page => /\d+/
+  map.connect '/galleries/:gallery_id/pictures/:id/page/:page', :controller => 'pictures', :action => 'show', :page => /\d+/
     
   map.resources :pictures
 
