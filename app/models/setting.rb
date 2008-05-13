@@ -6,14 +6,15 @@ class Setting < ActiveRecord::Base
   include ConfigManager
   serialize :settings, Hash
 
-  setting :webapp_name,           :string, 'My own personal WebGallery'
-  setting :webapp_subtitle,       :string, ''
-  setting :thumbnail_max_width,   :string, '200'
-  setting :thumbnail_max_height,  :string, '200'
-  setting :picture_max_width,     :string, '600'
-  setting :picture_max_height,    :string, '450'
-  setting :pictures_pagination,   :string, '9'
-  setting :galleries_pagination,  :string, '9'
+  setting :webapp_name,               :string, 'My own personal WebGallery'
+  setting :webapp_subtitle,           :string, ''
+  setting :thumbnail_max_width,       :string, '200'
+  setting :thumbnail_max_height,      :string, '200'
+  setting :picture_max_width,         :string, '600'
+  setting :picture_max_height,        :string, '450'
+  setting :pictures_pagination,       :string, '9'
+  setting :galleries_pagination,      :string, '9'
+  setting :nb_upload_mass_by_request, :string, '5'
 
   validate_on_update :validate_settings
 

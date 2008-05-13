@@ -10,7 +10,9 @@ describe Admin::GalleriesController, 'with logged and import in progress' do
 
   before(:each) do
     # define only one file by request are import
-    NB_UPLOAD_MASS_BY_REQUEST = 1 
+    setting = Setting.default
+    setting.nb_upload_mass_by_request = 1
+    setting.save!
     login_as :quentin
   end
 

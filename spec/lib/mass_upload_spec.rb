@@ -10,7 +10,9 @@ describe Pictrails::MassUpload, "with fixtures loaded" do
 
   before(:each) do
     @class = Test_Mass_Upload.new
-    NB_UPLOAD_MASS_BY_REQUEST = 5
+    setting = Setting.default
+    setting.nb_upload_mass_by_request = 5
+    setting.save!
   end
 
   it 'should upload file' do
