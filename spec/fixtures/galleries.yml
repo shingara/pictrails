@@ -19,6 +19,7 @@ gallery2:
   updated_at: 2008-01-13
 
 gallery:
+  id: 3
   name: Gallery3
   permalink: gallery3
   description: A good description for this gallery 3

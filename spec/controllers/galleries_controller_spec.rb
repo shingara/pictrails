@@ -60,4 +60,14 @@ describe GalleriesController, 'should view the pagination' do
     get 'index'
     response.should have_tag('div.pagination')
   end
+  
+  it 'should not see the pagination' do
+    # desactive the 2 galleries to have only one gallery
+    g = Gallery.find 3
+    g.status = false
+    g.save
+
+    get 'index'
+    response.should_not have_tag('div.pagination')
+  end
 end
