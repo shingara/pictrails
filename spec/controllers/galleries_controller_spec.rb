@@ -58,7 +58,9 @@ describe GalleriesController, 'should view the pagination' do
 
   it 'should see the pagination' do
     get 'index'
-    response.should have_tag('div.pagination')
+    response.should have_tag('div.pagination') do
+      with_tag 'a[rel=next][href=/galleries/page/2]'
+    end
   end
   
   it 'should not see the pagination' do
@@ -68,6 +70,8 @@ describe GalleriesController, 'should view the pagination' do
     g.save
 
     get 'index'
-    response.should_not have_tag('div.pagination')
+    response.should_not have_tag('div.pagination') do
+      with_tag 'a[rel=next][href=/galleries/page/2]'
+    end
   end
 end
