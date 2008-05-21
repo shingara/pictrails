@@ -13,11 +13,11 @@ describe Gallery, "with fixtures loaded" do
   end
 
   it "should have only one element in gallery 1" do
-    Gallery.find(1).pictures.enable_size.should == 1 
+    Gallery.find(1).pictures.enable_size.should == 2 
   end
 
-  it "should have two elements in gallery 2" do
-    Gallery.find(1).pictures.size.should == 2
+  it "should have two elements in gallery 3" do
+    Gallery.find(1).pictures.size.should == 3
   end
 
   it 'should create a gallery by a directory' do

@@ -69,7 +69,7 @@ describe Admin::PicturesController , 'with no import' do
   end
 
   it 'should create a picture in admin for a gallery' do
-    Picture.count.should == 3
+    Picture.count.should == 4
     post 'create', :gallery_id => galleries(:gallery1).permalink, :picture => {:gallery_id => 1, 
       :title => 'oui', 
       :description => 'good description', 
@@ -77,30 +77,30 @@ describe Admin::PicturesController , 'with no import' do
       :uploaded_data => fixture_file_upload("/files/rails.png", 'image/png', :binary)}
 
     response.should redirect_to(admin_gallery_picture_url(galleries(:gallery1), 'oui'))
-    Picture.count.should == 4
+    Picture.count.should == 5
   end
 
   it 'should not create a picture in admin for a gallery because no title' do
-    Picture.count.should == 3
+    Picture.count.should == 4
     post 'create', :gallery_id => 1, :picture => {:gallery_id => 1, :title => '', :description => 'good description', :status => true, :uploaded_data => fixture_file_upload("/files/rails.png", 'image/png', :binary)}
     response.should be_success
     response.should render_template("new")
-    Picture.count.should == 3
+    Picture.count.should == 4
   end
   
   it 'should not create a picture in admin for a gallery because no file' do
-    Picture.count.should == 3
+    Picture.count.should == 4
     post 'create', :gallery_id => 1, :picture => {:gallery_id => 1, :title => '', :description => 'good description', :status => true}
     response.should be_success
     response.should render_template("new")
-    Picture.count.should == 3
+    Picture.count.should == 4
   end
 
   it 'should be destroy a picture' do
-    Picture.count.should == 3
+    Picture.count.should == 4
     Picture.find(1).should_not be_nil
     delete 'destroy', :gallery_id => galleries(:gallery1).permalink, :id => pictures(:picture1).permalink
-    Picture.count.should == 2
+    Picture.count.should == 3
     assert_raise ActiveRecord::RecordNotFound do
       Picture.find 1
     end

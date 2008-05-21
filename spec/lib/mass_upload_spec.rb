@@ -16,11 +16,11 @@ describe Pictrails::MassUpload, "with fixtures loaded" do
   end
 
   it 'should upload file' do
-    Picture.count(:all, :conditions => ['gallery_id = ?', 1]).should == 2
+    Picture.count(:all, :conditions => ['gallery_id = ?', 1]).should == 3
     Import.count(:all).should == 3
     @class.upload_file
     Import.count(:all).should == 0
-    Picture.count(:all, :conditions => ['gallery_id = ?', 1]).should == 3
+    Picture.count(:all, :conditions => ['gallery_id = ?', 1]).should == 4
   end
 
   it "delete import if file doesn't exist" do

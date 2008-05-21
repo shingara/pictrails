@@ -75,3 +75,34 @@ describe GalleriesController, 'should view the pagination' do
     end
   end
 end
+
+describe GalleriesController, 'should view the pagination when you show a galleries' do
+  controller_name :galleries
+  fixtures :users, :galleries, :pictures, :thumbnails
+  integrate_views
+
+  before(:each) do
+    set = Setting.default
+    set.pictures_pagination = 1
+    set.galleries_pagination = 1
+    set.save
+  end
+
+  it 'should see the pagination' do
+    get 'show', :id => 'gallery1'
+    response.should have_tag('div.pagination') do
+      with_tag 'a[rel=next][href=/galleries/gallery1/page/2]'
+    end
+  end
+  
+  it 'should not see the pagination' do
+    # desactive the 2 galleries to have only one gallery
+    p = Picture.find 2 
+    p.destroy
+
+    get 'show', :id => 'gallery1'
+    response.should_not have_tag('div.pagination') do
+      with_tag 'a[rel=next][href=/galleries/gallery1/page/2]'
+    end
+  end
+end
