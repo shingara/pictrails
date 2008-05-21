@@ -17,3 +17,11 @@ gallery2:
   status: false
   created_at: 2008-01-13
   updated_at: 2008-01-13
+
+gallery:
+  name: Gallery3
+  permalink: gallery3
+  description: A good description for this gallery 3
+  status: true
+  created_at: <%= 2.ago %>
+  updated_at: <%= 2.ago %>

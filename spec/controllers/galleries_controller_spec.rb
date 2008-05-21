@@ -44,3 +44,20 @@ describe 'GalleriesController there are a user' do
   end
 
 end
+
+describe GalleriesController, 'should view the pagination' do
+  controller_name :galleries
+  fixtures :users, :galleries, :pictures, :thumbnails
+  integrate_views
+
+  before(:each) do
+    set = Setting.default
+    set.galleries_pagination = 1
+    set.save
+  end
+
+  it 'should see the pagination' do
+    get 'index'
+    response.should have_tag('div.pagination')
+  end
+end

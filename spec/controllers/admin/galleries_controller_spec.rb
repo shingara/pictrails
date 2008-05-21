@@ -136,28 +136,28 @@ describe Admin::GalleriesController, 'with user logged and no import' do
   end
 
   it 'should create gallery' do
-    post 'create', :gallery => {:name => 'gallery3', :description => 'good gallery', :status => true}
+    post 'create', :gallery => {:name => 'gallery_in_rspec', :description => 'good gallery', :status => true}
     response.should redirect_to(admin_galleries_url)
-    g = Gallery.find_by_name 'gallery3'
+    g = Gallery.find_by_name 'gallery_in_rspec'
     g.should_not be_nil
     g.description.should == 'good gallery'
-    g.permalink.should == 'gallery3'
+    g.permalink.should == 'gallery-in-rspec'
     g.should be_status
   end
 
   it 'should not create gallery because no name' do
-    Gallery.count.should == 2
+    Gallery.count.should == 3
     post 'create', :gallery => {:name => '', :description => 'good gallery', :status => true}
     assert_response :success
     assert_template 'new'
-    Gallery.count.should == 2
+    Gallery.count.should == 3
   end
 
   it 'should destroy gallery' do
-    Gallery.count.should == 2
+    Gallery.count.should == 3
     delete :destroy, :id => galleries(:gallery1).permalink
     response.should redirect_to(admin_galleries_url)
-    Gallery.count.should == 1
+    Gallery.count.should == 2
     assert_raise ActiveRecord::RecordNotFound do 
       Gallery.find(1)
     end
