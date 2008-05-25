@@ -1,1 +1,5 @@
 <%= periodically_call_remote(:url => { :action => 'follow_import' }, :update => 'imports', :frequency => '1') %>
+
+<p>If there are no refresh because you haven't javascript you can clic to refresh. Or navigate in administration part.</p>
+
+<p><%= link_to "refresh", :action => 'follow_import' %></p>
