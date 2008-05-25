@@ -107,7 +107,7 @@ class Admin::GalleriesController < Admin::BaseController
       format.js{
         # TODO: It's not really good. See how made better
         unless @imports.empty?
-          render(:partial => 'admin/galleries/follow_import')
+          render(:partial => 'admin/galleries/follow_import.html.erb')
         else
           render :text => '<script type="javascript">window.location.href = "/admin/galleries"</script>'
         end
