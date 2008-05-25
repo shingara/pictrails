@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe 'GalleriesController first login without gallery' do
+describe GalleriesController, 'first login without gallery' do
   controller_name :galleries
 
   before(:each) do
@@ -104,5 +104,22 @@ describe GalleriesController, 'should view the pagination when you show a galler
     response.should_not have_tag('div.pagination') do
       with_tag 'a[rel=next][href=/galleries/gallery1/page/2]'
     end
+  end
+end
+
+describe GalleriesController, 'View the subgallery' do
+  controller_name :galleries
+
+  before(:each) do
+    @gallery = mock_model Gallery
+    @user = mock_model User
+    User.should_receive(:count).and_return(1)
+  end
+
+  it 'should see only gallery with no parent' do
+    Gallery.should_receive(:paginate_by_status_and_parent_id)\
+        .with(true, nil, {:include => 'pictures', :page => nil, :per_page =>"9" })\
+        .and_return([mock_model(Gallery),mock_model(Gallery)])
+    get "index"
   end
 end

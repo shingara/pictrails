@@ -6,7 +6,9 @@ class GalleriesController < ApplicationController
   caches_page :index, :show
   
   def index
-    @galleries = Gallery.paginate_by_status true, 
+    require "ruby-debug"
+    #debugger
+    @galleries = Gallery.paginate_by_status_and_parent_id true, nil,
       :include => 'pictures', 
       :page => params[:page],
       :per_page => this_webapp.galleries_pagination
