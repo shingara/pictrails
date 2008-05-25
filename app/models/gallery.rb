@@ -6,6 +6,8 @@ class Gallery < ActiveRecord::Base
     end
   end
 
+  acts_as_tree :order => :name
+
   validates_presence_of :name, :message => 'is needed for your gallery'
   validates_uniqueness_of :name, :message => 'is already use. Change it'
 
