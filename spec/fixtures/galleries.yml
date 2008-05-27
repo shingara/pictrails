@@ -6,8 +6,8 @@ gallery1:
   permalink: gallery1
   description: "" 
   status: true
-  created_at: <%= 1.ago %>
-  updated_at: 2008-01-13
+  created_at: <%= 7.ago %>
+  updated_at: <%= 2.ago %>
 
 gallery2:
   id: 2
@@ -15,10 +15,10 @@ gallery2:
   permalink: gallery2
   description: A good description
   status: false
-  created_at: 2008-01-13
-  updated_at: 2008-01-13
+  created_at: <%= 6.ago %>
+  updated_at: <%= 6.ago %>
 
-gallery:
+gallery3:
   id: 3
   name: Gallery3
   permalink: gallery3
@@ -26,3 +26,13 @@ gallery:
   status: true
   created_at: <%= 2.ago %>
   updated_at: <%= 2.ago %>
+
+gallery4:
+  id: 4
+  name: Gallery4
+  permalink: gallery4
+  description: A good description for this gallery 4
+  status: true
+  created_at: <%= 2.ago %>
+  updated_at: <%= 2.ago %>
+  parent_id: 1

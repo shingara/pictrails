@@ -146,20 +146,33 @@ describe Admin::GalleriesController, 'with user logged and no import' do
   end
 
   it 'should not create gallery because no name' do
-    Gallery.count.should == 3
+    Gallery.count.should == 4
     post 'create', :gallery => {:name => '', :description => 'good gallery', :status => true}
     assert_response :success
     assert_template 'new'
-    Gallery.count.should == 3
+    Gallery.count.should == 4
   end
 
-  it 'should destroy gallery' do
+  it 'should destroy gallery alone because no other dependencie' do
+    Gallery.count.should == 4
+    delete :destroy, :id => galleries(:gallery3).permalink
+    response.should redirect_to(admin_galleries_url)
     Gallery.count.should == 3
+    assert_raise ActiveRecord::RecordNotFound do 
+      Gallery.find(3)
+    end
+  end
+  
+  it 'should destroy gallery with sub-gallery' do
+    Gallery.count.should == 4
     delete :destroy, :id => galleries(:gallery1).permalink
     response.should redirect_to(admin_galleries_url)
     Gallery.count.should == 2
     assert_raise ActiveRecord::RecordNotFound do 
       Gallery.find(1)
+    end
+    assert_raise ActiveRecord::RecordNotFound do 
+      Gallery.find(4)
     end
   end
 

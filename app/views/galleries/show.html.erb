@@ -11,6 +11,7 @@
 <% else %>
   <ul id="picture_list">
     <%= render :partial => @pictures %>
+    <%= render :partial => "gallery", :collection => @sub_galleries %>
   </ul>
   <%= will_paginate @pictures %>
 <% end -%>

@@ -109,17 +109,30 @@ end
 
 describe GalleriesController, 'View the subgallery' do
   controller_name :galleries
+  fixtures :users, :galleries, :pictures, :thumbnails
+  integrate_views
 
   before(:each) do
-    @gallery = mock_model Gallery
+    @gallery1 = mock_model Gallery
+    @gallery2 = mock_model Gallery
     @user = mock_model User
     User.should_receive(:count).and_return(1)
   end
 
   it 'should see only gallery with no parent' do
-    Gallery.should_receive(:paginate_by_status_and_parent_id)\
-        .with(true, nil, {:include => 'pictures', :page => nil, :per_page =>"9" })\
-        .and_return([mock_model(Gallery),mock_model(Gallery)])
     get "index"
+    response.should have_tag("li#gallery_1")
+    response.should_not have_tag("li#gallery_2")
+    response.should have_tag("li#gallery_3")
+    response.should_not have_tag("li#gallery_4")
+  end
+
+  it 'should see all sub-gallery in view of gallery' do
+    get "show", :id => galleries(:gallery1).permalink
+
+    response.should have_tag("ul#picture_list")do
+      with_tag "li#gallery_4"
+      with_tag "li.sub_gallery"
+    end
   end
 end

@@ -1,4 +1,4 @@
-<% content_tag :li, :id => "gallery_#{gallery.id}" do %>
+<% content_tag :li, :id => "gallery_#{gallery.id}", :class => ("sub_gallery" unless gallery.parent_id.nil?) do %>
   <% if gallery.pictures.empty? -%>
     <%= link_to image_tag('/no_picture.png'), gallery_url(gallery), :style => 'display:block;' %>
     <span><%=h "#{gallery.name} (0 picture)"  %></span>
