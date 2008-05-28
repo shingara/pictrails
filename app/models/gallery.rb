@@ -60,4 +60,10 @@ class Gallery < ActiveRecord::Base
       }
     end if File.directory? directory
   end
+
+  # Retrieve all Gallery without the gallery
+  # send by parameter
+  def self.find_without(gallerie)
+    find :all, :conditions => ['id <> ?', gallerie.id]
+  end
 end

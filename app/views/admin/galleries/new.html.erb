@@ -29,6 +29,10 @@
         <label class="float" for="status">Status :</label>
         <%= f.check_box :status %>
       </li>
+      <li>
+        <label class="float" for="parent_id">Gallery master :</label>
+        <%= f.collection_select :parent_id, Gallery.find(:all), :id, :name , :include_blank => true%>
+      </li>
       <li class="r">
         <%= f.submit 'Save &#187;', {:class=>'submit'} %>
       </li>

@@ -60,6 +60,12 @@ describe Gallery, "with fixtures loaded" do
     Import.count(:conditions => ['gallery_id = ?', g.id]).should == 0
   end
 
+  it 'should retrieve all without himself' do
+    g = Gallery.find_without(galleries(:gallery1))
+    g.should have(3).items
+    g.should_not be_include(galleries(:gallery1))
+  end
+
   after(:each) do
     # fixtures are torn down after this
   end

@@ -210,4 +210,37 @@ describe Admin::GalleriesController, 'with user logged and no import' do
     #response.should redirect_to(:action => 'index')
   end
 
+  it 'should edit a gallery and add master-gallery' do
+    put 'update', :id => galleries(:gallery3).permalink, :gallery => {:name => 'oui', :parent_id => 1}
+    response.should redirect_to(admin_galleries_url)
+    g = Gallery.find 3
+    g.should_not be_nil
+    g.description.should == galleries(:gallery3).description
+    g.permalink.should == galleries(:gallery3).permalink
+    g.should be_status
+    g.parent_id.should == 1 
+  end
+
+  it 'should edit a gallery with already a master-gallery and delete it' do
+    put 'update', :id => galleries(:gallery4).permalink, :gallery => {:name => 'oui', :parent_id => ''}
+    response.should redirect_to(admin_galleries_url)
+    g = Gallery.find 4
+    g.should_not be_nil
+    g.description.should == galleries(:gallery4).description
+    g.permalink.should == galleries(:gallery4).permalink
+    g.should be_status
+    g.parent_id.should be_nil
+  end
+
+  it 'should create a gallery with a master-gallery' do
+    post 'create', :gallery => {:name => 'gallery_in_rspec', :description => 'good gallery', :status => true, :parent_id => 1}
+    response.should redirect_to(admin_galleries_url)
+    g = Gallery.find_by_name 'gallery_in_rspec'
+    g.should_not be_nil
+    g.description.should == 'good gallery'
+    g.permalink.should == 'gallery-in-rspec'
+    g.should be_status
+    g.parent_id.should == 1
+  end
+
 end
