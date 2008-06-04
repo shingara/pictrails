@@ -18,17 +18,19 @@ module Pictrails
 
     end
 
-    #Search all in directory and manage a tree of GalleryImport
-    #and PictureImport
+    # Search all in directory and manage a tree of GalleryImport
+    # and PictureImport
     def self.search(path, parent=nil)
-      gallery_import = GalleryImport.new(path, File.basename(path), parent)
-      Dir.chdir(path)
-      Dir.glob('*') do |file|
-        if File.directory?("#{path}/#{file}")
-          gallery_import.child << self.search("#{path}/#{file}", gallery_import)
+      if File.directory? path
+        gallery_import = GalleryImport.new(path, File.basename(path), parent)
+        Dir.chdir(path)
+        Dir.glob('*') do |file|
+          if File.directory?("#{path}/#{file}")
+            gallery_import.child << self.search("#{path}/#{file}", gallery_import)
+          end
         end
+        gallery_import
       end
-      gallery_import
     end
 
   end

@@ -105,6 +105,11 @@ describe Pictrails::ImportSystem do
         end
       end
     end
+  end
 
+  describe "search in directory doesn't exist" do
+    it 'should return nil' do
+      Pictrails::ImportSystem.search("#{RAILS_ROOT}/no_exist").should be_nil
+    end
   end
 end
