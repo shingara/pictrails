@@ -89,6 +89,22 @@ describe Gallery, "with fixtures loaded" do
 
     end
 
+    describe 'when a directory has name already in use' do
+      before(:each) do
+        Gallery.delete_all
+        Gallery.create_from_directory("#{RAILS_ROOT}/app/controllers/admin")
+      end
+
+      it 'should change name with -1 after' do
+        Gallery.find_by_name 'admin-1'
+      end
+
+      it 'should change name with -2 if -1 already use' do
+        Gallery.create_from_directory("#{RAILS_ROOT}/app/controllers/admin")
+        Gallery.find_by_name 'admin-2'
+      end
+    end
+
     describe 'when only one directory' do
       before(:each) do 
         Import.delete_all
@@ -127,8 +143,8 @@ describe Gallery, "with fixtures loaded" do
         @gallery = Gallery.create_from_directory("#{RAILS_ROOT}/spec/fixtures/files")
       end
 
-      it 'should have 2 Imports save' do
-        Import.count.should == 2
+      it 'should have 3 Imports save' do
+        Import.count.should == 3
       end
 
       it 'each import should have the same gallery_id' do
@@ -138,39 +154,50 @@ describe Gallery, "with fixtures loaded" do
     end
   end
 
-  it 'should save all pictures in directory' do
-    Import.delete_all
-    g = galleries(:gallery1)
-    g.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files/")
-    Import.count(:conditions => ['gallery_id = ?', g.id]).should == 2
-    imports = Import.find_all_by_gallery_id(g.id).group_by(&:path)
-    imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/rails.png")
-    imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.png")
-    imports.each do |k,v|
-      v.should have(1).items
-      v[0].total.should == 2
-    end
-  end
-  
-  it 'should save all pictures in directory if there are no / in end of directory' do
-    Import.delete_all
-    g = galleries(:gallery1)
-    g.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files")
-    Import.count(:conditions => ['gallery_id = ?', g.id]).should == 2
-    imports = Import.find_all_by_gallery_id(g.id).group_by(&:path)
-    imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/rails.png")
-    imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.png")
-    imports.each do |k,v|
-      v.should have(1).items
-      v[0].total.should == 2
-    end
-  end
+  describe 'test the insert_pictures method' do
 
-  it "should doesn't save all pictures in directory because it's not a directory" do
-    Import.delete_all
-    g = galleries(:gallery1)
-    g.insert_pictures("/foo/bar/")
-    Import.count(:conditions => ['gallery_id = ?', g.id]).should == 0
+    before(:each) do
+      Import.delete_all
+      @gallery = galleries(:gallery1)
+    end
+
+    it 'should save all pictures in directory' do
+      @gallery.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files/")
+      Import.count(:conditions => ['gallery_id = ?', @gallery.id]).should == 3
+      imports = Import.find_all_by_gallery_id(@gallery.id).group_by(&:path)
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/rails.png")
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.png")
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.PNG")
+      imports.each do |k,v|
+        v.should have(1).items
+        v[0].total.should == 3
+      end
+    end
+    
+    it 'should save all pictures in directory if there are no / in end of directory' do
+      @gallery.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files")
+      Import.count(:conditions => ['gallery_id = ?', @gallery.id]).should == 3
+      imports = Import.find_all_by_gallery_id(@gallery.id).group_by(&:path)
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/rails.png")
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.png")
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.PNG")
+      imports.each do |k,v|
+        v.should have(1).items
+        v[0].total.should == 3
+      end
+    end
+
+    it "should doesn't save all pictures in directory because it's not a directory" do
+      @gallery.insert_pictures("/foo/bar/")
+      Import.count(:conditions => ['gallery_id = ?', @gallery.id]).should == 0
+    end
+
+    it 'should see files with sensitive case' do
+      @gallery.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files")
+      Import.count(:conditions => ['gallery_id = ?', @gallery.id]).should == 3
+      imports = Import.find_all_by_gallery_id(@gallery.id).group_by(&:path)
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.PNG")
+    end
   end
 
   it 'should retrieve all without himself' do

@@ -52,11 +52,23 @@ class Gallery < ActiveRecord::Base
     gallery = Gallery.new_empty
     gallery.name = gallery_import.name
     gallery.parent = parent
+    gallery.define_name(gallery_import.name)
+    gallery.save!
     gallery.insert_pictures(gallery_import.path)
     gallery_import.child.each do |gallery_child|
       gallery.children << Gallery.create_by_import_gallery(gallery_child, gallery)
     end
+    gallery.save
     gallery
+  end
+
+  # Change the name if it's already use in database
+  def define_name(name)
+    i = 1
+    while not self.valid?
+      self.name = name + "-#{i}"
+      i += 1
+    end
   end
 
   # Insert in this Gallery all picture in
@@ -67,7 +79,7 @@ class Gallery < ActiveRecord::Base
   def insert_pictures(directory)
     list_import = []
     Dir.chdir(directory) do
-      Dir.glob("*.{gif,png,jpg,bmp}") do |file|
+      Dir.glob("*.{gif,png,jpg,bmp}", File::FNM_CASEFOLD) do |file|
         i = Import.new
         directory.chop! if directory[-1,1] == '/'
         i.path = "#{directory}/#{file}"
