@@ -32,7 +32,6 @@ module Pictrails
         gallery_import
       end
     end
-
   end
 
 end

@@ -20,11 +20,122 @@ describe Gallery, "with fixtures loaded" do
     Gallery.find(1).pictures.size.should == 3
   end
 
-  it 'should create a gallery by a directory' do
-    g = Gallery.create_by_name_of_directory('/foo/bar/gal')
-    g.name.should == 'gal'
-    g.description.should == ''
-    g.status.should be_true
+  describe 'the new_empty method' do
+
+    before(:each) do
+      @gallery = Gallery.new_empty
+    end
+
+    it 'should status true' do
+      @gallery.status.should be_true
+    end
+
+    it 'should description empty' do
+      @gallery.description.should be_empty
+    end
+
+    it 'should not valid to save' do
+      @gallery.should_not be_valid
+    end
+  end
+
+  describe 'the create_from_directoy method' do
+
+    describe "when it's not a directory" do
+      before(:each) do
+        Import.delete_all
+        @gallery = Gallery.create_from_directory("/failed_directory")
+      end
+
+      it 'should be nil' do
+        @gallery.should be_nil
+      end
+
+      it 'should not be import save' do
+        Import.count.should == 0
+      end
+    end
+
+    describe 'when several recursive directory' do
+      before(:each) do
+        Import.delete_all
+        @gallery = Gallery.create_from_directory("#{RAILS_ROOT}/app/")
+      end
+
+      it "should have name 'app'" do
+        @gallery.name.should == 'app'
+      end
+
+      it "should have 5 children" do
+        @gallery.should have(5).children
+      end
+
+      it "should have child with controllers name" do
+        @gallery.children.group_by(&:name).keys.should be_include('controllers')
+      end
+
+      it "should have child controllers with a child admin" do
+        gallery = @gallery.children.group_by(&:name)['controllers'][0]
+        gallery.children.group_by(&:name).keys.should be_include('admin')
+      end
+      it "should have child controllers who have app like parent" do
+        gallery = @gallery.children.group_by(&:name)['controllers'][0]
+        gallery.parent.should == @gallery
+      end
+
+      it "should not have import in database because no picture in directory" do
+        Import.count.should == 0
+      end
+
+    end
+
+    describe 'when only one directory' do
+      before(:each) do 
+        Import.delete_all
+        @gallery = Gallery.create_from_directory("#{RAILS_ROOT}/app/controllers/admin")
+      end
+
+      it 'should have no child' do
+        @gallery.should have(0).child
+      end
+
+      it "should have name 'admin'" do
+        @gallery.name.should == 'admin'
+      end
+
+      it "should have a empty description" do
+        @gallery.description.should be_empty
+      end
+
+      it "should have a status true" do
+        @gallery.status.should be_true
+      end
+
+      it "should be valid" do
+        @gallery.should be_valid
+      end
+      
+      it "should not have import in database because no picture in directory" do
+        Import.count.should == 0
+      end
+
+    end
+
+    describe "when there are picture in directory" do
+      before(:each) do
+        Import.delete_all
+        @gallery = Gallery.create_from_directory("#{RAILS_ROOT}/spec/fixtures/files")
+      end
+
+      it 'should have 2 Imports save' do
+        Import.count.should == 2
+      end
+
+      it 'each import should have the same gallery_id' do
+        imports = Import.find :all
+        imports[0].gallery_id.should == imports[1].gallery_id
+      end
+    end
   end
 
   it 'should save all pictures in directory' do

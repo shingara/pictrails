@@ -23,17 +23,39 @@ class Gallery < ActiveRecord::Base
     permalink
   end
 
-  def self.create_with_directory(directory)
-    gallery = Gallery.new 
-  end
-
-  # Create a Gallery with only his name that is is
-  # the basename of directory send by path
-  def self.create_by_name_of_directory(directory)
-    gallery = Gallery.new 
-    gallery.name = File.basename directory
+  # Create a Gallery with description empty
+  # and status true
+  def self.new_empty
+    gallery = Gallery.new
     gallery.description = ''
     gallery.status = true
+    gallery
+  end
+
+  # Create a Gallery with the name of a directory.
+  # All directory in this directory are gallery too
+  # but with parent like the first directory
+  # if the directory is not a directory, return an empty
+  # array if the directory is not a directory
+  def self.create_from_directory(directory)
+    gallery_import = Pictrails::ImportSystem.search(directory)
+    unless gallery_import.nil?
+      Gallery.create_by_import_gallery(gallery_import)
+    else
+      nil
+    end
+  end
+
+  # Create the Gallery and all import for all picture in this
+  # directory
+  def self.create_by_import_gallery(gallery_import, parent = nil)
+    gallery = Gallery.new_empty
+    gallery.name = gallery_import.name
+    gallery.parent = parent
+    gallery.insert_pictures(gallery_import.path)
+    gallery_import.child.each do |gallery_child|
+      gallery.children << Gallery.create_by_import_gallery(gallery_child, gallery)
+    end
     gallery
   end
 

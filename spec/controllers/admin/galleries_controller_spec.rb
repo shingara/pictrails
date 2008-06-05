@@ -176,30 +176,28 @@ describe Admin::GalleriesController do
       end
     end
 
-    it 'should add gallery by mass_upload with a good directory' do
-      directory = "#{RAILS_ROOT}/spec/fixtures/files"
-      Gallery.should_receive(:create_by_name_of_directory).with(directory).and_return(@gallery)
-      @gallery.should_receive(:save!).once.and_return(true)
-      @gallery.should_receive(:insert_pictures).once.with(directory)
-      post 'mass_upload', :directory => directory
-      response.should redirect_to(:action => 'follow_import')
-    end
+    describe 'test the mass_upload page' do
 
-    it 'should not add gallery by mass_upload with a bad directory' do
-      directory = "/foo/bar"
-      Gallery.should_receive(:create_by_name_of_directory).with(directory).and_return(@gallery)
-      post 'mass_upload', :directory => directory
-      response.should render_template('new')
-    end
+      it 'should add gallery by mass_upload with a good directory' do
+        directory = "#{RAILS_ROOT}/spec/fixtures/files"
+        Gallery.should_receive(:create_from_directory).with(directory).and_return(true)
+        post 'mass_upload', :directory => directory
+        response.should redirect_to(:action => 'follow_import')
+      end
 
-    it 'should not add gallery by mass_upload because name of gallery already exist' do
-      directory = "/foo/bar"
-      Gallery.should_receive(:create_by_name_of_directory).with(directory).and_return(@gallery)
-      File.should_receive(:directory?).with(directory).and_return(true)
-      @gallery.should_receive(:save!).and_raise(ActiveRecord::RecordInvalid.new(Gallery.new))
-      @gallery.should_not_receive(:insert_pictures).with(directory)
-      post 'mass_upload', :directory => directory
-      response.should render_template('new')
+      it 'should not add gallery by mass_upload with a bad directory' do
+        directory = "/foo/bar"
+        Gallery.should_receive(:create_from_directory).with(directory).and_return(false)
+        post 'mass_upload', :directory => directory
+        response.should render_template('new')
+      end
+
+      it 'should not add gallery by mass_upload because name of gallery already exist' do
+        directory = "/foo/bar"
+        Gallery.should_receive(:create_from_directory).with(directory).and_return(false)
+        post 'mass_upload', :directory => directory
+        response.should render_template('new')
+      end
     end
 
     it 'should redirect in follow_import if no import' do

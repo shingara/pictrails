@@ -84,10 +84,7 @@ class Admin::GalleriesController < Admin::BaseController
   # Method to add mass upload with only one params
   # the params define the directory where all picture are
   def mass_upload
-    @gallery = Gallery.create_by_name_of_directory params[:directory]
-    if File.directory? params[:directory]
-      @gallery.save!
-      @gallery.insert_pictures(params[:directory])
+    if Gallery.create_from_directory params[:directory]
       redirect_to :action => 'follow_import'
     else
       flash[:notice] = 'the directory is not a directory'
