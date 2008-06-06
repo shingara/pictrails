@@ -1,4 +1,6 @@
-<%= periodically_call_remote(:url => { :action => 'follow_import' }, :update => 'imports', :frequency => '1') %>
+<% content_for(:javascript) do %>
+  <%= javascript_include_tag 'follow_import' %> 
+<% end %>
 
 <p>If there are no refresh because you haven't javascript you can clic to refresh. Or navigate in administration part.</p>
 
