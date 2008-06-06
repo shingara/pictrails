@@ -4,6 +4,6 @@ class AddParentIdForGallery < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :galleries, :parent_id, :integer
+    remove_column :galleries, :parent_id
   end
 end
