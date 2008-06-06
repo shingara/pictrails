@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer "parent_id"
   end
 
-  add_index "galleries", ["name"], :name => "index_galleries_on_name", :unique => true
   add_index "galleries", ["permalink"], :name => "index_galleries_on_permalink", :unique => true
+  add_index "galleries", ["name"], :name => "index_galleries_on_name", :unique => true
   add_index "galleries", ["status"], :name => "index_galleries_on_status"
 
   create_table "imports", :force => true do |t|
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string  "permalink"
   end
 
+  add_index "pictures", ["permalink"], :name => "index_pictures_on_permalink", :unique => true
   add_index "pictures", ["filename"], :name => "index_pictures_on_filename"
   add_index "pictures", ["gallery_id"], :name => "index_pictures_on_gallery_id"
-  add_index "pictures", ["permalink"], :name => "index_pictures_on_permalink", :unique => true
 
   create_table "settings", :force => true do |t|
     t.text "settings"

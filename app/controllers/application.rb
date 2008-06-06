@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   #protect_from_forgery :secret => '9d6a74942666a6c164e479585234439c'
+  
+  before_filter :verify_config
  
 
 protected
@@ -17,5 +19,15 @@ protected
   end
 
   helper_method :this_webapp
+
+  # Verify if it's the first connection in
+  # application
+  def verify_config
+    if User.count.zero?
+      redirect_to admin_signup_url
+    else
+      true
+    end
+  end
 
 end

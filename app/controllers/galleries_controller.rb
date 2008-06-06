@@ -1,8 +1,5 @@
 class GalleriesController < ApplicationController
 
-  before_filter :verify_config
-  
-  
   caches_page :index, :show
   
   def index
@@ -36,16 +33,6 @@ class GalleriesController < ApplicationController
     end
   rescue ActiveRecord::RecordNotFound
     render :status => 404
-  end
-
-private
-
-  def verify_config
-    if User.count.zero?
-      redirect_to admin_signup_url
-    else
-      true
-    end
   end
 
 end
