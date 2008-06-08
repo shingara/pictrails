@@ -6,4 +6,4 @@
 	url = git://github.com/technoweenie/attachment_fu.git
 [submodule "vendor/plugins/will_paginate"]
 	path = vendor/plugins/will_paginate
-	url = git://github.com/mislav/will_paginate.git
+	url = git://github.com/shingara/will_paginate.git
