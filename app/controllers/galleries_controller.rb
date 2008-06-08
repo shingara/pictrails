@@ -23,12 +23,28 @@ class GalleriesController < ApplicationController
     unless  @gallery.status
       redirect_to galleries_url
     else
-      @pictures = Picture.paginate_by_gallery_id_and_status(@gallery.id, true,
-                                              :include => 'gallery',
-                                              :page => params[:page],
-                                              :per_page => this_webapp.pictures_pagination)
-      @sub_galleries = Gallery.find_by_parent_id @gallery.id
-      @sub_galleries = [@sub_galleries] unless @sub_galleries.is_a? Array
+      @sub_content = @gallery.children.paginate_by_status(true, 
+                                                          :page => params[:page],
+                                                          :per_page => this_webapp.pictures_pagination,
+                                                          :total_entries => (@gallery.nb_content))
+      if @sub_content.size < this_webapp.pictures_pagination.to_i
+        params[:page] = 1 if params[:page].nil?
+        page = params[:page].to_i - (@sub_content.size / this_webapp.pictures_pagination.to_i)
+        per_page = this_webapp.pictures_pagination.to_i - @sub_content.size
+        if @sub_content.empty?
+          @sub_content.replace(@sub_content + 
+                               @gallery.pictures.paginate_by_status(true,
+                                                                    :page => (page),
+                                                                    :per_page => per_page,
+                                                                    :shift => @gallery.diff_paginate)) 
+        else
+          @sub_content.replace(@sub_content + 
+                               @gallery.pictures.paginate_by_status(true,
+                                                                    :page => page,
+                                                                    :per_page => per_page)) 
+        end
+      end
+
       respond_to do |format|
         format.html 
         format.xml  { render :xml => @gallery }
