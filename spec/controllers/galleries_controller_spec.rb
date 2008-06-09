@@ -96,9 +96,9 @@ describe GalleriesController, 'should view the pagination when you show a galler
   end
   
   it 'should not see the pagination' do
-    # desactive the 2 galleries to have only one gallery
-    p = Picture.find 2 
-    p.destroy
+    set = Setting.default
+    set.pictures_pagination = 5
+    set.save
 
     get 'show', :id => 'gallery1'
     response.should_not have_tag('div.pagination') do
