@@ -2,7 +2,7 @@
 
 <%= render :partial => 'top_show' %> 
 
-<%= link_to 'Back to all galleries', galleries_path %>
+<%= breadcrumbs @gallery %>
 
 <% if @sub_content.empty?-%>
   <p>

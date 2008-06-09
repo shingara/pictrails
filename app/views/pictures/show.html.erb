@@ -1,5 +1,7 @@
 <% @page_title = "Picture : #{@picture.title}" %>
 
+<%= breadcrumbs @picture.gallery %>
+
 <h2>Picture : <%= @picture.title %></h2>
 
 <p>
@@ -9,5 +11,3 @@
 <p>
   <span><%= image_tag(@picture.public_filename) %></span>
 </p>
-
-<%= link_to "Back to gallery #{@picture.gallery.name}", gallery_path(@picture.gallery) %>
