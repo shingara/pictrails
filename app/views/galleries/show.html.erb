@@ -2,16 +2,21 @@
 
 <%= render :partial => 'top_show' %> 
 
-<%= link_to 'Back to all galleries', galleries_path %>
+<%= breadcrumbs @gallery %>
 
-<% if @pictures.empty? -%>
+<% if @sub_content.empty?-%>
   <p>
     There are no picture in this gallery.
   </p>
 <% else %>
   <ul id="picture_list">
-    <%= render :partial => @pictures %>
-    <%= render :partial => "gallery", :collection => @sub_galleries %>
+    <% @sub_content.each do |content| %>
+      <% if content.kind_of? Picture %>
+        <%= render :partial => 'pictures/picture', :locals => {:picture => content} %>
+      <% else %>
+        <%= render :partial => 'galleries/gallery', :locals => {:gallery => content} %>
+      <% end %>
+    <% end %>
   </ul>
-  <%= will_paginate @pictures %>
+  <%= will_paginate @sub_content %>
 <% end -%>

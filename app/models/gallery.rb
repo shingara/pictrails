@@ -95,6 +95,17 @@ class Gallery < ActiveRecord::Base
     end if File.directory? directory
   end
 
+  # Get the number of content
+  # the content are Sub-gallery and Pictures inside
+  def nb_content
+    children.size + pictures.size
+  end
+
+  # get the number of element with not in pagination
+  def diff_paginate
+    children.count(:conditions => ['status = ?', true]) % Setting.default.pictures_pagination.to_i 
+  end
+
   # Retrieve all Gallery without the gallery
   # send by parameter
   def self.find_without(gallerie)

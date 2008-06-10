@@ -23,4 +23,24 @@ module ApplicationHelper
       flash[:notice]
     end
   end
+
+  # See a breadcrumbs in page of gallery
+  def breadcrumbs(gallery=nil)
+    breadcrumbs = link_to this_webapp.webapp_name, root_path
+    unless gallery.nil?
+      breadcrumbs += " > "
+      breadcrumbs += parent_breadcrumbs_gallery(gallery)
+    end
+    breadcrumbs
+  end
+
+  # Generate the parent breadcrumb with recusive
+  def parent_breadcrumbs_gallery(gallery)
+    breadcrumbs = ""
+    unless gallery.parent.nil?
+      breadcrumbs += parent_breadcrumbs_gallery(gallery.parent)
+      breadcrumbs += " > "
+    end
+    breadcrumbs += link_to gallery.name, gallery_path(gallery)
+  end
 end

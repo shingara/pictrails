@@ -1,0 +1,6 @@
+unless @imports.empty?
+  page.replace 'imports', :partial => 'follow_import'
+  page.call 'refresh_import'
+else
+  page.redirect_to admin_galleries_url
+end

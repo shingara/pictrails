@@ -99,14 +99,7 @@ class Admin::GalleriesController < Admin::BaseController
     #@imports is affect in before_filter
     respond_to do |format|
       format.html{redirect_to :action => 'index' if @imports.empty?}
-      format.js{
-        # TODO: It's not really good. See how made better
-        unless @imports.empty?
-          render(:partial => 'admin/galleries/follow_import.html.erb')
-        else
-          render :text => '<script type="javascript">window.location.href = "/admin/galleries"</script>'
-        end
-      }
+      format.js{render :layout => false}
     end
   end
 end
