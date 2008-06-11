@@ -21,21 +21,19 @@ class Picture < ActiveRecord::Base
   
   validates_associated :gallery, :messsage => 'is needed for you picture'
   
-  before_create :define_permalink
+  before_validation :define_permalink
 
   # Define the permalink. Test if this permalink is already use.
   # if it already use add a -#{index} after
   def define_permalink
-    if permalink.blank?
-      permalink_insert_base = title.downcase.gsub(/[^a-z0-9]+/i, '-')
-      permalink_insert = permalink_insert_base
-      i = 1
-      while !Picture.find_by_permalink(permalink_insert).nil? do
-        permalink_insert = "#{permalink_insert_base}-#{i}"
-        i = i + 1
-      end
-      self.permalink = permalink_insert
+    self.permalink = title.downcase.gsub(/[^a-z0-9]+/i, '-')
+    permalink_insert = self.permalink
+    i = 1
+    while !Picture.find_by_permalink(permalink_insert).nil? || ensure_permalink_is_not_a_route(permalink_insert) do
+      permalink_insert = "#{self.permalink}-#{i}"
+      i = i + 1
     end
+    self.permalink = permalink_insert
   end
 
   def to_param
@@ -58,5 +56,16 @@ class Picture < ActiveRecord::Base
     pic.gallery_id = import.gallery.id
     pic.save!
     pic
+  end
+  
+  # Check if the permalink is possible for the URL /galleries/#{permalink}
+  # a permalinks static variable is use for performance, because the collect
+  # of routing is longer
+  # It the permalink is a route return true
+  def ensure_permalink_is_not_a_route(permalink_test)
+    @@permalinks ||= ActionController::Routing::Routes.routes.collect {|r|
+      r.generation_structure.match(/"\/pictures\/([\w]+)/)[1] rescue nil
+    }.uniq.compact
+    @@permalinks.include?(permalink_test)
   end
 end

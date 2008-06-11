@@ -53,7 +53,7 @@ describe Admin::PicturesController , 'with no import' do
     p = Picture.find 1
     p.title.should_not == 'oui'
     get :update, :id => pictures(:picture1).permalink, :gallery_id => galleries(:gallery1).permalink, :picture => {:title => 'oui'}
-    response.should redirect_to(admin_gallery_picture_url(galleries(:gallery1),pictures(:picture1)))
+    response.should redirect_to(admin_gallery_picture_url(galleries(:gallery1),'oui'))
     p = Picture.find 1
     p.title.should == 'oui'
   end
