@@ -167,7 +167,7 @@ describe Gallery, "with fixtures loaded" do
       imports = Import.find_all_by_gallery_id(@gallery.id).group_by(&:path)
       imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/rails.png")
       imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.png")
-      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.PNG")
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo-2.PNG")
       imports.each do |k,v|
         v.should have(1).items
         v[0].total.should == 3
@@ -180,7 +180,7 @@ describe Gallery, "with fixtures loaded" do
       imports = Import.find_all_by_gallery_id(@gallery.id).group_by(&:path)
       imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/rails.png")
       imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.png")
-      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.PNG")
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo-2.PNG")
       imports.each do |k,v|
         v.should have(1).items
         v[0].total.should == 3
@@ -196,7 +196,7 @@ describe Gallery, "with fixtures loaded" do
       @gallery.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files")
       Import.count(:conditions => ['gallery_id = ?', @gallery.id]).should == 3
       imports = Import.find_all_by_gallery_id(@gallery.id).group_by(&:path)
-      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.PNG")
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo-2.PNG")
     end
   end
 
