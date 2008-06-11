@@ -76,10 +76,21 @@ class Gallery < ActiveRecord::Base
 
   # Change the permalink if it's denied
   def change_permalink(permalink)
+    base_permalink = permalink
     i = 1
-    while ensure_permalink_is_not_a_route
-      self.permalink = permalink + "-#{i}"
+    while ensure_permalink_is_not_a_route || permalink_already_use
+      self.permalink = base_permalink + "-#{i}"
       i += 1
+    end
+  end
+
+  # Say if the permalink is already use or not. If the permalink is already use
+  # see if the permalink is not use by our own object
+  def permalink_already_use
+    if self.id.nil?
+      !Gallery.find_by_permalink(self.permalink).nil?
+    else
+      !Gallery.find_by_permalink(self.permalink, :conditions => ['id <> ?', self.id]).nil?
     end
   end
 

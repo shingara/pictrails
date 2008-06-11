@@ -107,6 +107,7 @@ describe Gallery, "with fixtures loaded" do
 
     describe 'when only one directory' do
       before(:each) do 
+        Gallery.delete_all
         Import.delete_all
         @gallery = Gallery.create_from_directory("#{RAILS_ROOT}/app/controllers/admin")
       end
@@ -213,10 +214,12 @@ describe Gallery, "with fixtures loaded" do
   it 'should no use permalink who can match with a route' do
     g = Gallery.new
     g.name = "new"
-    g.should be_valid
-    g.permalink.should == "new-1"
     g.save.should be_true
     g.permalink.should == "new-1"
+    g = Gallery.new
+    g.name = "new-1"
+    g.save.should be_true
+    g.permalink.should == "new-1-1"
   end
 
   after(:each) do
