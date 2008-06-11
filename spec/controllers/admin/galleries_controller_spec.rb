@@ -123,6 +123,7 @@ describe Admin::GalleriesController do
       response.should redirect_to(admin_galleries_url)
       g = Gallery.find 1
       g.name.should == 'oui'
+      g.permalink.should == 'oui'
     end
 
     it 'should not update gallery in admin because no name' do
@@ -214,7 +215,7 @@ describe Admin::GalleriesController do
       g = Gallery.find 3
       g.should_not be_nil
       g.description.should == galleries(:gallery3).description
-      g.permalink.should == galleries(:gallery3).permalink
+      g.permalink.should == 'oui' #permalink change after each update
       g.should be_status
       g.parent_id.should == 1 
     end
@@ -225,7 +226,7 @@ describe Admin::GalleriesController do
       g = Gallery.find 4
       g.should_not be_nil
       g.description.should == galleries(:gallery4).description
-      g.permalink.should == galleries(:gallery4).permalink
+      g.permalink.should == 'oui' #permalink change after all update
       g.should be_status
       g.parent_id.should be_nil
     end

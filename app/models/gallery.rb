@@ -11,11 +11,11 @@ class Gallery < ActiveRecord::Base
   validates_presence_of :name, :message => 'is needed for your gallery'
   validates_uniqueness_of :name, :message => 'is already use. Change it'
 
-  before_create :define_permalink
+  before_save :define_permalink
   
   # define the permalink with name in downcase
   def define_permalink
-    self.permalink = name.downcase.gsub(/[^a-z0-9]+/i, '-') if permalink.blank?
+    self.permalink = name.downcase.gsub(/[^a-z0-9]+/i, '-')
   end
 
   # define the param for permalink
