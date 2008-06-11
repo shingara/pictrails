@@ -25,11 +25,20 @@ module ApplicationHelper
   end
 
   # See a breadcrumbs in page of gallery
-  def breadcrumbs(gallery=nil)
+  def breadcrumbs
     breadcrumbs = link_to this_webapp.webapp_name, root_path
-    unless gallery.nil?
+    unless @breadcrumb.nil?
       breadcrumbs += " > "
-      breadcrumbs += parent_breadcrumbs_gallery(gallery)
+      if @breadcrumb.kind_of? Picture
+        picture = @breadcrumb
+        @breadcrumb = @breadcrumb.gallery
+      end
+      breadcrumbs += parent_breadcrumbs_gallery(@breadcrumb)
+
+      unless picture.nil?
+        breadcrumbs += " > "
+        breadcrumbs += picture.title
+      end
     end
     breadcrumbs
   end

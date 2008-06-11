@@ -20,6 +20,7 @@ class GalleriesController < ApplicationController
     unless  @gallery.status
       redirect_to galleries_url
     else
+      @breadcrumb = @gallery
       @sub_content = @gallery.children.paginate_by_status(true, 
                                                           :page => params[:page],
                                                           :per_page => this_webapp.pictures_pagination,

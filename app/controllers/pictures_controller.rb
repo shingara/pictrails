@@ -13,6 +13,7 @@ class PicturesController < ApplicationController
 
   def show
     @picture = Picture.find_by_permalink params[:id]
+    @breadcrumb = @picture
     raise ActiveRecord::RecordNotFound if @picture.nil?
   rescue ActiveRecord::RecordNotFound
     render :file => "#{RAILS_ROOT}/public/404.html", :status => 404

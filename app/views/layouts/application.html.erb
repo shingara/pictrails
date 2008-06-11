@@ -9,9 +9,17 @@
 </head>
 <body>
 
+  <div id="title">
+    <h1><%= this_webapp.webapp_name %></h1>
+  </div>
+  
+  <div id="breadcrumb">
+    <%= breadcrumbs %>
+  </div>
+
   <div id="container">
     
-    <%= yield  %>
+    <%= yield %>
     
     <p id="footer">powered by <a href="http://pictrails.rubyforge.org/">Pictrails</a></p>
 

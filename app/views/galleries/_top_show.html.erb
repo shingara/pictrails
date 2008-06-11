@@ -1,8 +1,10 @@
-<h1>Gallery : <%=h @gallery.name %></h1>
+<div id="description">
+  <h2>Gallery : <%=h @gallery.name %></h2>
 
-<% unless @gallery.description.empty? -%>
-  <p>
-    <b>Description:</b><br />
-    <%=h @gallery.description %>
-  </p>
-<% end -%>
+  <% unless @gallery.description.empty? -%>
+    <p>
+      <b>Description:</b><br />
+      <%=h @gallery.description %>
+    </p>
+  <% end -%>
+</div>
