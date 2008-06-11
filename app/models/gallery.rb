@@ -11,11 +11,14 @@ class Gallery < ActiveRecord::Base
   validates_presence_of :name, :message => 'is needed for your gallery'
   validates_uniqueness_of :name, :message => 'is already use. Change it'
 
-  before_save :define_permalink
+  before_validation :define_permalink
   
   # define the permalink with name in downcase
   def define_permalink
-    self.permalink = name.downcase.gsub(/[^a-z0-9]+/i, '-')
+    unless self.name.nil?
+      self.permalink = self.name.downcase.gsub(/[^a-z0-9]+/i, '-')
+      change_permalink(self.permalink)
+    end
   end
 
   # define the param for permalink
@@ -71,6 +74,16 @@ class Gallery < ActiveRecord::Base
     end
   end
 
+  # Change the permalink if it's denied
+  def change_permalink(permalink)
+    i = 1
+    while ensure_permalink_is_not_a_route
+      self.permalink = permalink + "-#{i}"
+      i += 1
+    end
+  end
+
+
   # Insert in this Gallery all picture in
   # the import table. The import model is use
   # only for the save of all file there are in this directory
@@ -104,6 +117,16 @@ class Gallery < ActiveRecord::Base
   # get the number of element with not in pagination
   def diff_paginate
     children.count(:conditions => ['status = ?', true]) % Setting.default.pictures_pagination.to_i 
+  end
+
+  # Check if the permalink is possible for the URL /galleries/#{permalink}
+  # a permalinks static variable is use for performance, because the collect
+  # of routing is longer
+  def ensure_permalink_is_not_a_route
+    @@permalinks ||= ActionController::Routing::Routes.routes.collect {|r|
+      r.generation_structure.match(/"\/galleries\/([\w]+)/)[1] rescue nil
+    }.uniq.compact
+    @@permalinks.include?(permalink)
   end
 
   # Retrieve all Gallery without the gallery

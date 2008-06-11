@@ -119,6 +119,10 @@ describe Gallery, "with fixtures loaded" do
         @gallery.name.should == 'admin'
       end
 
+      it "should have permalink 'admin'" do
+        @gallery.permalink.should == "admin"
+      end
+
       it "should have a empty description" do
         @gallery.description.should be_empty
       end
@@ -204,6 +208,15 @@ describe Gallery, "with fixtures loaded" do
     g = Gallery.find_without(galleries(:gallery1))
     g.should have(3).items
     g.should_not be_include(galleries(:gallery1))
+  end
+
+  it 'should no use permalink who can match with a route' do
+    g = Gallery.new
+    g.name = "new"
+    g.should be_valid
+    g.permalink.should == "new-1"
+    g.save.should be_true
+    g.permalink.should == "new-1"
   end
 
   after(:each) do
