@@ -26,9 +26,9 @@ module ApplicationHelper
 
   # See a breadcrumbs in page of gallery
   def breadcrumbs
-    breadcrumbs = link_to this_webapp.webapp_name, root_path
+    breadcrumbs = link_to this_webapp.webapp_name, root_path, :class => 'first-breadcrumb'
     unless @breadcrumb.nil?
-      breadcrumbs += " > "
+      breadcrumbs += content_tag(:label, " > ")
       if @breadcrumb.kind_of? Picture
         picture = @breadcrumb
         @breadcrumb = @breadcrumb.gallery
@@ -36,8 +36,8 @@ module ApplicationHelper
       breadcrumbs += parent_breadcrumbs_gallery(@breadcrumb)
 
       unless picture.nil?
-        breadcrumbs += " > "
-        breadcrumbs += picture.title
+        breadcrumbs += content_tag(:label, " > ")
+        breadcrumbs += content_tag(:label, picture.title, :class => 'end-breadcrumb')
       end
     end
     breadcrumbs
@@ -48,8 +48,9 @@ module ApplicationHelper
     breadcrumbs = ""
     unless gallery.parent.nil?
       breadcrumbs += parent_breadcrumbs_gallery(gallery.parent)
-      breadcrumbs += " > "
+      breadcrumbs += content_tag(:label, " > ")
     end
-    breadcrumbs += link_to gallery.name, gallery_path(gallery)
+    breadcrumbs += link_to(gallery.name, gallery_path(gallery),
+      :class => (@breadcrumb == gallery ? 'end-breadcrumb' : 'middle-breadcrumb'))
   end
 end

@@ -1,12 +1,36 @@
 body {
   background-color : #525252;
+  font-family: Verdana,Arial,Helvetica,sans-serif;
   color : white;
+}
+
+#title h1 {
+    text-align: center;
+}
+
+#breadcrumb {
+  border-bottom: 1px solid #CCCCCC;
+  border-top: 1px solid #CCCCCC;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 0.7em;
+}
+
+#breadcrumb a {
+  text-decoration: none;
+}
+
+#breadcrumb a:hover {
+    color: #F4560F;
+    text-decoration: underline;
 }
 
 #container {
   text-align : center;
-  width : 700px;
   margin : 0pt auto;
+  min-height: 400px;
 }
 
 a, a:visited {
@@ -25,10 +49,13 @@ a, a:visited {
 }
 
 #footer {
-  padding-top : 20px;
-  font-size : 0.9em;
+  border-bottom: 1px solid #CCCCCC;
+  border-top: 1px solid #CCCCCC;
+  font-size : 0.6em;
   color : #AAAAAA;
   clear : both;
+  text-align: center;
+  padding: 8px;
 }
 
 .notice {
