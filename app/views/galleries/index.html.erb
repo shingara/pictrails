@@ -1,7 +1,5 @@
 <% @page_title = 'List of Gallery'  %>
 
-<span id="slogan"><%= this_webapp.webapp_subtitle%></span>
-
 <table id="gallery_list">
   <% @galleries.each_slice(3) do |sub_galleries| %>
     <tr>

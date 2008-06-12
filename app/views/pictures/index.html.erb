@@ -3,8 +3,12 @@
 <h1><%= this_webapp.webapp_name %></h1>
 <span id="slogan"><%= this_webapp.webapp_subtitle%></span>
 
-<ul id="picture_list">
-  <%= render :partial => @pictures %>
-</ul>
+<table id="picture_list">
+  <% @pictures.each_slice(3) do |sub_picture| %>
+    <tr>
+      <%= render :partial => sub_picture %>
+    </tr>
+  <% end %>
+</table>
 
 <%= will_paginate @pictures %>

@@ -26,22 +26,29 @@
     There are no picture in this gallery.
   </p>
 <% else %>
-  <ul id="picture_list">
-    <% @pictures.each do |image| %>
-      <li>
-        <%= link_to (image_tag image.public_filename(:thumb), :alt => image.title), admin_gallery_picture_url(@gallery, image), :class => 'thumbnail' %>
-        <% if image.status %>
-          <span class="thumbnail"><%= image.title %><span>
-          <br />
-          <% image.description %>
-        <% else %>
-          <span class="thumbnail"><%= image.title %> (disabled)</span>
-          <br />
-          <% image.description %>
-          <%= image_tag '/images/admin/error.png', :class => "no_display" %>
-        <% end -%>
-      </li>
+  <table id="picture_list">
+    <% @pictures.each_slice(3) do |sub_picture|  %>
+      <tr>
+        <% sub_picture.each do |image| %>
+          <td>
+            <%= link_to (image_tag image.public_filename(:thumb),
+              :alt => image.title),
+              admin_gallery_picture_url(@gallery, image),
+              :class => 'thumbnail' %>
+            <% if image.status %>
+              <span class="thumbnail"><%= image.title %><span>
+              <br />
+              <% image.description %>
+            <% else %>
+              <span class="thumbnail"><%= image.title %> (disabled)</span>
+              <br />
+              <% image.description %>
+              <%= image_tag '/images/admin/error.png', :class => "no_display" %>
+            <% end -%>
+          </td>
+        <% end %>
+      </tr>
     <% end %>
-  </ul>
+  </table>
   <%= will_paginate @pictures %>
 <% end -%>

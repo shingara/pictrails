@@ -9,13 +9,15 @@
 <% else %>
   <table id="picture_list">
     <% @sub_content.each_slice(3) do |slice_content|  %>
-      <% slice_content.each do |content| %>
-        <% if content.kind_of? Picture %>
-          <%= render :partial => 'pictures/picture', :locals => {:picture => content} %>
-        <% else %>
-          <%= render :partial => 'galleries/gallery', :locals => {:gallery => content} %>
+      <tr>
+        <% slice_content.each do |content| %>
+          <% if content.kind_of? Picture %>
+            <%= render :partial => 'pictures/picture', :locals => {:picture => content} %>
+          <% else %>
+            <%= render :partial => 'galleries/gallery', :locals => {:gallery => content} %>
+          <% end %>
         <% end %>
-      <% end %>
+      </tr>
     <% end %>
   </table>
   <%= will_paginate @sub_content %>

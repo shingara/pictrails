@@ -12,7 +12,7 @@ class Admin::GalleriesController < Admin::BaseController
     @gallery = Gallery.find_by_permalink params[:id]
     unless @gallery.nil?
       @pictures = Picture.paginate_by_gallery_id @gallery.id, :page => params[:page],
-        :per_page => 10
+        :per_page => 12
     else
       render :status => 404
     end
