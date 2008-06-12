@@ -121,18 +121,18 @@ describe GalleriesController, 'View the subgallery' do
 
   it 'should see only gallery with no parent' do
     get "index"
-    response.should have_tag("li#gallery_1")
-    response.should_not have_tag("li#gallery_2")
-    response.should have_tag("li#gallery_3")
-    response.should_not have_tag("li#gallery_4")
+    response.should have_tag("td#gallery_1")
+    response.should_not have_tag("td#gallery_2")
+    response.should have_tag("td#gallery_3")
+    response.should_not have_tag("td#gallery_4")
   end
 
   it 'should see all sub-gallery in view of gallery' do
     get "show", :id => galleries(:gallery1).permalink
 
-    response.should have_tag("ul#picture_list")do
-      with_tag "li#gallery_4"
-      with_tag "li.sub_gallery"
+    response.should have_tag("table#picture_list")do
+      with_tag "td#gallery_4"
+      with_tag "td.sub_gallery"
     end
   end
 end

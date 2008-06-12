@@ -37,15 +37,16 @@ a, a:visited {
   color : white;
 }
 
-#gallery_list li , #picture_list li {
-  float : left;
-  width : 200px;
-  height : 200px; 
-  padding : 8px;
-  padding-bottom : 25px;
-  margin-top : auto;
-  margin-bottom : auto;
-  list-style-type : none;
+#gallery_list, #picture_list {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#gallery_list td, #picture_list td {
+   padding-right: 50px;
+   padding-left: 25px;
+   padding-bottom: 25px;
+   padding-top: 25px;
 }
 
 #footer {

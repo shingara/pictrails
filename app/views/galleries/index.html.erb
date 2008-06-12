@@ -2,8 +2,12 @@
 
 <span id="slogan"><%= this_webapp.webapp_subtitle%></span>
 
-<ul id="gallery_list">
-  <%= render :partial => @galleries %>
-</ul>
+<table id="gallery_list">
+  <% @galleries.each_slice(3) do |sub_galleries| %>
+    <tr>
+      <%= render :partial => sub_galleries %>
+    </tr>
+  <% end %>
+</table>
 
 <%= will_paginate @galleries %>
