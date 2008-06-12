@@ -31,12 +31,12 @@
       <tr>
         <% sub_picture.each do |image| %>
           <td>
-            <%= link_to (image_tag image.public_filename(:thumb),
+            <%= link_to((image_tag image.public_filename(:thumb),
               :alt => image.title),
               admin_gallery_picture_url(@gallery, image),
-              :class => 'thumbnail' %>
+              :class => 'thumbnail') %>
             <% if image.status %>
-              <span class="thumbnail"><%= image.title %><span>
+              <span class="thumbnail"><%= image.title %></span>
               <br />
               <% image.description %>
             <% else %>
