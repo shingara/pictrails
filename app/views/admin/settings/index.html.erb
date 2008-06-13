@@ -46,11 +46,15 @@
         </li>
         <li>
           <label class="float" for="pictures_pagination">Pictures by page :</label>
-          <%= f.text_field :pictures_pagination %>
+          <select name="setting[pictures_pagination]">
+            <%= options_for_select([["3","3"],["6","6"],["9","9"],["12","12"],["15","15"],["18","18"],["21","21"]], this_webapp.pictures_pagination) %>
+          </select>
         </li>
         <li>
           <label class="float" for="galleries_pagination">Galleries by page :</label>
-          <%= f.text_field :galleries_pagination %>
+          <select name="setting[galleries_pagination]">
+            <%= options_for_select([["3","3"],["6","6"],["9","9"],["12","12"],["15","15"],["18","18"],["21","21"]], this_webapp.galleries_pagination) %>
+          </select>
         </li>
       </ul>
     </fieldset>
