@@ -1,3 +1,20 @@
+== 0.3.0 / 2008-06-15
+
+* 1 Major ehancement
+  * Add support on sub-gallery, now you can define a parent of each gallery.
+    the sub-gallery can be illimited
+
+* 3 Minors ehancement
+  * Add breadcrumbs in public part
+  * Update the mass_upload to use the sub-gallery system. If you give a
+    directory with directory inside each directory inside are like sub-gallery
+  * Update the mass_upload for better system with progress_bar
+  * Update attachment_fu plugin
+  * Update will_paginate plugin
+
+* 1 Minor fix bug
+  * redirect to signup in first connection and you use all path
+
 == 0.2.3 / 2008-03-18
 
 * 1 Major fix bug
