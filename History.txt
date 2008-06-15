@@ -4,13 +4,14 @@
   * Add support on sub-gallery, now you can define a parent of each gallery.
     the sub-gallery can be illimited
 
-* 3 Minors ehancement
+* 4 Minors ehancement
   * Add breadcrumbs in public part
   * Update the mass_upload to use the sub-gallery system. If you give a
     directory with directory inside each directory inside are like sub-gallery
   * Update the mass_upload for better system with progress_bar
   * Update attachment_fu plugin
   * Update will_paginate plugin
+  * Add delete button in edit and view Pictures in admin part
 
 * 1 Minor fix bug
   * redirect to signup in first connection and you use all path
