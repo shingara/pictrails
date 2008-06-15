@@ -48,6 +48,12 @@ With the tar.gz or any other archive:
  * Migrate your database: <kbd>rake db:migrate</kbd>
  * Start the server in production mode : <kbd>ruby script/server -e production</kbd>
 
+h2. Demo Website
+
+A demo website of Pictrails is available to the "demo of pictrails":http://pictrails.shingara.fr
+
+The "admin part":http://pictrails.shingara.fr/admin has like login/pass : admin/pictrails
+
 h2. Information about this project
 
 Pictrails is actually consider like an Beta version, and is under development.
