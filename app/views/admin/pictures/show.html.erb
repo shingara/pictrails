@@ -13,6 +13,9 @@
   <li>
     <%= link_to "Edit picture", edit_admin_gallery_picture_url(@picture.gallery, @picture) %>
   </li>
+  <li>
+  <%= link_to "Delete picture", {:controller => 'admin/pictures', :action => 'destroy', :gallery_id => @picture.gallery, :id => @picture}, :method => 'delete', :confirm => 'Are you sure ?' %>
+  </li>
 <% end %>
 
 <h2>Manage Pictures</h2>
