@@ -41,13 +41,18 @@ Pictrails is a Web Photo Gallery, written with Rails 2.0. Pictrails can manage s
 
 It's features are :
 
-* Create several Galleries
-* Add several pictures in a Gallery
-* Create a gallery with define a directory in same server of pictrails
-* Admin interface with login to add/edit/delete Galleries and Pictures
-* Define the thumbnails and pictures size in settings interface
-* Delete the cache page in settings interface
-* Define the number of pictures by pagination Gallery
+ * Create several Galleries
+ * Create Galleries like child of another Gallery
+ * Add several pictures in a Gallery
+ * Create a gallery with define a directory in same server of pictrails if the
+   directory has several directories into, all of this directory are child of
+   master Gallery
+ * Admin interface with login to add/edit/delete Galleries and Pictures
+ * Define the thumbnails and pictures size in settings interface
+ * Delete the cache page in settings interface
+ * Define the number of pictures by pagination Gallery
+ * Define the number of gallery by pagination of Gallery's list
+
     )
     spec = Gem::Specification.new do |s|
       s.name = PKG_NAME
