@@ -76,7 +76,7 @@ It's features are :
 
     desc 'Upload package in rubyforge'
     task :upload_package do
-      rf = RubyForge.new
+      rf = RubyForge.new.configure
       puts "Logging in Rubyforge"
       rf.login
       
@@ -91,6 +91,8 @@ It's features are :
                ("#{pkg}.zip")].compact
 
       puts "Releasing Pictrails v. #{PKG_VERSION}"
+      require 'ruby-debug'
+      debugger
       rf.add_release PKG_NAME, PKG_NAME, "#{PKG_NAME}-#{PKG_VERSION}", *files
     end
 
@@ -109,7 +111,7 @@ It's features are :
 
     desc 'post annonce to rubyforge'
     task :post_rubyforge => [:email] do
-      rf = RubyForge.new
+      rf = RubyForge.new.configure
       rf.login
       rf.post_news(PKG_NAME, SUBJECT, File.read('email.txt'))
       puts "Posted to rubyforge"
