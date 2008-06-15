@@ -6,8 +6,12 @@
   </li>
 <% end %>
 
-<ul id="picture_list">
-  <%= render :partial => 'admin/pictures/picture', :collection => @pictures %>
-</ul>
+<table id="picture_list">
+  <% @pictures.each_slice(3) do |sub_pictures| %>
+    <tr>
+      <%= render :partial => 'admin/pictures/picture', :collection => sub_pictures %>
+    </tr>
+  <% end %>
+</table>
 
 <%= will_paginate @pictures %>
