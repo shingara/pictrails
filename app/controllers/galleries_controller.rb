@@ -46,6 +46,7 @@ class GalleriesController < ApplicationController
       respond_to do |format|
         format.html 
         format.xml  { render :xml => @gallery }
+        format.atom
       end
     end
   rescue ActiveRecord::RecordNotFound

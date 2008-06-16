@@ -1,13 +1,6 @@
 <% content_tag :td, :id => "gallery_#{gallery.id}", :class => ("sub_gallery" unless gallery.parent_id.nil?) do %>
-  <% if gallery.pictures.empty? -%>
-    <%= link_to image_tag('/no_picture.png', :style => "border:0px;"),
-            gallery_url(gallery), :style => 'display:block;' %>
-    <span><%=h "#{gallery.name} "%></span><br />
-    <span>(0 picture)</span>
-  <% else -%>
-    <%= link_to image_tag(gallery.pictures.first.public_filename(:thumb), :style => "border:0px;"),
-                gallery_url(gallery), :style => 'display:block;' %>
-    <span><%=h "#{gallery.name}" %></span><br />
-    <span><%=h "(#{gallery.pictures.enable_size} pictures)" %></span>
-  <% end -%>
+  <%= link_to image_tag(gallery.public_filename(:thumb), :style => "border:0px;"),
+              gallery_url(gallery), :style => 'display:block;' %>
+  <span><%=h "#{gallery.name}" %></span><br />
+  <span><%=h "(#{gallery.pictures.enable_size} pictures)" %></span>
 <% end %>

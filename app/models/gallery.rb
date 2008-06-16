@@ -26,6 +26,21 @@ class Gallery < ActiveRecord::Base
     permalink
   end
 
+  # Alias for name of Gallery
+  def title
+    name
+  end
+
+  # Return the public_filename of this gallery
+  # If no pictures, in this gallery, return of no_picture.png
+  def public_filename(type)
+    unless pictures.empty?
+      pictures.first.public_filename(type)
+    else
+      '/no_picture.png'
+    end
+  end
+
   # Create a Gallery with description empty
   # and status true
   def self.new_empty
