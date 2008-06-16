@@ -1,5 +1,9 @@
 <% @page_title = "Gallery : #{@gallery.name}" %>
 
+<% content_for(:head) do %>
+  <%= auto_discovery_link_tag :atom, {:action => 'show', :format => 'atom'}, {:title => "#{this_webapp.webapp_name} - #{@gallery.name} : Atom Feed }"} %>
+<% end %>
+
 <%= render :partial => 'top_show' %> 
 
 <% if @sub_content.empty?-%>
