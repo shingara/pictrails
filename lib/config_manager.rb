@@ -52,7 +52,7 @@ module ConfigManager
         retval = settings[item.name] = canonicalize(item.name, newvalue)
         unless new_record?
           self.settings_will_change!
-          self.save!
+          self.save
         end
         retval
       end

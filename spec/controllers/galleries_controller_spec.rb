@@ -116,7 +116,7 @@ describe GalleriesController, 'View the subgallery' do
     @gallery1 = mock_model Gallery
     @gallery2 = mock_model Gallery
     @user = mock_model User
-    User.should_receive(:count).and_return(1)
+    User.stub!(:count).and_return(1)
   end
 
   it 'should see only gallery with no parent' do
