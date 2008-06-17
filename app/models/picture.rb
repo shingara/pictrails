@@ -23,6 +23,9 @@ class Picture < ActiveRecord::Base
   
   before_validation :define_permalink
 
+
+  acts_as_taggable_on :tags
+
   # Define the permalink. Test if this permalink is already use.
   # if it already use add a -#{index} after
   def define_permalink
