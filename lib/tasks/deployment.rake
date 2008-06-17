@@ -19,7 +19,7 @@ namespace :pictrails do
         /deployment.rake$/, /^\.\/galleries\//, 
         /^\.\/public\/pictrails_pictures/, 
         /^\.\/public\/pictrails_thumbnails/, /^\.\/nbproject/, 
-        /^\.\/tmp\//, /\.sql$/, "metrics"
+        /^\.\/tmp\//, /\.sql$/, "metrics", /vendor\/plugins\/rails_rcov/
       files = []
       Find.find '.' do |path|
         next unless File.file? path

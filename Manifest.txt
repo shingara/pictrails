@@ -183,12 +183,6 @@ vendor/plugins/acts_as_tree/README
 vendor/plugins/acts_as_tree/Rakefile
 vendor/plugins/acts_as_tree/init.rb
 vendor/plugins/acts_as_tree/lib/active_record/acts/tree.rb
-vendor/plugins/acts_as_tree/test/abstract_unit.rb
-vendor/plugins/acts_as_tree/test/acts_as_tree_test.rb
-vendor/plugins/acts_as_tree/test/database.yml
-vendor/plugins/acts_as_tree/test/fixtures/mixin.rb
-vendor/plugins/acts_as_tree/test/fixtures/mixins.yml
-vendor/plugins/acts_as_tree/test/schema.rb
 vendor/plugins/attachment_fu/CHANGELOG
 vendor/plugins/attachment_fu/README
 vendor/plugins/attachment_fu/Rakefile
@@ -248,9 +242,6 @@ vendor/plugins/mimetype-fu/spec/spec_helper.rb
 vendor/plugins/mimetype-fu/tasks/mimetype_fu_tasks.rake
 vendor/plugins/mimetype-fu/test/mimetype_fu_test.rb
 vendor/plugins/mimetype-fu/uninstall.rb
-vendor/plugins/rails_rcov/MIT-LICENSE
-vendor/plugins/rails_rcov/README
-vendor/plugins/rails_rcov/tasks/rails_rcov.rake
 vendor/plugins/rspec/.autotest
 vendor/plugins/rspec/CHANGES
 vendor/plugins/rspec/MIT-LICENSE
@@ -359,11 +350,6 @@ vendor/plugins/rspec/lib/spec/extensions/class.rb
 vendor/plugins/rspec/lib/spec/extensions/main.rb
 vendor/plugins/rspec/lib/spec/extensions/object.rb
 vendor/plugins/rspec/lib/spec/interop/test.rb
-vendor/plugins/rspec/lib/spec/interop/test/unit/autorunner.rb
-vendor/plugins/rspec/lib/spec/interop/test/unit/testcase.rb
-vendor/plugins/rspec/lib/spec/interop/test/unit/testresult.rb
-vendor/plugins/rspec/lib/spec/interop/test/unit/testsuite_adapter.rb
-vendor/plugins/rspec/lib/spec/interop/test/unit/ui/console/testrunner.rb
 vendor/plugins/rspec/lib/spec/matchers.rb
 vendor/plugins/rspec/lib/spec/matchers/be.rb
 vendor/plugins/rspec/lib/spec/matchers/be_close.rb
@@ -485,11 +471,6 @@ vendor/plugins/rspec/spec/spec/expectations/differs/default_spec.rb
 vendor/plugins/rspec/spec/spec/expectations/extensions/object_spec.rb
 vendor/plugins/rspec/spec/spec/expectations/fail_with_spec.rb
 vendor/plugins/rspec/spec/spec/extensions/main_spec.rb
-vendor/plugins/rspec/spec/spec/interop/test/unit/test_unit_spec_helper.rb
-vendor/plugins/rspec/spec/spec/interop/test/unit/testcase_spec.rb
-vendor/plugins/rspec/spec/spec/interop/test/unit/testcase_spec_with_test_unit.rb
-vendor/plugins/rspec/spec/spec/interop/test/unit/testsuite_adapter_spec.rb
-vendor/plugins/rspec/spec/spec/interop/test/unit/testsuite_adapter_spec_with_test_unit.rb
 vendor/plugins/rspec/spec/spec/matchers/be_close_spec.rb
 vendor/plugins/rspec/spec/spec/matchers/be_spec.rb
 vendor/plugins/rspec/spec/spec/matchers/change_spec.rb
@@ -619,8 +600,6 @@ vendor/plugins/rspec/stories/resources/spec/example_group_with_should_methods.rb
 vendor/plugins/rspec/stories/resources/spec/simple_spec.rb
 vendor/plugins/rspec/stories/resources/steps/running_rspec.rb
 vendor/plugins/rspec/stories/resources/stories/failing_story.rb
-vendor/plugins/rspec/stories/resources/test/spec_and_test_together.rb
-vendor/plugins/rspec/stories/resources/test/test_case_with_should_methods.rb
 vendor/plugins/rspec/story_server/prototype/javascripts/builder.js
 vendor/plugins/rspec/story_server/prototype/javascripts/controls.js
 vendor/plugins/rspec/story_server/prototype/javascripts/dragdrop.js
