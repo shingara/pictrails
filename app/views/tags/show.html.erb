@@ -1,4 +1,5 @@
-<% @page_title = 'List of Pictures' %>
+<% @page_title = "List of Pictures - tags #{@tag.name}" %>
+<% @finish_breadcrumb = "tags > #{@tag.name}" %>
 
 <table id="picture_list">
   <% @taggings.each_slice(3) do |sub_picture| %>

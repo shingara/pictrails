@@ -40,7 +40,11 @@ module ApplicationHelper
         breadcrumbs += content_tag(:label, picture.title, :class => 'end-breadcrumb')
       end
     end
-    breadcrumbs
+    if @finish_breadcrumb
+      breadcrumbs + " > " + @finish_breadcrumb
+    else
+      breadcrumbs
+    end
   end
 
   # Generate the parent breadcrumb with recusive
