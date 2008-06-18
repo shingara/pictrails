@@ -22,3 +22,6 @@
 [submodule "vendor/plugins/atom_feed_helper"]
 	path = vendor/plugins/atom_feed_helper
 	url = git://github.com/rails/atom_feed_helper.git
+[submodule "vendor/plugins/acts_as_taggable_on_steroids"]
+	path = vendor/plugins/acts_as_taggable_on_steroids
+	url = git://github.com/mattetti/acts_as_taggable_on_steroids.git

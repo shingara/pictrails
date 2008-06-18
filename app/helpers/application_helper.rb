@@ -1,6 +1,8 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  include TagsHelper
+
   # Return the status of a boolean
   def status_value(status)
     if status
