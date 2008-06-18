@@ -1,8 +1,5 @@
 <% @page_title = 'List of Pictures' %>
 
-<h1><%= this_webapp.webapp_name %></h1>
-<span id="slogan"><%= this_webapp.webapp_subtitle%></span>
-
 <table id="picture_list">
   <% @pictures.each_slice(3) do |sub_picture| %>
     <tr>
