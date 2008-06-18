@@ -43,6 +43,11 @@
         <label class="block"><%= @picture.description %></label>
       </li>
     <% end %>
+    
+    <li>
+      <label class="float">Tags :</label>
+      <%=h @picture.tag_list %>
+    </li>
   </ul>
 </div>
 

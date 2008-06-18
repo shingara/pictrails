@@ -37,6 +37,7 @@ class Admin::PicturesController < Admin::BaseController
     @picture.title = params[:picture][:title]
     @picture.description = params[:picture][:description]
     @picture.status = params[:picture][:status]
+    @picture.tag_list = params[:picture][:tag_list]
     if @picture.save
       flash[:notice] = 'Picture Updated'
       redirect_to admin_gallery_picture_url(@picture.gallery, @picture)

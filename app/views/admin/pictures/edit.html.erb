@@ -43,6 +43,10 @@
         <%= f.text_area :description, :style => 'width : 100%' %>
       </li>
       <li>
+        <label class="float" for="tags">Tags :</label>
+        <%= f.text_field :tag_list %>
+      </li>
+      <li>
         <label class="float" for="status">Status :</label>
         <%= f.check_box :status %>
       </li>

@@ -3,9 +3,13 @@
 <h2>Picture : <%= @picture.title %></h2>
 
 <p>
+  <span><%= image_tag(@picture.public_filename) %></span>
+</p>
+
+<p>
   <%= @picture.description %>
 </p>
 
 <p>
-  <span><%= image_tag(@picture.public_filename) %></span>
+  Tags : <%= @picture.tag_list %>
 </p>
