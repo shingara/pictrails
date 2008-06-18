@@ -19,3 +19,6 @@
 [submodule "vendor/plugins/acts-as-taggable-on"]
 	path = vendor/plugins/acts-as-taggable-on
 	url = git://github.com/mbleigh/acts-as-taggable-on.git
+[submodule "vendor/plugins/atom_feed_helper"]
+	path = vendor/plugins/atom_feed_helper
+	url = git://github.com/rails/atom_feed_helper.git
