@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/galleries/:gallery_id/pictures/:id/page/:page', :controller => 'pictures', :action => 'show', :page => /\d+/
     
   map.resources :pictures
+  map.resources :tags
 
   # route to the paginate of all galleries
   map.connect '/galleries/page/:page',
