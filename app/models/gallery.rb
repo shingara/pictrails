@@ -41,6 +41,11 @@ class Gallery < ActiveRecord::Base
     end
   end
 
+  # Return all Tag of this gallery
+  def tag_counts
+    Picture.tag_counts :conditions => ['pictures.gallery_id = ?', id]
+  end
+
   # Create a Gallery with description empty
   # and status true
   def self.new_empty

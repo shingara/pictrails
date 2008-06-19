@@ -7,6 +7,7 @@ class GalleriesController < ApplicationController
       :include => 'pictures', 
       :page => params[:page],
       :per_page => this_webapp.galleries_pagination
+    @tags = Picture.tag_counts
 
     respond_to do |format|
       format.html # index.html.erb

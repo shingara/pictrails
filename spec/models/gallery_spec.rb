@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Gallery, "with fixtures loaded" do
-  fixtures :galleries, :pictures, :thumbnails
+  fixtures :galleries, :pictures, :thumbnails, :tags, :taggings
 
   before(:each) do
     # Set up after insert fixtures
@@ -220,6 +220,25 @@ describe Gallery, "with fixtures loaded" do
     g.name = "new-1"
     g.save.should be_true
     g.permalink.should == "new-1-1"
+  end
+
+  describe "method .tag_counts" do
+
+    it "return nil if no tags" do
+      g = Gallery.find 3
+      g.tag_counts.should be_empty
+    end
+
+    it 'return all tag in this gallery' do
+      g = Gallery.find 1
+      g.tag_counts.should have(2).items
+    end
+    
+    it 'return all tag in this gallery' do
+      g = Gallery.find 2
+      g.tag_counts.should have(1).items
+      g.tag_counts.should == [tags(:ko)]
+    end
   end
 
   after(:each) do
