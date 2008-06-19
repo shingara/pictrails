@@ -1,0 +1,17 @@
+tagging1:
+  tag: ok
+  taggable_type: Picture
+  taggable_id: "1"
+  created_at: <%= 5.days.ago.to_s :db %>
+
+tagging2:
+  tag: ko
+  taggable_type: Picture
+  taggable_id: "3"
+  created_at: <%= 4.days.ago.to_s :db %>
+
+tagging3:
+  tag: ko
+  taggable_type: Picture
+  taggable_id: "1"
+  created_at: <%= 5.days.ago.to_s :db %>
