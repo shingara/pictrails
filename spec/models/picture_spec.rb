@@ -67,4 +67,32 @@ describe Picture, "with fixtures loaded" do
     pic.save.should be_true
     pic.permalink.should == 'oui'
   end
+
+  describe 'Picture#old_tag : get the old tag' do
+
+    it 'should get no old tag because no old tag and no new tag' do
+      pic = pictures(:picture2)
+      pic.old_tag.should be_empty
+    end
+
+    it 'should get no old tag because just add tag' do
+      pic = pictures(:picture1)
+      pic.tag_list = 'ko, ok, tag1'
+      puts pic.old_tag
+      pic.old_tag.should be_empty
+    end
+
+    it 'should get one old tag because one delete' do
+      pic = pictures(:picture1)
+      pic.tag_list = 'tag2'
+      pic.old_tag.should == [(Tag.find_by_name 'ok'), (Tag.find_by_name 'ko')]
+    end
+    
+    it 'should get one old tag because one delete after save' do
+      pic = pictures(:picture1)
+      pic.tag_list = 'tag2'
+      pic.save
+      pic.old_tag.should == [(Tag.find_by_name 'ok'), (Tag.find_by_name 'ko')]
+    end
+  end
 end

@@ -1,4 +1,6 @@
 class TagsController < ApplicationController
+
+  caches_page :show
   
   def show
     @tag = Tag.find_by_name params[:id]

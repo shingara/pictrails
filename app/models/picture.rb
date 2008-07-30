@@ -70,4 +70,12 @@ class Picture < ActiveRecord::Base
     }.uniq.compact
     @@permalinks.include?(permalink_test)
   end
+
+
+  # Return old tag save if there are difference with the tag_list work after
+  # save too
+  def old_tag
+    return [] unless @tag_list
+    tags.reject { |tag| @tag_list.include?(tag.name) }
+  end
 end
