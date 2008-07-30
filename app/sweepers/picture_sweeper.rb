@@ -25,7 +25,7 @@ private
     @cache_dir = ActionController::Base.page_cache_directory
 
     delete_cache_pagination_pictures(picture)
-    delete_cache_pagination_galleries
+    delete_cache_pagination_galleries(picture.gallery)
   end
 
   # Delete all cache on pictures view the index and all show
@@ -47,19 +47,27 @@ private
   end
   
   # Delete the cache about pagination in galleries view
-  def delete_cache_pagination_galleries
+  def delete_cache_pagination_galleries(gallery)
     FileUtils.rm_r(Dir.glob(@cache_dir+"/galleries/page/*")) rescue Errno::ENOENT
+    FileUtils.rm_r(Dir.glob(@cache_dir+"/galleries/#{gallery.permalink}/page/*")) rescue Errno::ENOENT
   end
 
   # Delete all cache about old and new tag in this picture
   def expire_cache_tags(picture)
     picture.tags.each do |tag|
       expire_page :controller => '/tags', :action => :show, :id => tag
+      delete_cache_pagination_tag(tag)
     end
 
     picture.old_tag.each do |tag|
       expire_page :controller => '/tags', :action => :show, :id => tag
+      delete_cache_pagination_tag(tag)
     end
+  end
+  
+  # Delete the cache about pagination in tags view
+  def delete_cache_pagination_tag(tag)
+    FileUtils.rm_r(Dir.glob(@cache_dir+"/tags/#{tag.permalink}/page/*")) rescue Errno::ENOENT
   end
 
 end
