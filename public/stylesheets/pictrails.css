@@ -120,7 +120,6 @@ a, a:visited {
   float:left;
   background-color : #A3A3A3;
   margin-top: 50px;
-  height: 100px;
 }
 
 #menubar dt {
@@ -131,6 +130,7 @@ a, a:visited {
 #menubar dd {
   margin-left: 10px;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #menubar ul {
