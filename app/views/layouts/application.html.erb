@@ -34,9 +34,17 @@
         <dt>Tags</dt>
         <dd>
           <% unless @tags.nil? || @tags.empty? %>
-            <% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
-              <%= link_to tag.name, { :controller => "tags", :action => "show", :id => tag.name }, 
+            <% if controller.controller_name == 'pictures' %>
+              <ul>
+                <% @tags.each do  |tag| %>
+                  <li><%= link_to tag, { :controller => "tags", :action => "show", :id => tag} %></li>
+                <% end %>
+              <ul>
+            <% else %>
+              <% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+                <%= link_to tag.name, { :controller => "tags", :action => "show", :id => tag.name }, 
                                     :class => css_class %>
+              <% end %>
             <% end %>
           <% else %>
             <p>There are no tag</p>

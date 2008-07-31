@@ -17,6 +17,7 @@ class PicturesController < ApplicationController
 
   def show
     @picture = Picture.find_by_permalink params[:id]
+    @tags = @picture.tag_list
     @breadcrumb = @picture
     raise ActiveRecord::RecordNotFound if @picture.nil?
   rescue ActiveRecord::RecordNotFound
