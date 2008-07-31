@@ -28,9 +28,13 @@ body {
 }
 
 #container {
-  text-align : center;
-  margin : 0pt auto;
   min-height: 400px;
+}
+#content {
+  text-align : center;
+  float: right;
+  width: 78%;
+  margin : 0pt auto;
 }
 
 a, a:visited {
@@ -43,10 +47,10 @@ a, a:visited {
 }
 
 #gallery_list td, #picture_list td {
-   padding-right: 50px;
-   padding-left: 25px;
-   padding-bottom: 25px;
-   padding-top: 25px;
+   padding-right: 30px;
+   padding-left: 20px;
+   padding-bottom: 20px;
+   padding-top: 20px;
 }
 
 #footer {
@@ -109,3 +113,26 @@ a, a:visited {
 .css2 { font-size: 1.2em; }
 .css3 { font-size: 1.6em; }
 .css4 { font-size: 2.0em; }
+
+#menubar {
+  width: 20%;
+  font-size: 0.7em;
+  float:left;
+  background-color : #A3A3A3;
+  margin-top: 50px;
+  height: 100px;
+}
+
+#menubar dt {
+  padding-left: 10px;
+  background-color: #336699;
+}
+
+#menubar dd {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+#menubar ul {
+  padding-left: 20px;
+}

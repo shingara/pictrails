@@ -19,9 +19,24 @@
     <%= breadcrumbs %>
   </div>
 
+
   <div id="container">
-    
-    <%= yield %>
+    <div id="menubar">
+      <dl>
+        <dt>Galleries</dt>
+        <dd>
+          <ul>
+            <% Gallery.all.each do |gallery| %>
+              <li><%= link_to "#{gallery.title} [#{gallery.pictures.count}]", gallery_path(gallery) %></li>
+            <% end %>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <div id="content">
+      <%= yield %>
+    </div>
     
   </div>
   <p id="footer">powered by <a href="http://pictrails.rubyforge.org/">Pictrails</a></p>
