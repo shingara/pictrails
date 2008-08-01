@@ -26,7 +26,7 @@
         <dt>Galleries</dt>
         <dd>
           <ul>
-            <% Gallery.all.each do |gallery| %>
+            <% Gallery.without_parent.each do |gallery| %>
               <li><%= link_to "#{gallery.title} [#{gallery.pictures.count}]", gallery_path(gallery) %></li>
             <% end %>
           </ul>

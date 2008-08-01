@@ -165,4 +165,9 @@ class Gallery < ActiveRecord::Base
   def self.find_without(gallerie)
     find :all, :conditions => ['id <> ?', gallerie.id]
   end
+
+  # get all Galleries who haven't parent_id 
+  def self.without_parent
+    find :all, :conditions => ['parent_id IS ?', nil]
+  end
 end

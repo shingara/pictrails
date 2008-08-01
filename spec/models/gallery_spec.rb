@@ -241,6 +241,12 @@ describe Gallery, "with fixtures loaded" do
     end
   end
 
+  describe "self.without_parent" do
+    it 'should get all gallery who has no parent' do
+      Gallery.without_parent.should == [galleries(:gallery1), galleries(:gallery2), galleries(:gallery3)]
+    end
+  end
+
   after(:each) do
     # fixtures are torn down after this
   end
