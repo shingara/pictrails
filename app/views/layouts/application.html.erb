@@ -34,7 +34,8 @@
         <dt>Tags</dt>
         <dd>
           <% unless @tags.nil? || @tags.empty? %>
-            <% if controller.controller_name == 'pictures' %>
+            <% if controller.controller_name == 'pictures' || 
+                  controller.controller_name =='tags' %>
               <ul>
                 <% @tags.each do  |tag| %>
                   <li><%= link_to tag, { :controller => "tags", :action => "show", :id => tag} %></li>
