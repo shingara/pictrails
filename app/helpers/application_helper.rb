@@ -59,4 +59,10 @@ module ApplicationHelper
     breadcrumbs += link_to(gallery.name, gallery_path(gallery),
       :class => (@breadcrumb == gallery ? 'end-breadcrumb' : 'middle-breadcrumb'))
   end
+
+  # Get the link of Gallery with name and the number of picture in this
+  # gallery
+  def link_gallery_with_number(gallery)
+    link_to "#{gallery.title} [#{gallery.pictures.count}]", gallery_path(gallery)
+  end
 end

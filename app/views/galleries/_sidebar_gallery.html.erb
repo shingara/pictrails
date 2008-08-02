@@ -3,11 +3,11 @@
   <ul>
     <% Gallery.without_parent.each do |gallery| %>
       <li>
-        <%= link_to "#{gallery.title} [#{gallery.pictures.count}]", gallery_path(gallery) %>
+        <%= link_gallery_with_number(gallery) %> 
         <% unless gallery.children.empty? %>
           <ul>
             <% gallery.children.each do |gallery_child| %>
-              <li><%= link_to "#{gallery_child.title} [#{gallery_child.pictures.count}]", gallery_path(gallery_child) %></li>
+              <li><%= link_gallery_with_number(gallery) %></li>
             <% end %>
           </ul>
         <% end %>
