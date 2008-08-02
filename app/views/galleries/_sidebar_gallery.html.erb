@@ -7,7 +7,7 @@
         <% unless gallery.children.empty? %>
           <ul>
             <% gallery.children.each do |gallery_child| %>
-              <li><%= link_gallery_with_number(gallery) %></li>
+              <li><%= link_gallery_with_number(gallery_child) %></li>
             <% end %>
           </ul>
         <% end %>

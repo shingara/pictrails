@@ -63,6 +63,6 @@ module ApplicationHelper
   # Get the link of Gallery with name and the number of picture in this
   # gallery
   def link_gallery_with_number(gallery)
-    link_to "#{gallery.title} [#{gallery.pictures.count}]", gallery_path(gallery)
+    link_to "#{gallery.title} [#{gallery.pictures.count}]", gallery_path(gallery), :class => ('current_gallery' if gallery == @gallery)
   end
 end

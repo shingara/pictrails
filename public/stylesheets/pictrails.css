@@ -136,3 +136,8 @@ a, a:visited {
 #menubar ul {
   padding-left: 20px;
 }
+
+a.current_gallery {
+  color : #CC6600;
+  font-weight: bold;
+}
