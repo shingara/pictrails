@@ -23,23 +23,7 @@
   <div id="container">
     <div id="menubar">
       <dl>
-        <dt>Galleries</dt>
-        <dd>
-          <ul>
-            <% Gallery.without_parent.each do |gallery| %>
-              <li>
-                <%= link_to "#{gallery.title} [#{gallery.pictures.count}]", gallery_path(gallery) %>
-                <% unless gallery.children.empty? %>
-                  <ul>
-                    <% gallery.children.each do |gallery_child| %>
-                      <li><%= link_to "#{gallery_child.title} [#{gallery_child.pictures.count}]", gallery_path(gallery_child) %></li>
-                    <% end %>
-                  </ul>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </dd>
+        <%= render :partial => 'galleries/sidebar_gallery' %>
         <dt>Tags</dt>
         <dd>
           <% unless @tags.nil? || @tags.empty? %>
