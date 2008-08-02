@@ -19,10 +19,10 @@ class PicturesController < ApplicationController
   # View only one picture
   def show
     @picture = Picture.find_by_permalink params[:id]
+    raise ActiveRecord::RecordNotFound if @picture.nil?
     @gallery = @picture.gallery
     @tags = @picture.tag_list
     @breadcrumb = @picture
-    raise ActiveRecord::RecordNotFound if @picture.nil?
   rescue ActiveRecord::RecordNotFound
     render :file => "#{RAILS_ROOT}/public/404.html", :status => 404
   end

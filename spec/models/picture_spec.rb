@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Picture, "with fixtures loaded" do
-  fixtures :settings, :pictures, :thumbnails, :imports
+  fixtures :settings, :pictures, :thumbnails, :imports, :tags, :taggings
 
   it 'should define permalink like title' do
     p = Picture.new

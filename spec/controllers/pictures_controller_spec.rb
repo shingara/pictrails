@@ -5,6 +5,8 @@ describe PicturesController do
 
   before :each do
     @picture = mock_model(Picture)
+    @picture.stub!(:gallery).and_return([])
+    @picture.stub!(:tag_list).and_return([])
     @gallery = mock_model(Gallery)
   end
 
