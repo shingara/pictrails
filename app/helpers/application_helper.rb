@@ -65,4 +65,20 @@ module ApplicationHelper
   def link_gallery_with_number(gallery)
     link_to "#{gallery.title} [#{gallery.pictures.count}]", gallery_path(gallery), :class => ('current_gallery' if gallery == @gallery)
   end
+
+  # Generate the list by tree of Gallery in sidebar
+  def tree_gallery(gallery)
+    str = ""
+    if @gallery == gallery || @gallery.ancestors.include?(gallery)
+      str = "<ul>"
+      gallery.children.each do |gallery_child|
+        str += "<li>"
+        str += link_gallery_with_number(gallery_child)
+        str += tree_gallery(gallery_child)
+        str += "</li>"
+      end
+      str += "</ul>"
+    end
+    str
+  end
 end

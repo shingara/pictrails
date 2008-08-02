@@ -5,13 +5,7 @@
       <li>
         <%= link_gallery_with_number(gallery) %> 
         <% unless @gallery.nil? %>
-          <% if @gallery == gallery || @gallery.ancestors.include?(gallery) %>
-            <ul>
-              <% gallery.children.each do |gallery_child| %>
-                <li><%= link_gallery_with_number(gallery_child) %></li>
-              <% end %>
-            </ul>
-          <% end %>
+          <%= tree_gallery(gallery) %>
         <% end %>
       </li>
     <% end %>
