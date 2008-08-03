@@ -52,6 +52,11 @@ It's features are :
  * Delete the cache page in settings interface
  * Define the number of pictures by pagination Gallery
  * Define the number of gallery by pagination of Gallery's list
+ * Define a list of tag for pictures
+ * View a sidebar with all gallery in it tree
+ * Navigate with a breadcrumb
+ * View a cloud tag of all gallery
+ * Navigate by tag
 
     )
     spec = Gem::Specification.new do |s|
