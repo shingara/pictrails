@@ -1,6 +1,6 @@
 h1. Pictrails
 
-A Web Photo Gallery, written with Rails 2.0. Pictrails can manage several photo galleries.
+A Web Photo Gallery, written with Rails 2.1. Pictrails can manage several photo galleries.
 
 h2. Features
 
@@ -15,13 +15,18 @@ h2. Features
  * Delete the cache page in settings interface
  * Define the number of pictures by pagination Gallery
  * Define the number of gallery by pagination of Gallery's list
+ * Define a list of tag for pictures
+ * View a sidebar with all gallery in it tree
+ * Navigate with a breadcrumb
+ * View a cloud tag of all gallery
+ * Navigate by tag
 
 h2. Requirements
 
 Currently you need all of those things to get Pictrails to run:
 
- * Ruby On Rails 2.0.x (not already test with Rails 2.1.x)
- * Ruby of 1.8.6 (Rails 2.0.x is not yet ruby 1.9 compatible)
+ * Ruby On Rails 2.1.x
+ * Ruby of 1.8.6 or greater
  * A database supported by Rails ActiveRecord (MySQL, DB2, SQLite3, ...)
  * Ruby drivers for your database (obviously out of the box with Rails)
  * A gem of an image-handling API like :
