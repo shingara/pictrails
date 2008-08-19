@@ -243,7 +243,7 @@ describe Gallery, "with fixtures loaded" do
 
   describe "self.without_parent" do
     it 'should get all gallery who has no parent' do
-      Gallery.without_parent.should == [galleries(:gallery1), galleries(:gallery2), galleries(:gallery3)]
+      Gallery.without_parent.group_by(&:id).sort.should == [galleries(:gallery1), galleries(:gallery2), galleries(:gallery3)].group_by(&:id).sort
     end
   end
 
