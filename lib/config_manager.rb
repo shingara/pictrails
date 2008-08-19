@@ -7,7 +7,7 @@ module ConfigManager
 
 
   module ClassMethods
-   
+
     # Accessor of field.
     # @fields is a Hash if doesn't exist
     def fields
@@ -49,7 +49,9 @@ module ConfigManager
     # Made the item.name like a writer
     def add_setting_writer(item)
       self.send(:define_method, "#{item.name}=") do |newvalue|
+        old = send(item.name)
         retval = settings[item.name] = canonicalize(item.name, newvalue)
+        self.settings_changed << item.name unless old == retval
         unless new_record?
           self.settings_will_change!
         end

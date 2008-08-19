@@ -20,6 +20,7 @@ class Setting < ActiveRecord::Base
 
   after_save :change_thumbnail_size
   after_save :change_picture_size
+  after_save :empty_setting_changed
 
   def initialize
     super
@@ -36,6 +37,22 @@ class Setting < ActiveRecord::Base
     else
       s
     end
+  end
+
+  def change_size_thumbnails?
+    setting_changed?('thumbnail_max_width') || setting_changed?('thumbnail_max_height')
+  end
+
+  def settings_changed
+    @settings_changed ||= []
+  end
+
+  def empty_setting_changed
+    @settings_changed = []
+  end
+
+  def setting_changed?(field)
+    settings_changed.include? field
   end
 
 private
@@ -59,5 +76,6 @@ private
   def change_picture_size
     Picture.attachment_options[:resize_to] = "#{Setting.default.picture_max_width}x#{Setting.default.picture_max_height}>"
   end
+    
 
 end
