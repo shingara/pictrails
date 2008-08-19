@@ -3,7 +3,7 @@
 <h2>Picture : <%= @picture.title %></h2>
 
 <p>
-  <span><%= image_tag(@picture.public_filename) %></span>
+  <span><%= image_tag(@picture.public_filename(:view)) %></span>
 </p>
 
 <p>

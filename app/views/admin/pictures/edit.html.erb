@@ -27,7 +27,7 @@
   <fieldset class="set admin" style="display:block;">
     <ul>
       <li>
-        <%= image_tag @picture.public_filename %>
+        <%= image_tag @picture.public_filename(:view) %>
       </li>
       <li>
         <label class="float" for="gallery_id">Gallery :</label>
