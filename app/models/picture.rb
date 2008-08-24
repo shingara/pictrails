@@ -78,4 +78,10 @@ class Picture < ActiveRecord::Base
     return [] unless @tag_list
     tags.reject { |tag| @tag_list.include?(tag.name) }
   end
+
+  def update_thumb
+    tmp = self.create_temp_file
+    self.create_or_update_thumbnail(tmp, 'thumb', self.attachment_options[:thumbnails][:thumb])
+    tmp.delete
+  end
 end

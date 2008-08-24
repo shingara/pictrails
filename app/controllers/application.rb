@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery :secret => '9d6a74942666a6c164e479585234439c'
   
   before_filter :verify_config
+  before_filter :update_size_picture
  
 
 protected
@@ -28,6 +29,10 @@ protected
     else
       true
     end
+  end
+
+  def update_size_picture
+    Import.limited(5).picture_update.each {|import| import.update_size}
   end
 
 end
