@@ -85,14 +85,14 @@ describe Picture, "with fixtures loaded" do
     it 'should get one old tag because one delete' do
       pic = pictures(:picture1)
       pic.tag_list = 'tag2'
-      pic.old_tag.should == [(Tag.find_by_name 'ok'), (Tag.find_by_name 'ko')]
+      pic.old_tag.map(&:name).sort!.should == ['ok', 'ko'].sort
     end
     
     it 'should get one old tag because one delete after save' do
       pic = pictures(:picture1)
       pic.tag_list = 'tag2'
       pic.save
-      pic.old_tag.should == [(Tag.find_by_name 'ok'), (Tag.find_by_name 'ko')]
+      pic.old_tag.map(&:name).sort!.should == ['ok', 'ko'].sort
     end
   end
 end
