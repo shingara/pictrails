@@ -84,4 +84,10 @@ class Picture < ActiveRecord::Base
     self.create_or_update_thumbnail(tmp, 'thumb', self.attachment_options[:thumbnails][:thumb])
     tmp.delete
   end
+  
+  def update_view
+    tmp = self.create_temp_file
+    self.create_or_update_thumbnail(tmp, 'view', self.attachment_options[:thumbnails][:view])
+    tmp.delete
+  end
 end

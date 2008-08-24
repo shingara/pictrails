@@ -1,6 +1,7 @@
 class Import < ActiveRecord::Base
 
   THUMB = 1
+  VIEW = 2
 
   belongs_to :gallery
   belongs_to :picture
@@ -13,6 +14,10 @@ class Import < ActiveRecord::Base
   def update_size
     if type_pic == THUMB
       Picture.find(picture_id).update_thumb
+      destroy
+    end
+    if type_pic == VIEW
+      Picture.find(picture_id).update_view
       destroy
     end
   end

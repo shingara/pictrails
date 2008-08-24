@@ -42,6 +42,10 @@ class Setting < ActiveRecord::Base
   def change_size_thumbnails?
     setting_changed?('thumbnail_max_width') || setting_changed?('thumbnail_max_height')
   end
+  
+  def change_size_view?
+    setting_changed?('picture_max_width') || setting_changed?('picture_max_height')
+  end
 
   def settings_changed
     @settings_changed ||= []
@@ -78,8 +82,11 @@ private
   # Change the picture origin size
   # with size define in setting
   def change_picture_size
-    Picture.attachment_options[:resize_to] = "#{Setting.default.picture_max_width}x#{Setting.default.picture_max_height}>"
+    if change_size_view?
+      Picture.attachment_options[:thumbnails] = { 
+        :view => "#{Setting.default.picture_max_width}x#{Setting.default.picture_max_height}>"}
+      Picture.all.each {|pic| Import.create!(:picture_id => pic.id, :type_pic => Import::VIEW)}
+    end
   end
-    
 
 end
