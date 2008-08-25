@@ -1,0 +1,6 @@
+if @import_picture_update_total 
+  page.replace 'setting_update', :partial => 'follow_setting_update'
+  page.call 'refresh_setting_update'
+else
+  page.redirect_to admin_galleries_url
+end

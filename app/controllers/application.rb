@@ -32,7 +32,13 @@ protected
   end
 
   def update_size_picture
-    Import.limited(5).picture_update.each {|import| import.update_size}
+    if Import.picture_update.count > 0
+      Import.limited(5).picture_update.each { |import| 
+        import.update_size
+        @import_picture_update_total = import.total
+      }
+      @import_picture_update_count = Import.picture_update.count
+    end
   end
 
 end

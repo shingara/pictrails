@@ -1,0 +1,16 @@
+<% if @import_picture_update_total %>
+  <div id="setting_update">
+      <h3>Resizing pictures </h3>
+
+      <p>After update setting, there are <%= @import_picture_update_total %> picture to resizing, it remind <%= @import_picture_update_count %> pictures</p>
+
+      <table class="progress">
+        <tbody>
+          <tr>
+            <td width="<%= ((@import_picture_update_total - @import_picture_update_count) * 100) / @import_picture_update_total %>%" class="made" />
+            <td width="<%= (@import_picture_update_count * 100) / @import_picture_update_total %>%" class="wait"/>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+<% end %>

@@ -43,8 +43,7 @@ ActionController::Routing::Routes.draw do |map|
         :action => 'index', :page => /\d+/
     
     #Resources for settings
-    admin.connect 'settings/delete_cache', :controller => 'settings', :action => 'delete_cache'
-    admin.resources :settings 
+    admin.resources :settings , :collection => { :delete_cache => :any, :follow_setting_update => :any} 
     
     #Resources of gallerie
     admin.resources :galleries , :collection => {:mass_upload => :any, :follow_import => :any} do |gallery|

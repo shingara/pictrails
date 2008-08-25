@@ -74,8 +74,13 @@ private
   def change_thumbnail_size
     if change_size_thumbnails?
       Picture.attachment_options[:thumbnails] = { 
-        :thumb => "#{Setting.default.thumbnail_max_width}x#{Setting.default.thumbnail_max_height}>"}
-      Picture.all.each {|pic| Import.create!(:picture_id => pic.id, :type_pic => Import::THUMB)}
+        :thumb => "#{Setting.default.thumbnail_max_width}x#{Setting.default.thumbnail_max_height}>"
+      }
+      Picture.all.each { |pic| 
+        Import.create!(:picture_id => pic.id, 
+                        :type_pic => Import::THUMB, 
+                        :total => Picture.count)
+      }
     end
   end
   
@@ -84,8 +89,13 @@ private
   def change_picture_size
     if change_size_view?
       Picture.attachment_options[:thumbnails] = { 
-        :view => "#{Setting.default.picture_max_width}x#{Setting.default.picture_max_height}>"}
-      Picture.all.each {|pic| Import.create!(:picture_id => pic.id, :type_pic => Import::VIEW)}
+        :view => "#{Setting.default.picture_max_width}x#{Setting.default.picture_max_height}>"
+      }
+      Picture.all.each { |pic| 
+        Import.create!(:picture_id => pic.id, 
+                       :type_pic => Import::VIEW,
+                       :total => Picture.count)
+      }
     end
   end
 

@@ -1,0 +1,7 @@
+<% content_for(:javascript) do %>
+  <%= javascript_include_tag 'follow_setting_update' %> 
+<% end %>
+
+<p>If there are no refresh because you haven't javascript you can clic to refresh. Or navigate in administration part.</p>
+
+<p><%= link_to "refresh", :action => 'follow_setting_update' %></p>
