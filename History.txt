@@ -1,3 +1,8 @@
+ * Master
+
+* Minor ehancement
+  * Update will_paginate from 2.2.1 to 2.2.3
+
 == 0.4.0 / 2008-08-03
 
 * 5 Majors ehancements
