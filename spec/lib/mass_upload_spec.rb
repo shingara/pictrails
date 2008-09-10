@@ -25,7 +25,8 @@ describe Pictrails::MassUpload, "with fixtures loaded" do
 
   it "delete import if file doesn't exist" do
     Import.delete_all
-    Import.create!({:path => 'foo/bar.png'})
+    Picture.delete_all
+    Import.create!({:path => 'foo/bar.png', :gallery_id => galleries(:gallery1)})
     Import.count(:all).should == 1
     @class.upload_file
     Import.count(:all).should == 0
