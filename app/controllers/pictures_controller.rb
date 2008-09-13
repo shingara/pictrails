@@ -19,12 +19,32 @@ class PicturesController < ApplicationController
   # View only one picture
   def show
     @picture = Picture.find_by_permalink params[:id]
+    prepare_picture
+    @comment = @picture.comments.new
+  rescue ActiveRecord::RecordNotFound
+    render :file => "#{RAILS_ROOT}/public/404.html", :status => 404
+  end
+
+  def create_comment
+    @comment = Comment.create(params[:comment])
+    if @comment.save
+      flash[:notice] = 'You comment is save'
+      redirect_to picture_url(comment.picture) 
+    else
+      flash[:notice] = 'Your comment failed'
+      @picture = Picture.find(params[:comment][:picture_id])
+      prepare_picture
+      render :action => 'show'
+    end
+  end
+
+  private
+
+  def prepare_picture
     raise ActiveRecord::RecordNotFound if @picture.nil?
     @gallery = @picture.gallery
     @tags = @picture.tag_list
     @breadcrumb = @picture
-  rescue ActiveRecord::RecordNotFound
-    render :file => "#{RAILS_ROOT}/public/404.html", :status => 404
   end
 
 end

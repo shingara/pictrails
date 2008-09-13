@@ -81,4 +81,7 @@ module ApplicationHelper
     end
     str
   end
+
+  def add_error_message
+  end
 end
