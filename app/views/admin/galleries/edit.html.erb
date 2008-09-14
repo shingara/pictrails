@@ -57,8 +57,8 @@
 <% else %>
   <div id="admin_table" class="list">
     <table>
-      <thead>
-        <tr>
+      <tbody>
+        <tr class="first">
           <th class="first">Title</th>
           <th>Description</th>
           <th>Status</th>
@@ -66,16 +66,14 @@
           <th>Edit</th>
           <th class="last">Remove</th>
         </tr>
-      </thead>
-      <tbody>
         <% @gallery.pictures.each do |picture| %>
-          <tr>
+          <tr class="<%= cycle('shade', '') %>" >
             <td><%=link_to h(picture.title), admin_gallery_picture_url(@gallery, picture) %></td>
             <td><%=h picture.description %></td>
             <td><%=h status_value(picture.status)%> </td>
-            <td><%= link_to image_tag('/images/admin/show.png'), admin_gallery_picture_url(@gallery, picture) %></td>
-            <td><%= link_to image_tag('/images/admin/edit.png', :title => 'Edit picture', :alt => 'edit'), edit_admin_gallery_picture_url(@gallery, picture) %></td>
-            <td><%= link_to image_tag('/images/admin/remove.png', :title => 'Remove picture', :alt => 'remove'), {:controller => 'admin/pictures', :action => 'destroy', :gallery_id => @gallery, :id => picture}, :method => 'delete', :confirm => 'Are you sure ?' %></td>
+            <td class="operation"><%= link_to image_tag('admin/show.png'), admin_gallery_picture_url(@gallery, picture) %></td>
+            <td class="operation"><%= link_to image_tag('admin/edit.png', :title => 'Edit picture', :alt => 'edit'), edit_admin_gallery_picture_url(@gallery, picture) %></td>
+            <td class="operation last"><%= link_to image_tag('admin/delete.png', :title => 'Remove picture', :alt => 'remove'), {:controller => 'admin/pictures', :action => 'destroy', :gallery_id => @gallery, :id => picture}, :method => 'delete', :confirm => 'Are you sure ?' %></td>
           </tr>
         <% end %>
       </tbody>
