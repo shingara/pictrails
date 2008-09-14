@@ -26,10 +26,16 @@ class PicturesController < ApplicationController
   end
 
   def create_comment
+    unless request.post?
+      flash[:notice] = 'no comment save because GET request'
+      redirect_to picture_url(Picture.find(params[:comment][:picture_id]))
+      return
+    end
     @comment = Comment.create(params[:comment])
+    @comment.ip = request.remote_ip
     if @comment.save
-      flash[:notice] = 'You comment is save'
-      redirect_to picture_url(comment.picture) 
+      flash[:notice] = 'Your comment is save'
+      redirect_to picture_url(@comment.picture) 
     else
       flash[:notice] = 'Your comment failed'
       @picture = Picture.find(params[:comment][:picture_id])
