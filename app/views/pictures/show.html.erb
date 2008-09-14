@@ -10,9 +10,9 @@
   <%= @picture.description %>
 </p>
 
-<h3>Comments</h3>
+<h3><a id="comments">Comments</a></h3>
 
-<ol id="comment_list">
+<ol id="comment_list" class="comments">
   <%= render :partial => @picture.comments %>
 </ol>
 

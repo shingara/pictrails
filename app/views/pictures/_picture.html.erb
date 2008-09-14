@@ -4,5 +4,10 @@
         :style => 'display:block;' %>
   <span><%=h "#{picture.title}" %></span>
   <br />
-  <span><%= picture.description %></span>
+  <% unless picture.description.blank? %>
+    <span><%=h picture.description %></span>
+    <br />
+  <% end %>
+  <span>Add : <%=h picture.created_at %> </span><br />
+  <span><%= link_to(h("#{picture.comments.count} comments"), picture_url(picture, :anchor => 'comments')) %></span>
 <% end %>
