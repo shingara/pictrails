@@ -15,8 +15,8 @@
   <% if @galleries.empty? %>
   <% else %>
     <table>
-      <thead>
-        <tr>
+      <tbody>
+        <tr class="first">
           <th class="first">Name</th>
           <th>Number of Pictures</th>
           <th>Status</th>
@@ -24,16 +24,14 @@
           <th>Edit</th>
           <th class="last">Delete</th>
         </tr>
-      </thead>
-      <tbody>
         <% @galleries.each do |gallery| %>
-          <tr>
+          <tr class="<%= cycle('shade', '') %>" >
             <td><%= link_to h(gallery.name), admin_gallery_url(gallery) %></td>
             <td><%=h gallery.pictures.size %> </td>
             <td><%=h status_value(gallery.status)%> </td>
-            <td><%= link_to image_tag('/images/admin/show.png'), admin_gallery_url(gallery) %></td>
-            <td><%= link_to image_tag('/images/admin/edit.png', :title => 'Edit gallery', :alt => 'edit'), edit_admin_gallery_url(gallery) %></td> 
-            <td><%= link_to image_tag('/images/admin/remove.png', :title => 'Remove gallery', :alt => 'remove'), {:action => 'destroy', :id => gallery}, :method => 'delete', :confirm => "are you sure ?" %></td> 
+            <td class ="operation"><%= link_to image_tag('/images/admin/show.png'), admin_gallery_url(gallery) %></td>
+            <td class="operation"><%= link_to image_tag('/images/admin/edit.png', :title => 'Edit gallery', :alt => 'edit'), edit_admin_gallery_url(gallery) %></td> 
+            <td class="operation last" ><%= link_to image_tag('admin/delete.png', :title => 'Remove gallery', :alt => 'remove'), {:action => 'destroy', :id => gallery}, :method => 'delete', :confirm => "are you sure ?" %></td> 
           </tr>
         <% end %>
       </tbody>
