@@ -1,0 +1,35 @@
+<% @page_title = "Edit comment of #{h(@comment.picture.title)}" %>
+
+<% content_for 'tasks' do %>
+  <li>
+    <%= link_to 'List of Comments', admin_comments_url %>
+  </li>
+<% end %>
+
+<h2>Comments for <%=link_to(h(@comment.picture.title), admin_picture_url(@comment.picture)) %></h2>
+
+<%= error_messages_for 'comment' %>
+
+<% form_for @comment, :url => {:action => 'update', :controller => 'admin/comments'}, :method => 'update' do |f|%>
+  <div class="admin set">
+    <ul class="set admin" id="comment">
+      <li>
+        <label for="comment_author" class="block content">Author</label>
+        <%= f.text_field :author %>
+      </li>
+      <li>
+      <li>
+        <label for="comment_email" class="block content">Email</label>
+        <%= f.text_field :email %>
+      </li>
+      <li>
+        <label for="comment_body" class="block content">Content</label>
+        <%= f.text_area :body, { :height => '300', :cols => '100'} %>
+      </li>
+    </ul>
+  </div>
+  <p class="paginate r">
+    <%= link_to 'Cancel', :action => :index %> or 
+    <%= submit_tag 'Save &raquo;', :class => 'submit' %>
+  </p>
+<% end %>

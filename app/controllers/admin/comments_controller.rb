@@ -24,4 +24,24 @@ class Admin::CommentsController < Admin::BaseController
     redirect_to admin_comments_url
   end
 
+  # View the edit page of comment
+  def edit
+    @comment = Comment.find params[:id]
+  end
+
+  def update
+    unless request.put?
+      flash[:notice] = "you can't update a comment by get request"
+      redirect_to admin_comments_url
+      return
+    end
+    @comment = Comment.find params[:id]
+    if @comment.update_attributes(params[:comment])
+      flash[:notice] = "Comment is update"
+      redirect_to admin_comments_url
+    else
+      render :action => 'edit'
+    end
+  end
+
 end

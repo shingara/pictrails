@@ -14,6 +14,7 @@
         <th>Body</th>
         <th>IP address</th>
         <th>View</th>
+        <th>Edit</th>
         <th class="last">Delete</th>
       </tr>
       <% @comments.each do |comment| %>
@@ -26,6 +27,7 @@
           <td class="operation">
             <%= link_to image_tag('admin/show.png', :alt => "show", :title => "Show content"), :controller => 'comments', :action => 'show', :id => comment.id %>
           </td>
+          <td class="operation"><%= link_to image_tag('/images/admin/edit.png', :title => 'Edit gallery', :alt => 'edit'), edit_admin_comment_url(comment) %></td> 
           <td class="operation last"><%= link_to image_tag('admin/delete.png'), {:action => 'destroy', :id => comment.id}, :confirm => "Are you sure?", :method => :delete %></td>
         </tr>
       <% end %>
