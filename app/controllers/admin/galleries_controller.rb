@@ -31,7 +31,8 @@ class Admin::GalleriesController < Admin::BaseController
   # GET /galleries/#{permalink}/edit
   def edit
     @gallery = Gallery.find_by_permalink(params[:id])
-    render :status => 404 if @gallery.nil?
+    raise ActiveRecord::RecordNotFound if @gallery.nil?
+    @pictures = @gallery.pictures.paginate(:page => params[:page], :per_page => 20)
   end
 
   # POST /galleries

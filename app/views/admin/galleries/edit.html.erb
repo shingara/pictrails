@@ -66,7 +66,7 @@
           <th>Edit</th>
           <th class="last">Remove</th>
         </tr>
-        <% @gallery.pictures.each do |picture| %>
+        <% @pictures.each do |picture| %>
           <tr class="<%= cycle('shade', '') %>" >
             <td><%=link_to h(picture.title), admin_gallery_picture_url(@gallery, picture) %></td>
             <td><%=h picture.description %></td>
@@ -76,6 +76,9 @@
             <td class="operation last"><%= link_to image_tag('admin/delete.png', :title => 'Remove picture', :alt => 'remove'), {:controller => 'admin/pictures', :action => 'destroy', :gallery_id => @gallery, :id => picture}, :method => 'delete', :confirm => 'Are you sure ?' %></td>
           </tr>
         <% end %>
+        <td class="paginate" colspan="9">
+          <%= will_paginate @pictures %>
+        </td>
       </tbody>
     </table>
   </div>

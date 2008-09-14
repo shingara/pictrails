@@ -112,8 +112,9 @@ describe Admin::GalleriesController do
     end
 
     it 'should see 404 if id gallery not found' do
-      get :edit, :id => 10
-      assert_response 404
+      lambda {
+        get :edit, :id => 10
+      }.should raise_error(ActiveRecord::RecordNotFound)
     end
 
     it 'should update gallery in admin' do
