@@ -1,0 +1,16 @@
+<% @page_title = "Comment for #{h(@comment.picture.title)}" %>
+
+<% content_for 'tasks' do %>
+  <li>
+    <%= link_to 'List of Comments', admin_comments_url %>
+  </li>
+<% end %>
+
+<h2>Comments for <%=link_to(h(@comment.picture.title), admin_picture_url(@comment.picture)) %></h2>
+
+<ul class="admin set">
+  <li><label class="content">By <%=h @comment.author %> at <%= h @comment.created_at %></label></li>
+  <li><label>Email: </label> <%=h @comment.email %></li>
+  <li><label>Address IP: </label> <%=h @comment.ip %></li>
+  <li><label>Content: </label> <%=h @comment.body %></li>
+</ul>

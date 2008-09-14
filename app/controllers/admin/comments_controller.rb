@@ -6,4 +6,10 @@ class Admin::CommentsController < Admin::BaseController
       :per_page => 20
   end
 
+  # See a comment specific with params[:id].
+  # If no comment, render a 404
+  def show
+    @comment = Comment.find params[:id]
+  end
+
 end

@@ -10,7 +10,8 @@
         <th>Gallery name</th>
         <th>Author</th>
         <th>Body</th>
-        <th class="last">IP address</th>
+        <th>IP address</th>
+        <th>View</th>
       </tr>
       <% @comments.each do |comment| %>
         <tr class="<%= cycle('shade','') %>">
@@ -19,6 +20,9 @@
           <td><%=h comment.author %></td>
           <td><%=h comment.body %></td>
           <td><%=h comment.ip %></td>
+          <td class="operation">
+            <%= link_to image_tag('admin/show.png', :alt => "show", :title => "Show content"), :controller => 'comments', :action => 'show', :id => comment.id %>
+          </td>
         </tr>
       <% end %>
     </tbody>
