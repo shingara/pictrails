@@ -38,6 +38,7 @@ ActionController::Routing::Routes.draw do |map|
 
     #Resources of picture
     admin.resources :pictures 
+    admin.resources :comments
     #pagination of pictures
     admin.connect '/pictures/page/:page', :controller => 'pictures',
         :action => 'index', :page => /\d+/

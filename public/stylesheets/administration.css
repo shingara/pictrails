@@ -232,51 +232,34 @@ th.operation {
 }
 
 .list table {
+  border-bottom: 1px solid #DDDDDD;
+  border-collapse: collapse;
+  border-spacing: 0;
   width: 100%;
-	border-spacing: 0;
-	border-bottom: #ddd 1px solid;
 }
 
 .list table th {
-	background: url("../images/admin/table-header.png") #324e79 repeat-x;
-  text-align: left;
-  font-weight: bold;
+  color: #324e79;
+  font-size: 12px;
   padding: 2px 5px;
-/*  border-bottom: 4px solid #ccc; */
-  color: #fff;
-	height: 24px;
+  text-align: left;
 }
 
-.list table th.first {
-	background: url("../images/admin/table-header-first.png") #324e79 top left no-repeat;
-}
-
-.list table th.last {
-	background: url("../images/admin/table-header-last.png") #324e79 top right no-repeat;
-}
 .list table th a {
-	color: #fff;
-	text-decoration: underline;
+	color: #224272;
 }
 
 .list table tr td {
   padding: 3px;
 }
 
-.list table tr td.first {
-  border-left: #ddd 1px solid;
-}
-
-.list table tr td.last {
-  border-right: #ddd 1px solid;
-}
-
-.list table tr td a {
-	color: #224272;
-}
-
 tr.shade {
   background: #f7f7f7;
+}
+
+.list table tr.first {
+  border-bottom: 1px solid #324E79;
+  padding-bottom: 5px;
 }
 
 li.shade {

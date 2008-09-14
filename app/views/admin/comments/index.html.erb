@@ -1,0 +1,28 @@
+<% @page_title = "All comments" %>
+
+<h2>List of Comments</h2>
+
+<div id="comment_table" class="list">
+  <table>
+    <tbody>
+      <tr class="first">
+        <th class="first">Picture title</th>
+        <th>Gallery name</th>
+        <th>Author</th>
+        <th>Body</th>
+        <th class="last">IP address</th>
+      </tr>
+      <% @comments.each do |comment| %>
+        <tr class="<%= cycle('shade','') %>">
+          <td><%= comment.picture.title %></td>
+          <td><%= comment.picture.gallery.name %></td>
+          <td><%= comment.author %></td>
+          <td><%= comment.body %></td>
+          <td><%= comment.ip %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate @comments %>
