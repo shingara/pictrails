@@ -15,7 +15,7 @@
       <% @comments.each do |comment| %>
         <tr class="<%= cycle('shade','') %>">
           <td><%= link_to(h(comment.picture.title), admin_picture_url(comment.picture)) %></td>
-          <td><%=h comment.picture.gallery.name %></td>
+          <td><%= link_to(h(comment.picture.gallery.name), admin_gallery_url(comment.picture.gallery)) %></td>
           <td><%=h comment.author %></td>
           <td><%=h comment.body %></td>
           <td><%=h comment.ip %></td>
