@@ -1,4 +1,6 @@
 class Admin::CommentsController < Admin::BaseController
+  
+  cache_sweeper :picture_sweeper,  :only => [:create, :update, :destroy]
 
   # The index of comments view in admin
   def index

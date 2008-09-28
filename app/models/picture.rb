@@ -2,7 +2,7 @@ class Picture < ActiveRecord::Base
 
   belongs_to :gallery
   has_many :thumbnails, :foreign_key => 'parent_id'
-  has_many :comments
+  has_many :comments, :order => 'created_at ASC' 
   
   has_attachment :content_type => :image, 
       :storage => :file_system, 
