@@ -1,4 +1,6 @@
 <li id="comment-<%= comment.id %>">
-  <div class="author"><%=h comment.author %></div>
-  <div class="comment-content"><%=textilize comment.body %></div>
+  <div class="author">
+    <%=h comment.author %>
+  </div>
+  <div class="comment-content"><%=textilize(h(comment.body)) %></div>
 </li>

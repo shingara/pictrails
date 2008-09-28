@@ -12,5 +12,5 @@
   <li><label class="content">By <%=h @comment.author %> at <%= h @comment.created_at %></label></li>
   <li><label>Email: </label> <%=h @comment.email %></li>
   <li><label>Address IP: </label> <%=h @comment.ip %></li>
-  <li><label>Content: </label> <%=h @comment.body %></li>
+  <li><label>Content: </label> <%=textilize (h(@comment.body)) %></li>
 </ul>

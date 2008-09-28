@@ -10,7 +10,7 @@
       <tr class="first">
         <th class="first">Picture title</th>
         <th>Gallery name</th>
-        <th>Author</th>
+        <th>Author (email)</th>
         <th>Body</th>
         <th>IP address</th>
         <th>View</th>
@@ -21,8 +21,8 @@
         <tr class="<%= cycle('shade','') %>">
           <td><%= link_to(h(comment.picture.title), admin_picture_url(comment.picture)) %></td>
           <td><%= link_to(h(comment.picture.gallery.name), admin_gallery_url(comment.picture.gallery)) %></td>
-          <td><%=h comment.author %></td>
-          <td><%=h comment.body %></td>
+          <td><%=h comment.author %> (<%= h comment.email %>)</td>
+          <td><%=truncate(h(comment.body)) %></td>
           <td><%=h comment.ip %></td>
           <td class="operation">
             <%= link_to image_tag('admin/show.png', :alt => "show", :title => "Show content"), :controller => 'comments', :action => 'show', :id => comment.id %>
