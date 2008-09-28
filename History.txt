@@ -1,5 +1,9 @@
  * Master
 
+* Major ehancement
+  * Add comment on each picture. Each comment can be write by Redcloth format.
+    So Redcloth is now needed by pictrails
+
 * Minor ehancement
   * Update will_paginate from 2.2.1 to 2.2.3
 

@@ -29,6 +29,7 @@ Currently you need all of those things to get Pictrails to run:
  * Ruby of 1.8.6 or greater
  * A database supported by Rails ActiveRecord (MySQL, DB2, SQLite3, ...)
  * Ruby drivers for your database (obviously out of the box with Rails)
+ * Redcloth gem
  * A gem of an image-handling API like :
  ** ImageScience
  ** RMagick
