@@ -2,6 +2,9 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+
+  include Pictrails::CachingMethods
+
   helper :all # include all helpers, all the time
 
   # See ActionController::RequestForgeryProtection for details
@@ -10,6 +13,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :verify_config
   before_filter :update_size_picture
+  before_filter :skip_caching_filter
  
 
 protected
@@ -38,6 +42,12 @@ protected
         @import_picture_update_total = import.total
       }
       @import_picture_update_count = Import.picture_update.count
+    end
+  end
+
+  def skip_caching_filter
+    if flash[:notice]
+      @skip_caching = true
     end
   end
 

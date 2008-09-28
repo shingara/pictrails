@@ -3,6 +3,7 @@ class PictureSweeper < ActionController::Caching::Sweeper
   include PageCache 
   
   observe Picture
+  observe Comment
 
   def after_create(picture)
     expire_cache(picture)

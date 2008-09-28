@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
 
   caches_page :index, :show
+  cache_sweeper :picture_sweeper
 
   # View the index of picture, there are All pictures with pagination
   def index
