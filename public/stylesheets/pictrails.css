@@ -150,80 +150,95 @@ a.current_gallery {
     background:url(../../images/bg_white.png);
     padding:10px 35px 25px 10px;
     text-align: left;
+    margin-right: 200px;
 }
 
-    #commentform input {
-        width:180px;
-        padding:3px 3px 3px 23px;
-        margin: 15px;
-    }
+#commentform input {
+  width:180px;
+  padding:3px 3px 3px 23px;
+  margin: 15px;
+}
 
-    #commentform textarea {
-        padding:3px;
-        margin: 15px 0 15px 15px;
-        font-size:1em;
-        width:480px;
-    }
+#commentform textarea {
+  padding:3px;
+  margin: 15px 0 15px 15px;
+  font-size:1em;
+  width:480px;
+}
 
-    #commentform label {
-        float:left;
-        width: 150px;
-        text-align:right;
-        height:30px;
-        padding-top:15px;
-        margin-left: 50px;
-        line-height:0.7em
-    }
+#commentform label {
+  float:left;
+  width: 150px;
+  text-align:right;
+  height:30px;
+  padding-top:15px;
+  margin-left: 50px;
+  line-height:0.7em
+}
 
-    #commentform label small {
-        font-size:0.6em
-    }
+#commentform label small {
+  font-size:0.6em
+}
 
-    input#comment_author {
-        background:url(../../images/user50.png) no-repeat #FFF 2% 50%;
-    }
+input#comment_author {
+  background:url(../../images/user50.png) no-repeat #FFF 2% 50%;
+}
 
-    input#comment_author:hover {
-        background:url(../../images/user.png) no-repeat #FFF 2% 50%;
-    }
-    }                                                                                                                                                                                             
+input#comment_author:hover {
+  background:url(../../images/user.png) no-repeat #FFF 2% 50%;
+}
+}                                                                                                                                                                                             
 
-    input#comment_email {
-        background:url(../../images/email_open50.png) no-repeat #FFF 2% 50%;
-    }
+input#comment_email {
+  background:url(../../images/email_open50.png) no-repeat #FFF 2% 50%;
+}
 
-    input#comment_email:hover {
-        background:url(../../images/email_open.png) no-repeat #FFF 2% 50%;
-    }
+input#comment_email:hover {
+  background:url(../../images/email_open.png) no-repeat #FFF 2% 50%;
+}
 
-    input#comment_url {
-        background:url(../../images/world_link50.png) no-repeat #FFF 2% 50%;
-    }
+input#comment_url {
+  background:url(../../images/world_link50.png) no-repeat #FFF 2% 50%;
+}
 
-    input#comment_url:hover {
-        background:url(../../images/world_link.png) no-repeat #FFF 2% 50%;
-    }
+input#comment_url:hover {
+  background:url(../../images/world_link.png) no-repeat #FFF 2% 50%;
+}
 
-    input#form-preview-button {
-        background:url(../../images/page_edit50.png) no-repeat #f6e0c6 2% 50%;
-        width: 110px;
-        margin:0
-    }
+.author {
+  text-align: left;
+}
 
-    input#form-preview-button:hover {
-        background:url(../../images/page_edit.png) no-repeat #f6e0c6 2% 50%;
-    }
+.comment-content {
+  text-align: left;
+  background: url(../../images/bg_white.png);
+  margin-right: 200px;
+}
+
+input#form-preview-button {
+  background:url(../../images/page_edit50.png) no-repeat #f6e0c6 2% 50%;
+  width: 110px;
+  margin:0
+}
+
+input#form-preview-button:hover {
+  background:url(../../images/page_edit.png) no-repeat #f6e0c6 2% 50%;
+}
 
 
-    input#form-submit-button {
-        background:url(../../images/accept50.png) no-repeat #f6e0c6 2% 50%;
-        width: 110px;
-        margin:0
-    }
+input#form-submit-button {
+  background:url(../../images/accept50.png) no-repeat #f6e0c6 2% 50%;
+  width: 110px;
+  margin:0
+}
 
-    input#form-submit-button:hover {
-        background:url(../../images/accept.png) no-repeat #f6e0c6 2% 50%;
-    }
+input#form-submit-button:hover {
+  background:url(../../images/accept.png) no-repeat #f6e0c6 2% 50%;
+}
+
+p.buttons {
+text-align : right;
+}
 
 ol#commentList {
     margin-left: 25px;

@@ -37,9 +37,9 @@
       <%= f.label :body %>
       <%= f.text_area :body %>
     </p>
-    <p class="button">
+    <p class="buttons">
       <%= f.hidden_field :picture_id %>
-      <%= submit_tag %>
+      <%= submit_tag 'send', :id => 'form-submit-button'  %>
     </p>
   </div>
 <% end %>
