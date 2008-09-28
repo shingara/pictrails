@@ -22,7 +22,7 @@ class Admin::CommentsController < Admin::BaseController
     end
     comment = Comment.find(params[:id])
     comment.destroy
-    flash[:notice] = "Comment #{comment.id} is destroy"
+    flash[:notice] = "Comment destroy"
     redirect_to admin_comments_url
   end
 
