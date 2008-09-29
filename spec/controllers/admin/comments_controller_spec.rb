@@ -53,7 +53,7 @@ describe Admin::CommentsController do
         @comment.should_receive(:destroy).and_return(true)
         delete 'destroy', :id => @comment.id
         response.should redirect_to(admin_comments_url)
-        flash[:notice].should == "Comment #{@comment.id} is destroy"
+        flash[:notice].should == "Comment destroy"
       end
       
       it 'should render 404 if no id exist' do
