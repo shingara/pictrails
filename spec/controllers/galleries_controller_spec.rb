@@ -65,7 +65,7 @@ describe GalleriesController, 'should view the pagination' do
   
   it 'should not see the pagination' do
     # desactive the 2 galleries to have only one gallery
-    g = Gallery.find 3
+    g = galleries(:gallery3)
     g.status = false
     g.save
 
@@ -97,7 +97,7 @@ describe GalleriesController, 'should view the pagination when you show a galler
   
   it 'should not see the pagination' do
     set = Setting.default
-    set.pictures_pagination = 5
+    set.pictures_pagination = 10
     set.save
 
     get 'show', :id => 'gallery1'

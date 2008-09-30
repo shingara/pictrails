@@ -94,7 +94,7 @@ class Picture < ActiveRecord::Base
 
   def previous
     Picture.find(:first, :conditions => ['gallery_id = ? AND created_at <= ? AND id < ?', gallery.id, created_at, id],
-                  :order => 'created_at DESC, id ASC')
+                  :order => 'created_at DESC, id DESC')
   end
   
   def next

@@ -112,6 +112,7 @@ describe Picture, "with fixtures loaded" do
 
     it 'should get previous id if picture created in same time' do
       pictures(:picture5).previous.should == pictures(:picture4)
+      pictures(:picture6).previous.should == pictures(:picture5)
     end
 
   end
@@ -127,7 +128,7 @@ describe Picture, "with fixtures loaded" do
     end
     
     it 'should return nil if no next pictures' do
-      pictures(:picture5).next.should be_nil
+      pictures(:picture6).next.should be_nil
     end
     
     it 'should get next id if picture created in same time' do

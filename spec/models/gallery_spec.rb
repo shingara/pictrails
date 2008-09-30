@@ -13,11 +13,11 @@ describe Gallery, "with fixtures loaded" do
   end
 
   it "should have only one element in gallery 1" do
-    galleries(:gallery1).pictures.enable_size.should == 3 
+    galleries(:gallery1).pictures.enable_size.should == 4 
   end
 
   it "should have two elements in gallery 3" do
-    galleries(:gallery1).pictures.size.should == 4
+    galleries(:gallery1).pictures.size.should == 5
   end
 
   describe 'the new_empty method' do

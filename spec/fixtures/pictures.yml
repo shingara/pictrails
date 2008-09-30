@@ -72,6 +72,7 @@ picture4:
   updated_at: <%= 3.days.ago.to_s :db %>
 
 picture5:
+  id: 5
   gallery_id: 1
   content_type: image/jpeg
   filename: MyString5.jpg
@@ -84,6 +85,24 @@ picture5:
   title: MyString5
   permalink: mystring5
   description: MyText5
+  status: true
+  created_at: <%= 3.days.ago.to_s :db %>
+  updated_at: <%= 3.days.ago.to_s :db %>
+
+picture6:
+  id: 6
+  gallery_id: 1
+  content_type: image/jpeg
+  filename: MyString6.jpg
+  parent_id:
+  position: 
+  size: 1
+  width: 1
+  height: 1
+  position: 
+  title: MyString5
+  permalink: mystring6
+  description: MyText6
   status: true
   created_at: <%= 3.days.ago.to_s :db %>
   updated_at: <%= 3.days.ago.to_s :db %>
