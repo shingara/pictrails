@@ -13,11 +13,11 @@ describe Gallery, "with fixtures loaded" do
   end
 
   it "should have only one element in gallery 1" do
-    Gallery.find(1).pictures.enable_size.should == 2 
+    galleries(:gallery1).pictures.enable_size.should == 3 
   end
 
   it "should have two elements in gallery 3" do
-    Gallery.find(1).pictures.size.should == 3
+    galleries(:gallery1).pictures.size.should == 4
   end
 
   describe 'the new_empty method' do
@@ -149,7 +149,7 @@ describe Gallery, "with fixtures loaded" do
       end
 
       it 'should have 3 Imports save' do
-        Import.count.should == 3
+        Import.count.should == 5
       end
 
       it 'each import should have the same gallery_id' do
@@ -168,27 +168,29 @@ describe Gallery, "with fixtures loaded" do
 
     it 'should save all pictures in directory' do
       @gallery.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files/")
-      Import.count(:conditions => ['gallery_id = ?', @gallery.id]).should == 3
+      Import.count(:conditions => ['gallery_id = ?', @gallery.id]).should == 5
       imports = Import.find_all_by_gallery_id(@gallery.id).group_by(&:path)
       imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/rails.png")
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/rails-2.png")
+      imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/rails-3.png")
       imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.png")
       imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo-2.PNG")
       imports.each do |k,v|
         v.should have(1).items
-        v[0].total.should == 3
+        v[0].total.should == 5
       end
     end
     
     it 'should save all pictures in directory if there are no / in end of directory' do
       @gallery.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files")
-      Import.count(:conditions => ['gallery_id = ?', @gallery.id]).should == 3
+      Import.count(:conditions => ['gallery_id = ?', @gallery.id]).should == 5
       imports = Import.find_all_by_gallery_id(@gallery.id).group_by(&:path)
       imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/rails.png")
       imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo.png")
       imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo-2.PNG")
       imports.each do |k,v|
         v.should have(1).items
-        v[0].total.should == 3
+        v[0].total.should == 5
       end
     end
 
@@ -199,7 +201,7 @@ describe Gallery, "with fixtures loaded" do
 
     it 'should see files with sensitive case' do
       @gallery.insert_pictures("#{RAILS_ROOT}/spec/fixtures/files")
-      Import.count(:conditions => ['gallery_id = ?', @gallery.id]).should == 3
+      Import.count(:conditions => ['gallery_id = ?', @gallery.id]).should == 5
       imports = Import.find_all_by_gallery_id(@gallery.id).group_by(&:path)
       imports.keys.should be_include("#{RAILS_ROOT}/spec/fixtures/files/foo-2.PNG")
     end

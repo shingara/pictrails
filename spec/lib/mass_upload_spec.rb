@@ -15,15 +15,16 @@ describe Pictrails::MassUpload, "with fixtures loaded" do
     setting.save!
   end
 
-  it 'should upload file' do
-    Picture.count(:all, :conditions => ['gallery_id = ?', 1]).should == 3
-    Import.count(:all).should == 3
-    @class.upload_file
-    Import.count(:all).should == 0
+  it 'should upload file 3 files from 3 imports in database' do
     Picture.count(:all, :conditions => ['gallery_id = ?', 1]).should == 4
+    assert_difference "Picture.count(:all, :conditions => ['gallery_id = ?', 1])", 3 do
+      Import.count(:all).should == 3
+      @class.upload_file
+      Import.count(:all).should == 0
+    end
   end
 
-  it "delete import if file doesn't exist" do
+  it "delete import if file doesn't exist and no create picture" do
     Import.delete_all
     Picture.delete_all
     Import.create!({:path => 'foo/bar.png', :gallery_id => galleries(:gallery1)})
