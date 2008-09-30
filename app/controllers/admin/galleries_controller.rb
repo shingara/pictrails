@@ -82,6 +82,10 @@ class Admin::GalleriesController < Admin::BaseController
     end
   end
 
+  # View the form to create gallery by mass_upload
+  def new_by_mass_upload
+  end
+
   # Method to add mass upload with only one params
   # the params define the directory where all picture are
   def mass_upload

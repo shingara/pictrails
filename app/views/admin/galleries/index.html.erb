@@ -5,6 +5,9 @@
   <li>
     <%= link_to 'Add a Gallery', new_admin_gallery_url %>
   </li>
+  <li>
+    <%= link_to 'Add a Gallery by files in server', :controller => 'admin/galleries', :action => 'new_by_mass_upload' %>
+  </li>
 <% end %>
 
 <h2>List of Galleries</h2>

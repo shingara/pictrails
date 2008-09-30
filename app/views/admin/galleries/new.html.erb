@@ -1,4 +1,4 @@
-<% @page_title = "edit #{@gallery.name}" %>
+<% @page_title = "create gallery" %>
 
 <% content_for 'tasks' do %>
   <li>
@@ -37,21 +37,6 @@
         <%= f.submit 'Save &#187;', {:class=>'submit'} %>
       </li>
 
-    </ul>
-  </fieldset>
-<% end %>
-
-<% form_for(@gallery, :url => {:action => 'mass_upload'}, :html => {:id => 'mass_upload'}) do |f| %>
-  <fieldset class="set admin" style="display: block;">
-    <legend>Mass upload</legend>
-    <ul>
-      <li>
-        <label class="block" for="">Directory where are all pictures</label>
-        <%= text_field_tag :directory,{}, {:style => "width: 100%;"}%>
-      </li>
-      <li class="r">
-      <%= f.submit 'Add gallery &#187;', {:class=>'submit', :id => 'mass_upload_submit'} %>
-      </li>
     </ul>
   </fieldset>
 <% end %>

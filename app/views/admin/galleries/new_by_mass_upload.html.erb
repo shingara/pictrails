@@ -1,0 +1,28 @@
+<% @page_title = "create gallery by files in server" %>
+
+<% content_for 'tasks' do %>
+  <li>
+    <%= link_to 'List of Galleries', admin_galleries_url %>
+  </li>
+<% end %>
+
+<h2>Manage galleries</h2>
+
+<%= error_messages_for :gallery %>
+<%= flash_notice %>
+
+<h3>Create gallery by files in server</h3>
+
+<% form_for('gallery', :url => {:action => 'mass_upload'}, :html => {:id => 'mass_upload'}) do |f| %>
+  <fieldset class="set admin" style="display: block;">
+    <ul>
+      <li>
+        <label class="block" >Directory on server where are all pictures</label>
+        <%= text_field_tag :directory,{}, {:style => "width: 100%;"}%>
+      </li>
+      <li class="r">
+      <%= f.submit 'Add gallery &#187;', {:class=>'submit', :id => 'mass_upload_submit'} %>
+      </li>
+    </ul>
+  </fieldset>
+<% end %>
