@@ -91,4 +91,14 @@ class Picture < ActiveRecord::Base
     self.create_or_update_thumbnail(tmp, 'view', self.attachment_options[:thumbnails][:view])
     tmp.delete
   end
+
+  def previous
+    Picture.find(:first, :conditions => ['gallery_id = ? AND created_at < ?', gallery.id, created_at],
+                  :order => 'created_at DESC')
+  end
+  
+  def next
+    Picture.find(:first, :conditions => ['gallery_id = ? AND created_at > ?', gallery.id, created_at],
+                  :order => 'created_at ASC')
+  end
 end

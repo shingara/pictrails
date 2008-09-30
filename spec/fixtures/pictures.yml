@@ -68,5 +68,5 @@ picture4:
   permalink: mystring4
   description: MyText4
   status: true
-  created_at: <%= 4.days.ago.to_s :db %>
-  updated_at: <%= 4.days.ago.to_s :db %>
+  created_at: <%= 3.days.ago.to_s :db %>
+  updated_at: <%= 3.days.ago.to_s :db %>

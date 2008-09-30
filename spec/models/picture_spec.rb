@@ -95,4 +95,36 @@ describe Picture, "with fixtures loaded" do
       pic.old_tag.map(&:name).sort!.should == ['ok', 'ko'].sort
     end
   end
+
+  describe " #previous" do
+
+    it 'should return the previous picture in same gallery if no picture in other gallery between 2 pictures' do
+      pictures(:picture2).previous.should == pictures(:picture1)
+    end
+    
+    it 'should return the previous picture in same gallery if picture in other gallery between 2 pictures' do
+      pictures(:picture4).previous.should == pictures(:picture2)
+    end
+
+    it 'should return nil if no previous pictures' do
+      pictures(:picture1).previous.should be_nil
+    end
+
+  end
+  
+  describe " #next" do
+
+    it 'should return the next picture in same gallery if no picture in other gallery between 2 pictures' do
+      pictures(:picture1).next.should == pictures(:picture2)
+    end
+    
+    it 'should return the next picture in same gallery if picture in other gallery between 2 pictures' do
+      pictures(:picture2).next.should == pictures(:picture4)
+    end
+    
+    it 'should return nil if no next pictures' do
+      pictures(:picture4).next.should be_nil
+    end
+
+  end
 end
