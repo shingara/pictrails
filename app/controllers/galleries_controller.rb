@@ -23,7 +23,8 @@ class GalleriesController < ApplicationController
     else
       @breadcrumb = @gallery
       @tags = @gallery.tag_counts
-      @sub_content = @gallery.children.paginate_by_status(true, 
+      @sub_content = @gallery.children.paginate_by_status(true,
+                                                          :order => 'created_at ASC, id ASC',
                                                           :page => params[:page],
                                                           :per_page => this_webapp.pictures_pagination,
                                                           :total_entries => (@gallery.nb_content))
@@ -34,12 +35,14 @@ class GalleriesController < ApplicationController
         if @sub_content.empty?
           @sub_content.replace(@sub_content + 
                                @gallery.pictures.paginate_by_status(true,
+                                                                    :order => 'created_at ASC, id ASC',
                                                                     :page => (page),
                                                                     :per_page => per_page,
                                                                     :shift => @gallery.diff_paginate)) 
         else
           @sub_content.replace(@sub_content + 
                                @gallery.pictures.paginate_by_status(true,
+                                                                    :order => 'created_at ASC, id ASC',
                                                                     :page => page,
                                                                     :per_page => per_page)) 
         end
