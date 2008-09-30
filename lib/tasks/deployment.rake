@@ -57,12 +57,13 @@ It's features are :
  * Navigate with a breadcrumb
  * View a cloud tag of all gallery
  * Navigate by tag
+ * Comments on each pictures
 
     )
     spec = Gem::Specification.new do |s|
       s.name = PKG_NAME
       s.version = PKG_VERSION
-      s.summary = "A Web Photo Gallery, written with Rails 2.0. Pictrails can manage several photo galleries."
+      s.summary = "A Web Photo Gallery, written with Rails on rails, Pictrails can manage several photo galleries."
       s.has_rdoc = false
       
       s.files = File.read("Manifest.txt").delete("\r").split(/\n/)
@@ -96,8 +97,6 @@ It's features are :
                ("#{pkg}.zip")].compact
 
       puts "Releasing Pictrails v. #{PKG_VERSION}"
-      require 'ruby-debug'
-      debugger
       rf.add_release PKG_NAME, PKG_NAME, "#{PKG_NAME}-#{PKG_VERSION}", *files
     end
 

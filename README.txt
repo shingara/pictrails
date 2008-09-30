@@ -20,6 +20,7 @@ h2. Features
  * Navigate with a breadcrumb
  * View a cloud tag of all gallery
  * Navigate by tag
+ * Comments on each pictures
 
 h2. Requirements
 

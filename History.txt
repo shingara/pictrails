@@ -1,12 +1,16 @@
- * Master
+== 0.5.0 / 2008-10-01
 
 * Major ehancement
   * Add comment on each picture. Each comment can be write by Redcloth format.
     So Redcloth is now needed by pictrails
+  * Add view of previous and next picture in same gallery when you see a
+    picture
 
 * Minor ehancement
   * Update will_paginate from 2.2.1 to 2.2.3
   * Separate the creation of gallery with files in server
+  * Ordering all picture by created_at and id when you see all picture from a
+    gallery
 
 == 0.4.0 / 2008-08-03
 
