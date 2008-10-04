@@ -1,6 +1,6 @@
 class CreateViewPicture < ActiveRecord::Migration
   def self.up
-    Picture.all do |pic|
+    Picture.all.each do |pic|
       unless File.exist?(File.join(RAILS_ROOT, 'public', pic.public_filename(:view)))
         File.cp(File.join(RAILS_ROOT, 'public', pic.public_filename), File.join(RAILS_ROOT, 'public', pic.public_filename(:view)))
       end
