@@ -12,7 +12,7 @@ namespace :pictrails do
     desc 'Generate manifest'
     task :generate_manifest do
       require 'find'
-      exclude = Regexp.union "tmp$", "\.svn", "\.git", 
+      exclude = Regexp.union "tmp$", "\.svn", "\.git", "email.txt", 
         /config\/database.yml$/, /\.sqlite3$/, "website.rake$", 
         "release.rake$", /txt2html$/, "website", "pkg", /\.log/, 
         /^tmp\//, /^\.\/coverage\//, /^\.\/doc\//, 

@@ -97,6 +97,7 @@ db/migrate/010_add_parent_id_for_gallery.rb
 db/migrate/20080618220812_acts_as_taggable_migration.rb
 db/migrate/20080824170446_add_picture_id_in_import.rb
 db/migrate/20080910173454_create_comments.rb
+db/migrate/20081004162418_create_view_picture.rb
 db/schema.rb
 lib/authenticated_system.rb
 lib/authenticated_test_helper.rb

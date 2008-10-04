@@ -1,3 +1,8 @@
+== 0.5.1 / 2008-10-04
+
+* 1 Major fix bug
+  * Add migration if you become from pictrails 0.4.0, because no picture view
+
 == 0.5.0 / 2008-10-01
 
 * 2 Major ehancements
