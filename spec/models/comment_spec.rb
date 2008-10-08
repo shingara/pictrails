@@ -21,4 +21,11 @@ describe Comment do
     comment.should_not be_valid
     comment.errors.on(:email).should == 'is invalid'
   end
+
+  it 'should be delete if picture where comment is associate is delete' do
+    comment_id = Comment.create(valid_comment).id
+    picture = Picture.find 1
+    picture.destroy
+    lambda{ Comment.find(comment_id)}.should raise_error(ActiveRecord::RecordNotFound)
+  end
 end
