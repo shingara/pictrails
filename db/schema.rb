@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081004162418) do
+ActiveRecord::Schema.define(:version => 20081009062522) do
 
   create_table "comments", :force => true do |t|
     t.string   "title"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20081004162418) do
     t.date    "updated_at"
     t.string  "permalink"
     t.integer "parent_id"
+    t.integer "picture_id"
   end
 
   add_index "galleries", ["name"], :name => "index_galleries_on_name", :unique => true

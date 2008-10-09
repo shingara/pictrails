@@ -6,6 +6,8 @@ class Gallery < ActiveRecord::Base
     end
   end
 
+  has_one :picture_default, :class_name => "Picture"
+
   acts_as_tree :order => :name
 
   validates_presence_of :name, :message => 'is needed for your gallery'
