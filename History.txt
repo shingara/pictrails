@@ -1,3 +1,8 @@
+== Master
+
+* Choose the front picture of gallery
+* Choose a random front picture of gallery
+
 == 0.5.2 / 2008-10-04
 
 * 1 Major fix bug

@@ -6,7 +6,7 @@ class Gallery < ActiveRecord::Base
     end
   end
 
-  has_one :picture_default, :class_name => "Picture"
+  belongs_to :picture_default, :class_name => "Picture", :foreign_key => 'picture_id'
 
   acts_as_tree :order => :name
 
@@ -160,6 +160,18 @@ class Gallery < ActiveRecord::Base
       r.generation_structure.match(/"\/galleries\/([\w]+)/)[1] rescue nil
     }.uniq.compact
     @@permalinks.include?(permalink)
+  end
+
+  def random_front_picture
+    self.picture_default = pictures[rand(pictures.count)]
+  end
+
+  def picture_default_id
+    self.picture_id
+  end
+
+  def picture_default_id=(id)
+    self.picture_id = id
   end
 
   # Retrieve all Gallery without the gallery

@@ -107,4 +107,13 @@ class Admin::GalleriesController < Admin::BaseController
       format.js{render :layout => false}
     end
   end
+
+
+  # Search a picture by random in gallery
+  # and return it
+  def random_front_picture
+    edit
+    @gallery.random_front_picture
+    render :action => 'edit'
+  end
 end

@@ -18,37 +18,61 @@
 
 <%= flash_notice %>
 
-<h3>Editing the gallery</h3>
-<% form_for([:admin, @gallery]) do |f| %>
-  <fieldset class="set admin" style="display: block;">
-    <ul>
-      <li>
-        <label class="block" for="name">Name :</label>
-        <%= f.text_field :name %>
-      </li>
-      <li>
-        <label class="block" for="description">Description :</label>
-        <%= f.text_area :description, :style => "width : 100%;" %>
-      </li>
-      <li>
-        <label class="float" for="status">Status :</label>
-        <%= f.check_box :status %>
-      </li>
-      <li>
-        <label class="float" for="parent_id">Gallery master :</label>
-        <%= f.collection_select :parent_id, Gallery.find_without(@gallery), :id, :name , :include_blank => true%>
-      </li>
-      <li class="r">
-        <%= f.submit 'Save &#187;', {:class=>'submit'} %>
-      </li>
+<div id="main_admin">
+  <div id="left_admin">
+    <h3>Editing the gallery</h3>
+    <% form_for([:admin, @gallery]) do |f| %>
+      <fieldset class="set admin" style="display: block;">
+        <ul>
+          <li>
+            <label class="block" for="name">Name :</label>
+            <%= f.text_field :name %>
+          </li>
+          <li>
+            <label class="block" for="description">Description :</label>
+            <%= f.text_area :description, :style => "width : 100%;" %>
+          </li>
+          <li>
+            <label class="float" for="status">Status :</label>
+            <%= f.check_box :status %>
+          </li>
+          <li>
+            <label class="float" for="parent_id">Gallery master :</label>
+            <%= f.collection_select :parent_id, Gallery.find_without(@gallery), :id, :name , :include_blank => true%>
+          </li>
+          <li class="r">
+            <%= f.submit 'Save &#187;', {:class=>'submit'} %>
+          </li>
 
-    </ul>
-  </fieldset>
-<% end %>
+        </ul>
+      </fieldset>
+    <% end %>
+  </div>
+
+  <div id="right_admin">
+    <h3>Define front picture</h3>
+    <% form_for([:admin, @gallery]) do |f| %>
+      <fieldset class="set admin" style="display: block;">
+        <ul>
+          <li class="c">
+            <%= image_tag @gallery.public_filename(:thumb) %>
+          </li>
+          <li class="c">
+            <%= f.hidden_field :picture_default_id %>
+            <%= link_to 'random picture', :action => 'random_front_picture', :id => @gallery.permalink %>
+          </li>
+          <li class="r">
+            <%= f.submit 'Save &#187;', {:class=>'submit'} %>
+          </li>
+        </ul>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
 
 
 
-<h1>List of Pictures in gallery</h1>
+<h1 class="clear">List of Pictures in gallery</h1>
 
 <% if @gallery.pictures.empty? %>
   <p>

@@ -353,6 +353,25 @@ td.paginate {
 	padding: 3px;	
 }
 
+#main_admin {
+  display: block;
+}
+
+#left_admin {
+  width: 49%;
+  float: left;
+}
+
+#right_admin {
+  width: 49%;
+  float: right;
+  margin-bottom:0px;
+}
+
+.clear {
+  clear:both;
+}
+
 #article_form input.large,
 #article_form textarea.large ,
 #article_form select.large,

@@ -47,7 +47,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :settings , :collection => { :delete_cache => :any, :follow_setting_update => :any} 
     
     #Resources of gallerie
-    admin.resources :galleries , :collection => {:new_by_mass_upload => :any, :mass_upload => :any, :follow_import => :any} do |gallery|
+    admin.resources :galleries , :collection => {:random_front_picture => :any, :new_by_mass_upload => :any, :mass_upload => :any, :follow_import => :any} do |gallery|
       gallery.resources :pictures
       gallery.connect 'page/:page', :controller => 'galleries', :action => 'show', :page => /\d+/
     end
