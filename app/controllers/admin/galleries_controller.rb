@@ -116,4 +116,17 @@ class Admin::GalleriesController < Admin::BaseController
     @gallery.random_front_picture
     render :action => 'edit'
   end
+
+  # Define a picture like front picture to
+  # a gallery
+  # params are :
+  #  * id : gallery_id
+  #  * picture_id : the id of picture define like front
+  # Redirect_to edit page where the new front picture is define and see
+  def define_front
+    gallery = Gallery.find params[:id]
+    gallery.picture_default_id = params[:picture_id]
+    gallery.save
+    redirect_to edit_admin_gallery_url(gallery)
+  end
 end

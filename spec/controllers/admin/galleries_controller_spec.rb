@@ -178,6 +178,7 @@ describe Admin::GalleriesController do
       end
     end
 
+
     describe 'test the mass_upload page' do
 
       it 'should add gallery by mass_upload with a good directory' do
@@ -243,5 +244,20 @@ describe Admin::GalleriesController do
       g.parent_id.should == 1
     end
 
+    describe 'define front picture' do
+
+      before :each do
+        @gallery = mock_model(Gallery, :permalink => 'ok')
+      end
+
+      it 'should change picture' do
+        Gallery.should_receive(:find).with("1").and_return(@gallery)
+        @gallery.should_receive(:picture_default_id=).with("2").and_return(2)
+        @gallery.should_receive(:save).and_return(true)
+        post 'define_front', :id => 1, :picture_id => 2
+        response.should redirect_to(edit_admin_gallery_url(@gallery))
+      end
+
+    end
   end
 end

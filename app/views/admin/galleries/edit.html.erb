@@ -98,6 +98,7 @@
             <td class="operation"><%= link_to image_tag('admin/show.png'), admin_gallery_picture_url(@gallery, picture) %></td>
             <td class="operation"><%= link_to image_tag('admin/edit.png', :title => 'Edit picture', :alt => 'edit'), edit_admin_gallery_picture_url(@gallery, picture) %></td>
             <td class="operation last"><%= link_to image_tag('admin/delete.png', :title => 'Remove picture', :alt => 'remove'), {:controller => 'admin/pictures', :action => 'destroy', :gallery_id => @gallery, :id => picture}, :method => 'delete', :confirm => 'Are you sure ?' %></td>
+            <td class="operation last" ><%= link_to 'front gallery', {:action => 'define_front', :id => @gallery.id, :picture_id => picture.id}, :method => 'post' %></td> 
           </tr>
         <% end %>
         <td class="paginate" colspan="9">
