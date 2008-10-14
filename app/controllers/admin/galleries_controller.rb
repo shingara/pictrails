@@ -125,8 +125,13 @@ class Admin::GalleriesController < Admin::BaseController
   # Redirect_to edit page where the new front picture is define and see
   def define_front
     gallery = Gallery.find params[:id]
+    picture = Picture.find params[:picture_id]
     gallery.picture_default_id = params[:picture_id]
-    gallery.save
+    if gallery.save
+      flash[:notice] = "You have define the picture #{picture.title} like front of gallery #{gallery.name}"
+    else
+      flash[:notice] = "You can't define the picture #{picture.title} like front of gallery #{gallery.name}"
+    end
     redirect_to edit_admin_gallery_url(gallery)
   end
 end

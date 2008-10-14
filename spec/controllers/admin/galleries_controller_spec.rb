@@ -247,15 +247,28 @@ describe Admin::GalleriesController do
     describe 'define front picture' do
 
       before :each do
-        @gallery = mock_model(Gallery, :permalink => 'ok')
+        @gallery = mock_model(Gallery, :permalink => 'ok', :name => 'ok')
+        @picture = mock_model(Picture, :title => 'picture')
       end
 
       it 'should change picture' do
         Gallery.should_receive(:find).with("1").and_return(@gallery)
+        Picture.should_receive(:find).with("2").and_return(@picture)
         @gallery.should_receive(:picture_default_id=).with("2").and_return(2)
         @gallery.should_receive(:save).and_return(true)
         post 'define_front', :id => 1, :picture_id => 2
         response.should redirect_to(edit_admin_gallery_url(@gallery))
+        flash[:notice].should == "You have define the picture #{@picture.title} like front of gallery #{@gallery.name}"
+      end
+      
+      it "should can't change picture" do
+        Gallery.should_receive(:find).with("1").and_return(@gallery)
+        Picture.should_receive(:find).with("2").and_return(@picture)
+        @gallery.should_receive(:picture_default_id=).with("2").and_return(2)
+        @gallery.should_receive(:save).and_return(false)
+        post 'define_front', :id => 1, :picture_id => 2
+        response.should redirect_to(edit_admin_gallery_url(@gallery))
+        flash[:notice].should == "You can't define the picture #{@picture.title} like front of gallery #{@gallery.name}"
       end
 
     end
