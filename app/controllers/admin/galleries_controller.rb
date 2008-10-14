@@ -132,6 +132,7 @@ class Admin::GalleriesController < Admin::BaseController
     else
       flash[:notice] = "You can't define the picture #{picture.title} like front of gallery #{gallery.name}"
     end
-    redirect_to edit_admin_gallery_url(gallery)
+    params[:page] = 1 if params[:page].blank?
+    redirect_to edit_admin_gallery_url(gallery, :page => params[:page])
   end
 end
