@@ -1,0 +1,2 @@
+page.replace 'front_picture', image_tag(@gallery.public_filename(:thumb), :id => 'front_picture')
+page.replace 'front_picture_hidden', hidden_field(:gallery, :picture_default_id , :id => 'front_picture_hidden')

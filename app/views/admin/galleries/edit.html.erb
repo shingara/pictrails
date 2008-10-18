@@ -55,11 +55,11 @@
       <fieldset class="set admin" style="display: block;">
         <ul>
           <li class="c">
-            <%= image_tag @gallery.public_filename(:thumb) %>
+            <%= image_tag @gallery.public_filename(:thumb), :id => 'front_picture' %>
           </li>
           <li class="c">
-            <%= f.hidden_field :picture_default_id %>
-            <%= link_to 'random picture', :action => 'random_front_picture', :id => @gallery.permalink %>
+            <%= f.hidden_field :picture_default_id , :id => 'front_picture_hidden' %>
+            <%= link_to 'random picture', {:action => 'random_front_picture', :id => @gallery.permalink}, :id => 'random_front_picture' %>
           </li>
           <li class="r">
             <%= f.submit 'Save &#187;', {:class=>'submit'} %>
