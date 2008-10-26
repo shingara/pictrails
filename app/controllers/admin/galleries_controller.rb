@@ -112,9 +112,16 @@ class Admin::GalleriesController < Admin::BaseController
   # Search a picture by random in gallery
   # and return it
   def random_front_picture
-    edit
+    if request.xhr?
+      @gallery = Gallery.find_by_permalink params[:id]
+    else
+      edit
+    end
     @gallery.random_front_picture
-    render :action => 'edit'
+    respond_to do |format|
+      format.html {render :action => 'edit'}
+      format.js {}
+    end
   end
 
   # Define a picture like front picture to
