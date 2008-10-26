@@ -77,8 +77,7 @@ source with the following command :
 
 After a clone you need update the submodule :
 
-<kbd>git submodule init</kbd>
-<kbd>git submodule update</kbd>
+<kbd>git submodule init && git submodule update</kbd>
 
 A "redmine development platform":http://dev.shingara.fr/projects/show/3 is
 used. Feel free to post your feature requests and defects report.
