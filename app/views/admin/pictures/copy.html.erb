@@ -1,0 +1,19 @@
+<% @page_title = "Copy #{@picture.title} to another gallery" %>
+
+<% tasks %> 
+
+<h2>Copy picture to another gallery</h2>
+
+<% form_tag copy_admin_picture_url(@picture) do %>
+  <fieldset class="set admin" style="display: block;">
+    <ul>
+      <li>
+        <label class="block" >Gallery where copy picture :</label>
+        <%= collection_select :picture, :to_gallery_id, Gallery.all.delete_if{|g| g == @picture.gallery}, :id, :name %>
+      </li>
+      <li class="r">
+      <%= submit_tag 'Copy to gallery &#187;', {:class=>'submit'} %>
+      </li>
+    </ul>
+  </fieldset>
+<% end %>

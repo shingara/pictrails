@@ -37,7 +37,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resource :session
 
     #Resources of picture
-    admin.resources :pictures 
+    admin.resources :pictures
     admin.resources :comments
     #pagination of pictures
     admin.connect '/pictures/page/:page', :controller => 'pictures',
@@ -49,7 +49,9 @@ ActionController::Routing::Routes.draw do |map|
     #Resources of gallerie
     admin.resources :galleries , :collection => {:random_front_picture => :any, :new_by_mass_upload => :any, :mass_upload => :any, 
       :follow_import => :any, :define_front => :post} do |gallery|
-      gallery.resources :pictures
+      gallery.resources :pictures do |gallery_pic|
+        gallery_pic.connect 'copy', :controller => 'pictures', :action => 'copy'
+      end
       gallery.connect 'page/:page', :controller => 'galleries', :action => 'show', :page => /\d+/
     end
 

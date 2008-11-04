@@ -10,13 +10,13 @@ class Admin::PicturesController < Admin::BaseController
   # View the Picture when your are logged
   def show
     @picture = Picture.find_by_permalink params[:id]
-    render :status => 404 if @picture.nil?
+    raise ActiveRecord::RecordNotFound if @picture.nil?
   end
 
   # View the form to edit the picture
   def edit
     @picture = Picture.find_by_permalink params[:id]
-    render :status => 404 if @picture.nil?
+    raise ActiveRecord::RecordNotFound if @picture.nil?
   end
   
   # View a form to add a new picture in a gallery
@@ -74,6 +74,14 @@ class Admin::PicturesController < Admin::BaseController
       format.html { redirect_to(edit_admin_gallery_url(params[:gallery_id])) }
       format.xml  { head :ok }
     end
+  end
+
+
+  # Copy a picture to other Gallery
+  # get request => View
+  # post request => Copy and redirect
+  def copy
+    @picture = Picture.find_by_permalink(params[:picture_id])
   end
 
 private

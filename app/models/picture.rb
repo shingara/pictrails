@@ -22,7 +22,9 @@ class Picture < ActiveRecord::Base
   
   validates_associated :gallery, :messsage => 'is needed for you picture'
   
-  before_validation :define_permalink
+  before_save :define_permalink
+
+  attr_accessor :to_gallery_id
 
   acts_as_taggable
 

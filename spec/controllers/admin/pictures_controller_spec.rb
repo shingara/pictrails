@@ -4,6 +4,7 @@ describe Admin::PicturesController , 'with no import' do
   controller_name 'admin/pictures'
   fixtures :galleries, :pictures, :thumbnails, :users
   include AuthenticatedTestHelper
+  integrate_views
 
   before (:each) do
     Import.delete_all
@@ -24,8 +25,9 @@ describe Admin::PicturesController , 'with no import' do
   end
 
   it 'should return 404 if no picture in show' do
-    get :show, :id => 'unknow_picture', :gallery_id => galleries(:gallery1).permalink
-    response.response_code.should == 404
+    lambda {
+      get :show, :id => 'unknow_picture', :gallery_id => galleries(:gallery1).permalink
+    }.should raise_error(ActiveRecord::RecordNotFound)
   end
   
   it 'should see edit picture' do
@@ -35,15 +37,12 @@ describe Admin::PicturesController , 'with no import' do
   end
 
   it 'should return 404 if no picture in edit' do
-    get :edit, :id => 'unknow_picutre', :gallery_id => galleries(:gallery1).permalink
-    response.response_code.should == 404
+    lambda {
+      get :edit, :id => 'unknow_picutre', :gallery_id => galleries(:gallery1).permalink
+    }.should raise_error(ActiveRecord::RecordNotFound)
   end
 
   it 'should see new page of picture in admin' do
-    picture = mock_model(Picture)
-    Picture.should_receive(:new).and_return(picture)
-    picture.should_receive(:status=).with(true)
-    picture.should_receive(:gallery=).with(galleries(:gallery1))
     get :new, :gallery_id => galleries(:gallery1).permalink
     response.should be_success
     response.should render_template('new')
@@ -64,6 +63,7 @@ describe Admin::PicturesController , 'with no import' do
     put :update, :id => pictures(:picture1).permalink, :gallery_id => galleries(:gallery1).permalink, :picture => {:title => ''}
     response.should be_success
     response.should render_template('edit')
+    assigns(:picture).title.should == ''
     p = Picture.find 1
     p.title.should_not == ''
   end
@@ -109,6 +109,23 @@ describe Admin::PicturesController , 'with no import' do
   #Delete this example and add some real ones
   it "should use Admin::PicturesController" do
     controller.should be_an_instance_of(Admin::PicturesController)
+  end
+
+  describe 'copy action' do
+
+    it 'should view copy form if get request' do
+      get :copy, :picture_id => pictures(:picture1).permalink, :gallery_id => pictures(:picture1).gallery.permalink
+      response.should be_success
+      response.should render_template('copy')
+    end
+
+    it 'should copy picture to other gallery if post request' do
+      assert_difference 'Import.count' do
+        post :copy, :gallery_id => pictures(:picture1).permalink, :picture_id => pictures(:picture1).permalink, :to_gallery_id => galleries(:gallery2).id
+        response.should redirect_to(admin_gallery_url(galleries(:gallery2)))
+      end
+    end
+
   end
 
 end
