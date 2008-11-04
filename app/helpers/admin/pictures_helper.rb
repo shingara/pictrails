@@ -1,2 +1,11 @@
 module Admin::PicturesHelper
+  def tasks
+    output = []
+    output << content_tag(:li, link_to("Show gallery #{@picture.gallery.name}", admin_gallery_url(@picture.gallery)))
+    output << content_tag(:li, link_to("Edit gallery #{@picture.gallery.name}", edit_admin_gallery_url(@picture.gallery)))
+    output << content_tag(:li, link_to("See Picture #{@picture.title}", admin_picture_url(@picture))) unless params[:action] == 'show'
+    output << content_tag(:li, link_to("Edit Picture #{@picture.title}", edit_admin_picture_url(@picture))) unless params[:action] == 'edit'
+    output << content_tag(:li, link_to("Delete picture",  {:controller => 'admin/pictures', :action => 'destroy', :gallery_id => @picture.gallery, :id => @picture}, :method => 'delete', :confirm => 'Are you sure ?'))
+    content_for(:tasks) { output.join("\n") }
+  end
 end

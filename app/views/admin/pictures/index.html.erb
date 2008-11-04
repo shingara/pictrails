@@ -1,11 +1,5 @@
 <% @page_title = "All pictures" %>
 
-<% content_for 'tasks' do %>
-  <li>
-    <%= link_to 'List of Pictures', admin_pictures_url, :class => 'current' %>
-  </li>
-<% end %>
-
 <table id="picture_list">
   <% @pictures.each_slice(3) do |sub_pictures| %>
     <tr>

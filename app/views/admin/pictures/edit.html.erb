@@ -1,21 +1,6 @@
 <% @page_title = "edit #{@picture.title} from #{@picture.gallery.name}" %>
 
-
-<% content_for 'tasks' do %>
-  <li>
-    <%= link_to 'List of Pictures', admin_pictures_url %>
-  </li>
-  <li>
-    <%= link_to "Edit gallery #{@picture.gallery.name}", edit_admin_gallery_url(@picture.gallery) %>
-  </li>
-  <li>
-    <%= link_to "See Picture #{@picture.title}", admin_picture_url(@picture) %>
-  </li>
-  <li>
-  <%= link_to "Delete picture", {:controller => 'admin/pictures', :action => 'destroy', :gallery_id => @picture.gallery, :id => @picture}, :method => 'delete', :confirm => 'Are you sure ?' %>
-  </li>
-
-<% end %>
+<% tasks %> 
 
 <h2>Manage Pictures</h2>
 
