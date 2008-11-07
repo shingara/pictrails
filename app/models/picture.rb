@@ -24,6 +24,15 @@ class Picture < ActiveRecord::Base
   
   before_save :define_permalink
 
+  after_create :check_gallery_has_front
+
+  def check_gallery_has_front
+    if gallery.picture_id.nil?
+      gallery.picture_id = id
+      gallery.save!
+    end
+  end
+
   attr_accessor :to_gallery_id
 
   acts_as_taggable

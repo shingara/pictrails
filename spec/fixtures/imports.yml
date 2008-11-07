@@ -17,3 +17,9 @@ import3:
   path: <%= "#{RAILS_ROOT}/spec/fixtures/files/rails-3.png" %>
   gallery_id: 1
   total: 3
+
+import4:
+  id: 4
+  path: <%= "#{RAILS_ROOT}/spec/fixtures/files/rails-3.png" %>
+  gallery_id: 2
+  total: 1

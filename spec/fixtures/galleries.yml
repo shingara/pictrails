@@ -8,6 +8,7 @@ gallery1:
   status: true
   created_at: <%= 7.ago %>
   updated_at: <%= 2.ago %>
+  picture_id: 1
 
 gallery2:
   id: 2

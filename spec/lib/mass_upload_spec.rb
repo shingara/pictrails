@@ -17,7 +17,7 @@ describe Pictrails::MassUpload, "with fixtures loaded" do
 
   it 'should upload file 3 files from 3 imports in database' do
     assert_difference "Picture.count(:all, :conditions => ['gallery_id = ?', 1])", 3 do
-      assert_difference 'Import.count', -3 do
+      assert_difference 'Import.count', -4 do
         @class.upload_file
       end
     end

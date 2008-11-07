@@ -136,4 +136,23 @@ describe Picture, "with fixtures loaded" do
     end
 
   end
+
+  describe '#check_gallery_has_front' do
+    it 'picture should become front if no front picture in his gallery' do
+      g = galleries(:gallery2)
+      g.picture_id.should be_nil
+      pic = Picture.create_picture_by_import(imports(:import4))
+      g.reload
+      g.picture_id.should == pic.id
+    end
+
+    it 'should not change front picture if already one define' do
+      g = galleries(:gallery1)
+      g.picture_id.should == pictures(:picture1).id
+      pic = Picture.create_picture_by_import(imports(:import1))
+      g.reload
+      g.picture_id.should == pictures(:picture1).id
+    end
+  end
+
 end
