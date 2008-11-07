@@ -3,6 +3,7 @@
 * Choose the front picture of gallery
 * Choose a random front picture of gallery
 * Ajax system when clic to random front picture
+* Can Copy picture to another Gallery
 
 == 0.5.2 / 2008-10-04
 

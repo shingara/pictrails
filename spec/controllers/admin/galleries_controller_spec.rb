@@ -193,6 +193,7 @@ describe Admin::GalleriesController do
         Gallery.should_receive(:create_from_directory).with(directory).and_return(false)
         post 'mass_upload', :directory => directory
         response.should render_template('new')
+        response.should be_success
       end
 
       it 'should not add gallery by mass_upload because name of gallery already exist' do
@@ -200,6 +201,7 @@ describe Admin::GalleriesController do
         Gallery.should_receive(:create_from_directory).with(directory).and_return(false)
         post 'mass_upload', :directory => directory
         response.should render_template('new')
+        response.should be_success
       end
     end
 
