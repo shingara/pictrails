@@ -121,7 +121,7 @@ describe Admin::PicturesController , 'with no import' do
 
     it 'should copy picture to other gallery if post request' do
       assert_difference 'Import.count' do
-        post :copy, :gallery_id => pictures(:picture1).permalink, :picture_id => pictures(:picture1).permalink, :to_gallery_id => galleries(:gallery2).id
+        post :copy, :gallery_id => pictures(:picture1).permalink, :picture_id => pictures(:picture1).permalink, :picture => {:to_gallery_id => galleries(:gallery2).id}
         response.should redirect_to(admin_gallery_url(galleries(:gallery2)))
       end
     end
