@@ -249,6 +249,22 @@ describe Gallery, "with fixtures loaded" do
     end
   end
 
+  describe 'Gallery.other_gallery(picture)' do
+
+    it 'should empty if no other gallery' do
+      [:gallery2, :gallery3, :gallery4].each do |gal|
+        galleries(gal).destroy
+      end
+
+      Gallery.other_galleries(pictures(:picture1)).should be_empty
+    end
+
+    it 'should get All gallery without gallery of picture' do
+      Gallery.other_galleries(pictures(:picture1)).should_not be_include(galleries(:gallery1))
+      Gallery.other_galleries(pictures(:picture1)).should_not be_empty
+    end
+  end
+
   after(:each) do
     # fixtures are torn down after this
   end

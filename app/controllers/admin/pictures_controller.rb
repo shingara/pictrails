@@ -89,6 +89,8 @@ class Admin::PicturesController < Admin::BaseController
                    :total => 1)
       redirect_to admin_gallery_url(@gallery)
       return
+    else
+      @other_galleries =  Gallery.other_galleries(@picture)
     end
   end
 

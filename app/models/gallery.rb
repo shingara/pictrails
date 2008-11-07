@@ -184,4 +184,8 @@ class Gallery < ActiveRecord::Base
   def self.without_parent
     find :all, :conditions => ['parent_id IS ?', nil]
   end
+
+  def self.other_galleries(picture)
+    find(:all).delete_if { |g| g == picture.gallery }
+  end
 end
