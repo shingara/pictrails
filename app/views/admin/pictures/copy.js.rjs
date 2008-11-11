@@ -1,1 +1,2 @@
 page.insert_html :after, 'tasks', :partial => 'copy_form'
+page.hide('copy_picture')
