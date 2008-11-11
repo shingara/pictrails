@@ -1,0 +1,1 @@
+page.insert_html :after, 'tasks', :partial => 'copy_form'

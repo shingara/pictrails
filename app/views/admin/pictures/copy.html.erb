@@ -8,17 +8,5 @@
 <% else %>
   <h2>Copy picture to another gallery</h2>
 
-  <% form_tag copy_admin_picture_url(@picture) do %>
-    <fieldset class="set admin" style="display: block;">
-      <ul>
-        <li>
-          <label class="block" >Gallery where copy picture :</label>
-          <%= collection_select :picture, :to_gallery_id, @other_galleries, :id, :name %>
-        </li>
-        <li class="r">
-        <%= submit_tag 'Copy to gallery &#187;', {:class=>'submit'} %>
-        </li>
-      </ul>
-    </fieldset>
-  <% end %>
+  <%= render :partial => 'copy_form' %>
 <% end %>

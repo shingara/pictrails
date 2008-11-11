@@ -82,7 +82,7 @@ class Admin::PicturesController < Admin::BaseController
   # post request => Copy and redirect
   def copy
     @picture = Picture.find_by_permalink(params[:picture_id])
-    if request.post?
+    if request.post? && !request.xhr?
       @gallery = Gallery.find(params[:picture][:to_gallery_id])
       Import.create(:path => File.join(RAILS_ROOT, 'public', @picture.public_filename),
                    :gallery_id => @gallery.id,
