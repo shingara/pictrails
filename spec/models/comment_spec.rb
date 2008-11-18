@@ -2,17 +2,16 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Comment do
 
-  def valid_comment
+  def valid_comment(options={})
     {:author => 'shingara',
       :email => 'cyril.mougel@gmail.com',
       :body => 'good body',
       :ip => '0.0.0.0',
-      :picture_id => 1}
+      :picture_id => 1}.merge(options)
   end
 
   it 'should save if correct' do
     comment = Comment.create(valid_comment)
-    comment.valid?
     comment.should be_valid
   end
 
@@ -28,4 +27,11 @@ describe Comment do
     picture.destroy
     lambda{ Comment.find(comment_id)}.should raise_error(ActiveRecord::RecordNotFound)
   end
+
+  it 'should not create comment with bad picture_id' do
+    comment = Comment.create(valid_comment(:picture_id => 1244))
+    comment.should_not be_valid
+    comment.errors.on(:picture).should == 'You need use a picture existing'
+  end
+
 end
