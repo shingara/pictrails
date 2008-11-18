@@ -1,4 +1,4 @@
-== Master
+== 0.6.0 / 2008-11-18
 
 * Choose the front picture of gallery
 * Choose a random front picture of gallery

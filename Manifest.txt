@@ -46,8 +46,12 @@ app/views/admin/galleries/follow_import.js.rjs
 app/views/admin/galleries/index.html.erb
 app/views/admin/galleries/new.html.erb
 app/views/admin/galleries/new_by_mass_upload.html.erb
+app/views/admin/galleries/random_front_picture.js.rjs
 app/views/admin/galleries/show.html.erb
+app/views/admin/pictures/_copy_form.html.erb
 app/views/admin/pictures/_picture.html.erb
+app/views/admin/pictures/copy.html.erb
+app/views/admin/pictures/copy.js.rjs
 app/views/admin/pictures/edit.html.erb
 app/views/admin/pictures/index.html.erb
 app/views/admin/pictures/new.html.erb
@@ -98,6 +102,7 @@ db/migrate/20080618220812_acts_as_taggable_migration.rb
 db/migrate/20080824170446_add_picture_id_in_import.rb
 db/migrate/20080910173454_create_comments.rb
 db/migrate/20081004162418_create_view_picture.rb
+db/migrate/20081009062522_add_default_picture_to_gallery.rb
 db/schema.rb
 lib/authenticated_system.rb
 lib/authenticated_test_helper.rb
@@ -151,6 +156,7 @@ public/images/user.png
 public/images/user50.png
 public/images/world_link.png
 public/images/world_link50.png
+public/javascripts/administration.js
 public/javascripts/application.js
 public/javascripts/controls.js
 public/javascripts/dragdrop.js
