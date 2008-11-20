@@ -59,6 +59,7 @@ describe Gallery, "with fixtures loaded" do
     describe 'when several recursive directory' do
       before(:each) do
         Import.delete_all
+        Gallery.delete_all
         @gallery = Gallery.create_from_directory("#{RAILS_ROOT}/app/")
       end
 
@@ -76,7 +77,8 @@ describe Gallery, "with fixtures loaded" do
 
       it "should have child controllers with a child admin" do
         gallery = @gallery.children.group_by(&:name)['controllers'][0]
-        gallery.children.group_by(&:name).keys.should be_include('admin')
+        #TODO : choose a better Regexp
+        gallery.children.group_by(&:name).keys[0].should =~ /admin-*\d*/
       end
       it "should have child controllers who have app like parent" do
         gallery = @gallery.children.group_by(&:name)['controllers'][0]

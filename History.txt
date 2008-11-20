@@ -1,3 +1,7 @@
+== HEAD
+
+* Add Rake task to made mass_upload : rake pictrails:mass_upload DIR=/my/dir/where/gallery
+
 == 0.6.0 / 2008-11-18
 
 * Choose the front picture of gallery

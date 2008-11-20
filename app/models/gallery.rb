@@ -62,10 +62,10 @@ class Gallery < ActiveRecord::Base
   # but with parent like the first directory
   # if the directory is not a directory, return an empty
   # array if the directory is not a directory
-  def self.create_from_directory(directory)
+  def self.create_from_directory(directory, log=false)
     gallery_import = Pictrails::ImportSystem.search(directory)
     unless gallery_import.nil?
-      Gallery.create_by_import_gallery(gallery_import)
+      Gallery.create_by_import_gallery(gallery_import, nil, log)
     else
       nil
     end
@@ -73,17 +73,18 @@ class Gallery < ActiveRecord::Base
 
   # Create the Gallery and all import for all picture in this
   # directory
-  def self.create_by_import_gallery(gallery_import, parent = nil)
+  def self.create_by_import_gallery(gallery_import, parent=nil, log=false)
     gallery = Gallery.new_empty
     gallery.name = gallery_import.name
     gallery.parent = parent
     gallery.define_name(gallery_import.name)
     gallery.save!
-    gallery.insert_pictures(gallery_import.path)
+    list_import = gallery.insert_pictures(gallery_import.path)
     gallery_import.child.each do |gallery_child|
-      gallery.children << Gallery.create_by_import_gallery(gallery_child, gallery)
+      gallery.children << Gallery.create_by_import_gallery(gallery_child, gallery, log)
     end
     gallery.save
+    puts "one gallery import : #{gallery.name} with #{list_import.size} pictures" if log
     gallery
   end
 
@@ -139,6 +140,7 @@ class Gallery < ActiveRecord::Base
         i.save!
       }
     end if File.directory? directory
+    list_import
   end
 
   # Get the number of content

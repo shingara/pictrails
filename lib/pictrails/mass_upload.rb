@@ -7,7 +7,7 @@ module Pictrails
     # Check if an import exist still in database
     # If an import exist, it's factory
     # Use RAILS_DEFAULT_LOGGER because we can be out of Rails class
-    def upload_file
+    def upload_file(log=false)
       RAILS_DEFAULT_LOGGER.debug 'upload file launch'
       imports = Import.find :all, :include => 'gallery', 
         :limit => Setting.default.nb_upload_mass_by_request,
@@ -16,6 +16,7 @@ module Pictrails
         RAILS_DEFAULT_LOGGER.debug 'one pictures import'
         begin
           Picture.create_picture_by_import(import)
+          print '.' if log
         rescue Errno::ENOENT
           RAILS_DEFAULT_LOGGER.warn 'A file in Import directory is bad. Send a bug report'
           import.destroy
