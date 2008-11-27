@@ -13,7 +13,23 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/galleries/:id/page/:page', :controller => 'galleries', :action => 'show', :page => /\d+/
   map.connect '/galleries/:gallery_id/pictures/:id/page/:page', :controller => 'pictures', :action => 'show', :page => /\d+/
     
+  map.connect '/pictures/:year', :controller => 'pictures',
+                                  :action => 'find_by_date',
+                                  :year => /\d{4}/
+
+  map.connect '/pictures/:year/:month', :controller => 'pictures',
+                                        :action => 'find_by_date',
+                                        :year => /\d{4}/,
+                                        :month => /\d{2}/
+
+  map.connect '/pictures/:year/:month/:day', :controller => 'pictures',
+                                              :action => 'find_by_date',
+                                              :year => /\d{4}/,
+                                              :month => /\d{2}/,
+                                              :day => /\d{1,2}/
+
   map.resources :pictures, :collection => {:create_comment => :post}
+
   map.resources :tags
 
   # route to the paginate of all galleries

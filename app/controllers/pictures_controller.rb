@@ -46,6 +46,9 @@ class PicturesController < ApplicationController
     end
   end
 
+  def find_by_date
+  end
+
   private
 
   def prepare_picture
