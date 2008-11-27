@@ -2,7 +2,7 @@
 
 <h2>Picture : <%= @picture.title %></h2>
 
-<p>
+<p id="picture_view">
   <% if @picture.previous %>
     <span class="previous"><%= link_to(image_tag(@picture.previous.public_filename(:thumb)), picture_url(@picture.previous)) %></span>
   <% end %>
@@ -16,36 +16,38 @@
   <%= @picture.description %>
 </p>
 
-<h3><a id="comments">Comments</a></h3>
+<% if this_webapp.comment %>
+  <h3><a id="comments">Comments</a></h3>
 
-<ol id="comment_list" class="comments">
-  <%= render :partial => @picture.comments %>
-</ol>
+  <ol id="comment_list" class="comments">
+    <%= render :partial => @picture.comments %>
+  </ol>
 
-<%= flash_notice %>
+  <%= flash_notice %>
 
-<% form_for @comment, :url => {:action => 'create_comment'}, :html => {:id => 'commentform'} do |f| -%>
-  <h3>Add Comment</h3>
-  <%= error_messages_for 'comment' %>
+  <% form_for @comment, :url => {:action => 'create_comment'}, :html => {:id => 'commentform'} do |f| -%>
+    <h3>Add Comment</h3>
+    <%= error_messages_for 'comment' %>
 
-  <div id='respond'>
-    <p>
-      <%= f.label :author %>
-      <%= f.text_field :author %>
-    </p>
+    <div id='respond'>
+      <p>
+        <%= f.label :author %>
+        <%= f.text_field :author %>
+      </p>
 
-    <p>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </p>
+      <p>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </p>
 
-    <p>
-      <%= f.label :body %>
-      <%= f.text_area :body %>
-    </p>
-    <p class="buttons">
-      <%= f.hidden_field :picture_id %>
-      <%= submit_tag 'send', :id => 'form-submit-button'  %>
-    </p>
-  </div>
-<% end %>
+      <p>
+        <%= f.label :body %>
+        <%= f.text_area :body %>
+      </p>
+      <p class="buttons">
+        <%= f.hidden_field :picture_id %>
+        <%= submit_tag 'send', :id => 'form-submit-button'  %>
+      </p>
+    </div>
+  <% end %>
+<% end -%>

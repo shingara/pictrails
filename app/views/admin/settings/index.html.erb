@@ -56,6 +56,10 @@
             <%= options_for_select([["3","3"],["6","6"],["9","9"],["12","12"],["15","15"],["18","18"],["21","21"]], this_webapp.galleries_pagination) %>
           </select>
         </li>
+        <li>
+          <label class="float" for="comment">Activate comment :</label>
+          <%= f.check_box :comment %>
+        </li>
       </ul>
     </fieldset>
     <div id="operations" class="paginate r">

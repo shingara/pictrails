@@ -18,7 +18,9 @@
       <ul id="tabs">
         <li><%= link_to 'Galleries', admin_galleries_url, :class => class_galleries %></li>
         <li><%= link_to 'Pictures', admin_pictures_url, :class => class_pictures %></li>
-        <li><%= link_to 'Comments', admin_comments_url, :class => class_comments %></li>
+        <% if this_webapp.comment %> 
+          <li><%= link_to 'Comments', admin_comments_url, :class => class_comments %></li>
+        <% end -%>
         <li><%= link_to 'Settings', admin_settings_url, :class => class_settings %></li>
         <li><%= link_to 'Home', '/'%></li>
         <li><%= link_to 'Logout', '/admin/logout' %></li>

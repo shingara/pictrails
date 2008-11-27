@@ -21,12 +21,13 @@ class PicturesController < ApplicationController
   def show
     @picture = Picture.find_by_permalink params[:id]
     prepare_picture
-    @comment = @picture.comments.new
+    @comment = @picture.comments.new if this_webapp.comment
   rescue ActiveRecord::RecordNotFound
     render :file => "#{RAILS_ROOT}/public/404.html", :status => 404
   end
 
   def create_comment
+    render_404 unless this_webapp.comment
     unless request.post?
       flash[:notice] = 'no comment save because GET request'
       redirect_to picture_url(Picture.find(params[:comment][:picture_id]))

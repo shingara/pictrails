@@ -15,6 +15,7 @@ class Setting < ActiveRecord::Base
   setting :pictures_pagination,       :string, '9'
   setting :galleries_pagination,      :string, '9'
   setting :nb_upload_mass_by_request, :string, '5'
+  setting :comment,                   :boolean, true
 
   validate_on_update :validate_settings
 

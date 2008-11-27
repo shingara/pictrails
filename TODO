@@ -13,4 +13,3 @@ Add a view list all pictures add date by date
 By default all picture have comment. But it's possible to want no comment on
 your picture.
 So add a setting option that activate and deactivated the comments.
-
