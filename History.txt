@@ -1,6 +1,7 @@
 == HEAD
 
 * Add Rake task to made mass_upload : rake pictrails:mass_upload DIR=/my/dir/where/gallery
+* Activate/Disable comment by administration
 
 == 0.6.0 / 2008-11-18
 
