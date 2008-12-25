@@ -159,7 +159,7 @@ class Gallery < ActiveRecord::Base
   # of routing is longer
   def ensure_permalink_is_not_a_route
     @@permalinks ||= ActionController::Routing::Routes.routes.collect {|r|
-      r.generation_structure.match(/"\/galleries\/([\w]+)/)[1] rescue nil
+      r.segments.last.string_structure(r.segments[0..-2]).match(/"\/galleries\/([\w]+)/)[1] rescue nil
     }.uniq.compact
     @@permalinks.include?(permalink)
   end

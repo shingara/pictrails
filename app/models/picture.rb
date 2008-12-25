@@ -78,7 +78,7 @@ class Picture < ActiveRecord::Base
   # It the permalink is a route return true
   def ensure_permalink_is_not_a_route(permalink_test)
     @@permalinks ||= ActionController::Routing::Routes.routes.collect {|r|
-      r.generation_structure.match(/"\/pictures\/([\w]+)/)[1] rescue nil
+      r.segments.last.string_structure(r.segments[0..-2]).match(/"\/pictures\/([\w]+)/)[1] rescue nil
     }.uniq.compact
     @@permalinks.include?(permalink_test)
   end
