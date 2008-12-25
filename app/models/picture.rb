@@ -71,6 +71,10 @@ class Picture < ActiveRecord::Base
     pic.save!
     pic
   end
+
+  def self.find_by_date(year, month, day, page)
+    paginate(:conditions => {:created_at => time_delta(year, month, day)}, :page => page, :per_page => Setting.default.pictures_pagination)
+  end
   
   # Check if the permalink is possible for the URL /galleries/#{permalink}
   # a permalinks static variable is use for performance, because the collect
@@ -112,4 +116,16 @@ class Picture < ActiveRecord::Base
     Picture.find(:first, :conditions => ['gallery_id = ? AND created_at >= ? AND id > ?', gallery.id, created_at, id],
                   :order => 'created_at ASC, id ASC')
   end
+
+  def self.time_delta(year, month = nil, day = nil)
+    from = Time.mktime(year, month || 1, day || 1)
+   
+    to = from.next_year
+    to = from.next_month unless month.blank?
+    to = from + 1.day unless day.blank?
+    to = to - 1 # pull off 1 second so we don't overlap onto the next day
+    return from..to
+  end
+
+
 end

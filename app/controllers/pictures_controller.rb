@@ -47,6 +47,8 @@ class PicturesController < ApplicationController
   end
 
   def find_by_date
+    @pictures = Picture.find_by_date(params[:year], params[:month], params[:day], params[:page])
+    render :action => 'index'
   end
 
   private
