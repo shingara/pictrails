@@ -82,4 +82,5 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.root :controller => 'galleries'
+  map.sitemap '/sitemap.xml', :controller => 'sitemap', :action => 'index'
 end

@@ -4,6 +4,7 @@ module PageCache
     cache_dir = ActionController::Base.page_cache_directory
     # Delete index
     FileUtils.rm_r(cache_dir + '/index.html') rescue Errno::ENOENT
+    FileUtils.rm_r(cache_dir + '/sitemap*') rescue Errno::ENOENT
 
     # Delete Gallery and content
     FileUtils.rm_r(cache_dir + '/galleries.html') rescue Errno::ENOENT
