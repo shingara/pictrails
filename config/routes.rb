@@ -28,7 +28,7 @@ ActionController::Routing::Routes.draw do |map|
                                               :month => /\d{2}/,
                                               :day => /\d{1,2}/
 
-  map.resources :pictures, :collection => {:create_comment => :post}
+  map.resources :pictures, :collection => {:create_comment => [:post]}
 
   map.resources :tags
 

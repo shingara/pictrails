@@ -39,8 +39,10 @@ Spec::Runner.configure do |config|
 end
 
 def route_matches(path, method, params)
-  it "maps #{params.inspect} to #{path.inspect}" do
-    route_for(params).should == path
+  if method == :get
+    it "maps #{params.inspect} to #{path.inspect}" do
+      route_for(params).should == path
+    end
   end
 
   it "generates params #{params.inspect} from #{method.to_s.upcase} to #{path.inspect}" do
