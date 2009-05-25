@@ -1,7 +1,6 @@
 class SitemapController < ApplicationController
 
   caches_page :index
-  session :off
 
   def index
     @galleries = Gallery.find(:all, :include => :pictures)
