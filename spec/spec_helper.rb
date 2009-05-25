@@ -47,4 +47,3 @@ def route_matches(path, method, params)
     params_from(method.to_sym, path).should == params
   end
 end
-Test::Unit::TestCase.fixture_path = RAILS_ROOT + '/spec/fixtures/'
