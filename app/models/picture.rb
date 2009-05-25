@@ -66,7 +66,7 @@ class Picture < ActiveRecord::Base
     pic.status = true
     pic.content_type = File.mime_type? import.path
     pic.filename = import.path
-    pic.temp_data = File.new(import.path).read
+    pic.set_temp_data(File.new(import.path).read)
     pic.gallery_id = import.gallery.id
     pic.save!
     pic
